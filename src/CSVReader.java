@@ -12,7 +12,7 @@ public class CSVReader {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
-                // Dividir la línea en campos usando coma como delimitador
+                // Dividir la línea en campos usando coma como delimitador :D
                 String[] fields = line.split(",");
                 data.add(fields);
             }
