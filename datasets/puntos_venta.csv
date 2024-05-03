@@ -1,0 +1,702 @@
+,id_punto_venta,punto_venta,ciudad,provincia,pais,region
+0,277,The Bicycle Accessories Company,Alhambra,California,United States,North America
+1,455,Timely Shipping Service,Alpine,California,United States,North America
+2,609,Good Toys,Auburn,California,United States,North America
+3,492,Basic Sports Equipment,Baldwin Park,California,United States,North America
+4,365,Distinctive Store,Barstow,California,United States,North America
+5,168,Economy Bikes Company,Bell Gardens,California,United States,North America
+6,6,Aerobic Exercise Company,Camarillo,California,United States,North America
+7,402,Pro Sporting Goods,Camarillo,California,United States,North America
+8,529,Big-Time Bike Store,Camarillo,California,United States,North America
+9,241,Vale Riding Supplies,Canoga Park,California,United States,North America
+10,167,Farthermost Bike Shop,Carson,California,United States,North America
+11,187,Trailblazing Sports,Cerritos,California,United States,North America
+12,493,Valley Bicycle Distributors,Citrus Heights,California,United States,North America
+13,366,Extended Bike Sales,City Of Commerce,California,United States,North America
+14,312,Resale Services,Culver City,California,United States,North America
+15,151,Futuristic Bikes,Culver City,California,United States,North America
+16,674,Discount Tours,Daly City,California,United States,North America
+17,329,"Unicycles, Bicycles, and Tricycles",Downey,California,United States,North America
+18,313,Metropolitan Manufacturing,El Cajon,California,United States,North America
+19,25,Coalition Bike Company,El Segundo,California,United States,North America
+20,131,Eighth Bike Store,El Segundo,California,United States,North America
+21,648,Small Bike Shop,El Segundo,California,United States,North America
+22,528,Alpine Ski House,Elk Grove,California,United States,North America
+23,257,Number 1 Supply,Escondido,California,United States,North America
+24,474,Retail Cycle Shop,Eureka,California,United States,North America
+25,113,Trendy Department Stores,Fontana,California,United States,North America
+26,5,Metropolitan Sports Supply,Fremont,California,United States,North America
+27,61,Many Bikes Store,Fullerton,California,United States,North America
+28,385,Sturdy Toys,Gilroy,California,United States,North America
+29,330,The New Bike Store,Hanford,California,United States,North America
+30,60,Main Bicycle Services,Hayward,California,United States,North America
+31,456,Riding Excursions,Irvine,California,United States,North America
+32,608,Golf and Cycle Store,La Mesa,California,United States,North America
+33,403,Affordable Sports Equipment,Lake Elsinore,California,United States,North America
+34,275,Outdoor Sporting Goods,Lakewood,California,United States,North America
+35,41,Distant Inn,Milpitas,California,United States,North America
+36,133,Commercial Sporting Goods,Modesto,California,United States,North America
+37,491,Area Bike Accessories,Modesto,California,United States,North America
+38,203,Separate Parts Corporation,Monrovia,California,United States,North America
+39,97,Mountain Bike Center,Newark,California,United States,North America
+40,42,Healthy Activity Store,Newport Beach,California,United States,North America
+41,419,Exertion Activities Club,Norwalk,California,United States,North America
+42,600,Strenuous Exercise Shop,Norwalk,California,United States,North America
+43,331,Technical Parts Manufacturing,Ontario,California,United States,North America
+44,78,Preferred Bikes,Ontario,California,United States,North America
+45,240,Wire Baskets and Parts,Orange,California,United States,North America
+46,276,Thrifty Parts and Sales,Oxnard,California,United States,North America
+47,295,Engineered Bike Systems,Oxnard,California,United States,North America
+48,95,Rural Department Store,Pleasanton,California,United States,North America
+49,383,Vehicle Shop,Redlands,California,United States,North America
+50,258,Quantity Discounts,Sacramento,California,United States,North America
+51,545,Finish and Sealant Products,San Bruno,California,United States,North America
+52,367,Brown Bicycle Company,San Diego,California,United States,North America
+53,77,Mechanical Products Ltd.,San Diego,California,United States,North America
+54,114,Two Wheels Cycle Store,San Francisco,California,United States,North America
+55,185,Weekend Bike Tours,San Jose,California,United States,North America
+56,349,Exercise Center,San Jose,California,United States,North America
+57,511,Wheel Gallery,San Mateo,California,United States,North America
+58,23,Bike World,San Ramon,California,United States,North America
+59,384,Sparkling Paint and Finishes,San Ysidro,California,United States,North America
+60,599,Westside Plaza,Sand City,California,United States,North America
+61,649,Sports Products Store,Santa Ana,California,United States,North America
+62,96,More Bikes!,Santa Ana,California,United States,North America
+63,239,Bicycle Merchandise Warehouse,Santa Monica,California,United States,North America
+64,420,Extreme Riding Supplies,Sherman Oaks,California,United States,North America
+65,259,Highway Bike Shop,Simi Valley,California,United States,North America
+66,150,Fleet Bikes,Stockton,California,United States,North America
+67,204,Traction Tire Company,Torrance,California,United States,North America
+68,510,World Bike Discount Store,Trabuco Canyon,California,United States,North America
+69,24,Eastside Department Store,Union City,California,United States,North America
+70,311,Principal Bike Company,Upland,California,United States,North America
+71,347,Bike Universe,Vacaville,California,United States,North America
+72,582,Professional Sales and Service,Van Nuys,California,United States,North America
+73,59,Locks Company,Visalia,California,United States,North America
+74,294,Flawless Bike Shop,Vista,California,United States,North America
+75,565,Metallic Paint and Overcoat Co,Vista,California,United States,North America
+76,547,Curbside Sporting Goods,Walnut Creek,California,United States,North America
+77,421,Fitness Cycling,Whittier,California,United States,North America
+78,296,Extreme Toy Store,Birmingham,Alabama,United States,North America
+79,224,Pedal Systems Company,Florence,Alabama,United States,North America
+80,44,Games and Sport Supply Company,Huntsville,Alabama,United States,North America
+81,387,Racing Association,Huntsville,Alabama,United States,North America
+82,189,Principal Bicycle Supply,Mobile,Alabama,United States,North America
+83,332,Topnotch Bikes,Montgomery,Alabama,United States,North America
+84,205,Rally Master Company Inc,Chandler,Arizona,United States,North America
+85,625,Major Sporting Goods,Chandler,Arizona,United States,North America
+86,563,Systematic Sales,Gilbert,Arizona,United States,North America
+87,457,Retail Sporting Equipment,Mesa,Arizona,United States,North America
+88,473,Racing Toys,Phoenix,Arizona,United States,North America
+89,437,Professional Cycle Store,Phoenix,Arizona,United States,North America
+90,475,Real Sporting Goods,Phoenix,Arizona,United States,North America
+91,624,First Cycle Store,Scottsdale,Arizona,United States,North America
+92,610,Fitness Department Stores,Scottsdale,Arizona,United States,North America
+93,583,Professional Containers and Packaging Co.,Surprise,Arizona,United States,North America
+94,509,Fun Toys and Bikes,Tucson,Arizona,United States,North America
+95,439,Regional Manufacturing,Tucson,Arizona,United States,North America
+96,222,Sample Bike Store,Denver,Colorado,United States,North America
+97,223,Paints and Solvents Company,Englewood,Colorado,United States,North America
+98,79,Reasonable Bicycle Sales,Greeley,Colorado,United States,North America
+99,523,Futuristic Sport Distributors,Longmont,Colorado,United States,North America
+100,546,Field Trip Store,Loveland,Colorado,United States,North America
+101,348,Bold Bike Accessories,Loveland,Colorado,United States,North America
+102,527,Fun Times Club,Parker,Colorado,United States,North America
+103,132,Another Sporting Goods Company,Westminster,Colorado,United States,North America
+104,149,Initial Bike Company,Westminster,Colorado,United States,North America
+105,143,Modern Bike Store,East Haven,Connecticut,United States,North America
+106,71,Outdoor Distributors,Farmington,Connecticut,United States,North America
+107,251,Endurance Bikes,Hamden,Connecticut,United States,North America
+108,252,Classic Cycle Store,Milford,Connecticut,United States,North America
+109,684,Lease-a-Bike Shop,Milford,Connecticut,United States,North America
+110,691,Mountain Bike Store,New Haven,Connecticut,United States,North America
+111,125,Immediate Repair Shop,Stamford,Connecticut,United States,North America
+112,216,Painters Bicycle Specialists,Waterbury,Connecticut,United States,North America
+113,215,Eleventh Bike Store,Westport,Connecticut,United States,North America
+114,261,Functional Store North,Altamonte Springs,Florida,United States,North America
+115,611,Front Runner Bikes,Bradenton,Florida,United States,North America
+116,153,Widget Bicycle Specialists,Clearwater,Florida,United States,North America
+117,549,Daring Rides,Clearwater,Florida,United States,North America
+118,458,Simple Bike Parts,Destin,Florida,United States,North America
+119,612,General Associates,Hollywood,Florida,United States,North America
+120,243,Recreation Supplies,Kendall,Florida,United States,North America
+121,495,Tough and Reliable Parts,Lakeland,Florida,United States,North America
+122,315,Juvenile Sports Equipment,Merritt Island,Florida,United States,North America
+123,494,Worthwhile Activity Store,Miami,Florida,United States,North America
+124,242,Spoke Manufacturers,Miami,Florida,United States,North America
+125,260,Industrial Supplies,Miami,Florida,United States,North America
+126,188,Variety Bike Outlet,Miami,Florida,United States,North America
+127,81,Rally Day Mall,Miami,Florida,United States,North America
+128,98,Superlative Bikes,Miami,Florida,United States,North America
+129,26,Stylish Department Stores,Miami,Florida,United States,North America
+130,8,Exemplary Cycles,Miami,Florida,United States,North America
+131,603,Retail Toy Store,Miami,Florida,United States,North America
+132,628,Executive Discount Store,Miami,Florida,United States,North America
+133,675,Bike Goods,North Miami Beach,Florida,United States,North America
+134,278,Tread Industries,Orlando,Florida,United States,North America
+135,440,Hobby Store,Orlando,Florida,United States,North America
+136,530,Valuable Bike Parts Company,Orlando,Florida,United States,North America
+137,99,Unified Sports Company,Sarasota,Florida,United States,North America
+138,80,Racks and Security Systems,Sunrise,Florida,United States,North America
+139,477,Quitting Business Distributors,Tampa,Florida,United States,North America
+140,531,Sunny Place Bikes,Vero Beach,Florida,United States,North America
+141,116,Retirement Activities Association,Atlanta,Georgia,United States,North America
+142,651,Retread Tire Company,Augusta,Georgia,United States,North America
+143,676,Better Bike Shop,Austell,Georgia,United States,North America
+144,525,Cycles and Scooters,Byron,Georgia,United States,North America
+145,152,Distance Bikes,Clarkston,Georgia,United States,North America
+146,476,Noiseless Gear Company,Columbus,Georgia,United States,North America
+147,368,Elemental Sporting Goods,Decatur,Georgia,United States,North America
+148,459,Parts Shop,La Grange,Georgia,United States,North America
+149,652,Selected Distributors,Marietta,Georgia,United States,North America
+150,351,Acclaimed Bicycle Company,Mcdonough,Georgia,United States,North America
+151,171,Eighty Toy Stores,Mcdonough,Georgia,United States,North America
+152,584,Qualified Sales and Repair Services,Savannah,Georgia,United States,North America
+153,117,Pedals Warehouse,Suwanee,Georgia,United States,North America
+154,110,Vintage Sport Boutique,Idaho Falls,Idaho,United States,North America
+155,488,Bicycle Accessories and Kits,Lewiston,Idaho,United States,North America
+156,398,Commendable Bikes,Sandpoint,Idaho,United States,North America
+157,148,Lots of Bikes Storehouse,Carol Stream,Illinois,United States,North America
+158,147,Local Hardware Factory,Chicago,Illinois,United States,North America
+159,183,This Area Sporting Goods,Chicago,Illinois,United States,North America
+160,237,Client Discount Store,Chicago,Illinois,United States,North America
+161,219,Extras Sporting Goods,Chicago,Illinois,United States,North America
+162,58,Largest Bike Store,Chicago,Illinois,United States,North America
+163,111,Westside Cycle Store,Elgin,Illinois,United States,North America
+164,400,Local Sales and Rental,Joliet,Illinois,United States,North America
+165,346,Great Bicycle Supply,Moline,Illinois,United States,North America
+166,472,Summer Sports Place,Norridge,Illinois,United States,North America
+167,310,Orange Bicycle Company,Peoria,Illinois,United States,North America
+168,622,Gift and Toy Store,Tuscola,Illinois,United States,North America
+169,57,Leading Sales & Repair,West Chicago,Illinois,United States,North America
+170,129,Discount Bicycle Specialists,Wood Dale,Illinois,United States,North America
+171,76,Out-of-the-Way Hotels,Wood Dale,Illinois,United States,North America
+172,414,Grand Discount Store,Daleville,Indiana,United States,North America
+173,161,Weekend Tours,Fort Wayne,Indiana,United States,North America
+174,234,Eastside Sporting Goods,Indianapolis,Indiana,United States,North America
+175,432,Super Sports Store,Indianapolis,Indiana,United States,North America
+176,342,Leather and Vinyl Manufacturing,Indianapolis,Indiana,United States,North America
+177,636,Recreation Systems,Logansport,Indiana,United States,North America
+178,305,Professional Sporting Goods,Michigan City,Indiana,United States,North America
+179,396,Executive Gift Store,New Castle,Indiana,United States,North America
+180,36,Exotic Bikes,South Bend,Indiana,United States,North America
+181,225,Optimal Bikes,Campbellsville,Kentucky,United States,North America
+182,369,Distinctive Cycles Sales & Service,Florence,Kentucky,United States,North America
+183,513,Village Tours,Newport,Kentucky,United States,North America
+184,297,Blue-Ribbon Bike Company,Saint Matthews,Kentucky,United States,North America
+185,441,Leading Bike Distributors,Somerset,Kentucky,United States,North America
+186,486,Convenient Bike Shop,Braintree,Massachusetts,United States,North America
+187,53,Incomparable Bicycle Store,Norwood,Massachusetts,United States,North America
+188,107,Wholesale Bikes,Randolph,Massachusetts,United States,North America
+189,450,Bikes Anyone?,Saugus,Massachusetts,United States,North America
+190,557,Purchase Mart,Wrentham,Massachusetts,United States,North America
+191,108,Wheelsets Storehouse,Kittery,Maine,United States,North America
+192,642,Fitness Sport Boutique,Kittery,Maine,United States,North America
+193,323,Metro Bike Works,Detroit,Michigan,United States,North America
+194,431,Small Cycle Store,Holland,Michigan,United States,North America
+195,660,Exhilarating Cycles,Howell,Michigan,United States,North America
+196,287,Handy Bike Services,Madison Heights,Michigan,United States,North America
+197,395,Online Bike Sellers,Midland,Michigan,United States,North America
+198,468,Blue Bicycle Company,Monroe,Michigan,United States,North America
+199,197,"Fabrikam Inc., West",Novi,Michigan,United States,North America
+200,180,Full-Service Bike Store,Pontiac,Michigan,United States,North America
+201,643,Friendly Bike Shop,Port Huron,Michigan,United States,North America
+202,504,Historic Bicycle Sales,Redford,Michigan,United States,North America
+203,377,Grand Sport Boutique,Saginaw,Michigan,United States,North America
+204,360,Novelty Bikes,Saginaw,Michigan,United States,North America
+205,198,Field Trip Inc,Southfield,Michigan,United States,North America
+206,306,Work and Play Association,Southgate,Michigan,United States,North America
+207,288,Kickstand Sellers,Westland,Michigan,United States,North America
+208,18,Catalog Store,Zeeland,Michigan,United States,North America
+209,579,Riders Company,Branch,Minnesota,United States,North America
+210,274,Active Systems,Duluth,Minnesota,United States,North America
+211,39,Fitness Hotel,Edina,Minnesota,United States,North America
+212,694,The Accessories Store,Medford,Minnesota,United States,North America
+213,623,Hardware Components,Minneapolis,Minnesota,United States,North America
+214,562,Practical Bike Supply Company,Woodbury,Minnesota,United States,North America
+215,598,Black Bicycle Company,Branson,Missouri,United States,North America
+216,364,District Mall,Ferguson,Missouri,United States,North America
+217,238,A Great Bicycle Company,Jefferson City,Missouri,United States,North America
+218,544,Valley Bicycle Specialists,Kansas City,Missouri,United States,North America
+219,695,Responsible Bike Dealers,Kansas City,Missouri,United States,North America
+220,670,First Bike Store,Odessa,Missouri,United States,North America
+221,363,Immense Manufacturing Company,Saint Ann,Missouri,United States,North America
+222,327,World of Bikes,Saint Louis,Missouri,United States,North America
+223,381,Bicycle Lines Distributors,Saint Louis,Missouri,United States,North America
+224,220,Best o' Bikes,Saint Louis,Missouri,United States,North America
+225,646,Yellow Bicycle Company,Saint Louis,Missouri,United States,North America
+226,423,Bike Rims Company,Biloxi,Mississippi,United States,North America
+227,566,eCommerce Bikes,Gulfport,Mississippi,United States,North America
+228,314,One-Piece Handle Bars,Tupelo,Mississippi,United States,North America
+229,38,Finer Mart,Billings,Montana,United States,North America
+230,541,Nonskid Tire Company,Great Falls,Montana,United States,North America
+231,434,Road-Way Mart,Missoula,Montana,United States,North America
+232,700,Underglaze and Finish Company,Charlotte,North Carolina,United States,North America
+233,63,Metro Bike Mart,Greensboro,North Carolina,United States,North America
+234,699,Sensational Discount Store,Kannapolis,North Carolina,United States,North America
+235,627,Exchange Parts Inc.,Raleigh,North Carolina,United States,North America
+236,207,Lubricant and Grease Suppliers,Rocky Mount,North Carolina,United States,North America
+237,524,Chain and Chain Tool Distributions,Smithfield,North Carolina,United States,North America
+238,206,New and Used Bicycles,Winston-Salem,North Carolina,United States,North America
+239,503,Metropolitan Sales and Rental,Hooksett,New Hampshire,United States,North America
+240,72,Outdoor Equipment Store,Nashua,New Hampshire,United States,North America
+241,594,Casual Bicycle Store,Nashua,New Hampshire,United States,North America
+242,618,Seventh Bike Store,Plaistow,New Hampshire,United States,North America
+243,558,Retail Sales and Service,Tilton,New Hampshire,United States,North America
+244,221,Bike Dealers Association,Las Cruces,New Mexico,United States,North America
+245,581,Safe Toys,Rio Rancho,New Mexico,United States,North America
+246,186,Thrilling Bike Tours,Santa Fe,New Mexico,United States,North America
+247,169,Downtown Hotel,Fernley,Nevada,United States,North America
+248,438,Remarkable Bike Store,Las Vegas,Nevada,United States,North America
+249,401,Brightwork Company,Las Vegas,Nevada,United States,North America
+250,626,Retail Sporting Goods,Las Vegas,Nevada,United States,North America
+251,564,Imported and Domestic Cycles,North Las Vegas,Nevada,United States,North America
+252,650,Permanent Finish Products,Reno,Nevada,United States,North America
+253,115,Security Racks and Locks Wholesalers,Sparks,Nevada,United States,North America
+254,413,Margie's Travel,Central Valley,New York,United States,North America
+255,522,Small Bike Accessories Shop,Cheektowaga,New York,United States,North America
+256,341,Independent Outlet,Clay,New York,United States,North America
+257,324,A Bicycle Association,De Witt,New York,United States,North America
+258,126,Famous Bike Sales and Service,Endicott,New York,United States,North America
+259,619,Strong Metal Manufacturing,Ithaca,New York,United States,North America
+260,539,Glossy Bikes,Lake George,New York,United States,North America
+261,54,Larger Cycle Shop,Melville,New York,United States,North America
+262,233,Fashionable Department Stores,New Hartford,New York,United States,North America
+263,144,Only Bikes and Accessories,New York,New York,United States,North America
+264,667,Traditional Department Stores,Valley Stream,New York,United States,North America
+265,540,Guaranteed Sales and Service,Burbank,Ohio,United States,North America
+266,575,Bicycle Outfitters,Cincinnati,Ohio,United States,North America
+267,359,Mechanical Sports Center,Cincinnati,Ohio,United States,North America
+268,666,Bike Boutique,Columbus,Ohio,United States,North America
+269,269,Curbside Universe,Euclid,Ohio,United States,North America
+270,690,Active Cycling,Heath,Ohio,United States,North America
+271,593,Expert Sports Store,Holland,Ohio,United States,North America
+272,576,The Bike Mechanics,Mansfield,Ohio,United States,North America
+273,179,Fourth Bike Store,Mentor,Ohio,United States,North America
+274,270,Active Transport Inc.,North Randall,Ohio,United States,North America
+275,89,Riverside Company,Oberlin,Ohio,United States,North America
+276,378,Grown-up Bike Store,Springdale,Ohio,United States,North America
+277,452,A Cycle Shop,Albany,Oregon,United States,North America
+278,595,Cycle Clearance,Albany,Oregon,United States,North America
+279,645,Superior Hardware Distributors,Beaverton,Oregon,United States,North America
+280,91,Scooters and Bikes Store,Beaverton,Oregon,United States,North America
+281,604,Sellers of Cycles,Clackamas,Oregon,United States,North America
+282,181,Family Entertainment Center,Clackamas,Oregon,United States,North America
+283,693,Stock Parts and Supplies,Hillsboro,Oregon,United States,North America
+284,163,Sports Merchandise,Klamath Falls,Oregon,United States,North America
+285,55,Kickstands and Accessories Company,Medford,Oregon,United States,North America
+286,451,Roadway Bike Emporium,Medford,Oregon,United States,North America
+287,182,Another Bicycle Company,Milwaukie,Oregon,United States,North America
+288,56,Latest Accessories Sales,Portland,Oregon,United States,North America
+289,74,Parcel Express Delivery Service,Portland,Oregon,United States,North America
+290,379,Fad Outlet,Portland,Oregon,United States,North America
+291,487,Bike Experts,Salem,Oregon,United States,North America
+292,644,Convenient Sales and Service,Springfield,Oregon,United States,North America
+293,692,Successful Sales Company,Tigard,Oregon,United States,North America
+294,164,Suburban Cycle Shop,Troutdale,Oregon,United States,North America
+295,162,Tire Company,Warwick,Rhode Island,United States,North America
+296,35,Economic Parts Supply,West Kingston,Rhode Island,United States,North America
+297,521,Mobile Outlet,Woonsocket,Rhode Island,United States,North America
+298,548,New Bikes Company,Bluffton,South Carolina,United States,North America
+299,422,Consolidated Sales,Gaffney,South Carolina,United States,North America
+300,386,Touring Services,Myrtle Beach,South Carolina,United States,North America
+301,454,Sleek Bikes,Denby,South Dakota,United States,North America
+302,22,Travel Systems,North Sioux City,South Dakota,United States,North America
+303,404,Activity Center,Crossville,Tennessee,United States,North America
+304,333,Resident Cycle Shop,Hixson,Tennessee,United States,North America
+305,405,Sporting Goods and Bicycle Shop,Kingsport,Tennessee,United States,North America
+306,45,Every Bike Shop,La Vergne,Tennessee,United States,North America
+307,602,Ultimate Bike Shop,Maryville,Tennessee,United States,North America
+308,135,Wonderful Bikes Inc.,Memphis,Tennessee,United States,North America
+309,170,Excellent Riding Supplies,Memphis,Tennessee,United States,North America
+310,279,Reliable Brake Systems,Memphis,Tennessee,United States,North America
+311,585,Next-Door Bike Store,Memphis,Tennessee,United States,North America
+312,134,Budget Bike Company,Millington,Tennessee,United States,North America
+313,27,Sports Sales and Rental,Millington,Tennessee,United States,North America
+314,9,Tandem Bicycle Store,Millington,Tennessee,United States,North America
+315,62,Manufacturers Inc,Nashville,Tennessee,United States,North America
+316,512,Tiny Bike Boutique,Nashville,Tennessee,United States,North America
+317,350,Mountain Emporium,Nashville,Tennessee,United States,North America
+318,567,Global Plaza,Pigeon Forge,Tennessee,United States,North America
+319,647,Solid Bike Parts,Arlington,Texas,United States,North America
+320,4,Modular Cycle Systems,Austin,Texas,United States,North America
+321,291,Grand Bicycle Stores,Baytown,Texas,United States,North America
+322,184,Go-cart and Bike Specialists,Carrollton,Texas,United States,North America
+323,489,Cash & Carry Bikes,Cedar Park,Texas,United States,North America
+324,436,Sheet Metal Manufacturing,College Station,Texas,United States,North America
+325,435,Satin Finish Company,Corpus Christi,Texas,United States,North America
+326,201,Unsurpassed Bikes,Dallas,Texas,United States,North America
+327,165,Third Bike Store,Dallas,Texas,United States,North America
+328,256,Rental Bikes,Dallas,Texas,United States,North America
+329,130,Elite Bikes,Dallas,Texas,United States,North America
+330,112,Town Industries,Dallas,Texas,United States,North America
+331,94,Specialty Sports Store,Fort Worth,Texas,United States,North America
+332,75,Paint Supply,Garland,Texas,United States,North America
+333,166,Fitness Toy Store,Garland,Texas,United States,North America
+334,508,Designer Department Stores,Hillsboro,Texas,United States,North America
+335,292,Grease and Oil Products Company,Houston,Texas,United States,North America
+336,309,The Gear Store,Houston,Texas,United States,North America
+337,255,Swift Cycles,Houston,Texas,United States,North America
+338,597,All Seasons Sports Supply,Houston,Texas,United States,North America
+339,345,Genial Bike Associates,Humble,Texas,United States,North America
+340,3,Advanced Bike Components,Irving,Texas,United States,North America
+341,21,Chic Department Stores,Irving,Texas,United States,North America
+342,399,Big Cycle Mall,Killeen,Texas,United States,North America
+343,607,Maintenance and Repair for Bicycles,La Marque,Texas,United States,North America
+344,40,Journey Sporting Goods,Laredo,Texas,United States,North America
+345,490,Extraordinary Bike Works,Mesquite,Texas,United States,North America
+346,202,Two-Seater Bikes,Plano,Texas,United States,North America
+347,273,A Typical Bike Shop,Round Rock,Texas,United States,North America
+348,93,Stationary Bikes and Stands,Round Rock,Texas,United States,North America
+349,471,Social Activities Club,San Antonio,Texas,United States,North America
+350,580,Rural Sales and Service,San Antonio,Texas,United States,North America
+351,382,Beneficial Exercises and Activities,San Antonio,Texas,United States,North America
+352,417,Genuine Bike Shop,San Antonio,Texas,United States,North America
+353,328,Totes & Baskets Company,San Antonio,Texas,United States,North America
+354,671,"Contoso, Ltd.",San Antonio,Texas,United States,North America
+355,507,Global Sporting Goods,Stafford,Texas,United States,North America
+356,561,Mountain Toy Store,Sugar Land,Texas,United States,North America
+357,673,Countryside Company,Bountiful,Utah,United States,North America
+358,698,Western Bike Supplies,Cedar City,Utah,United States,North America
+359,672,Utilitarian Sporting Goods,Ogden,Utah,United States,North America
+360,293,Fashionable Bikes and Accessories,Park City,Utah,United States,North America
+361,696,Roadway Supplies,Riverton,Utah,United States,North America
+362,43,Frugal Bike Shop,Salt Lake City,Utah,United States,North America
+363,7,Associated Bikes,Salt Lake City,Utah,United States,North America
+364,601,Transport Bikes,Sandy,Utah,United States,North America
+365,697,Brakes and Gears,Tooele,Utah,United States,North America
+366,90,Sales and Supply Company,Chantilly,Virginia,United States,North America
+367,467,The Cycle Store,Falls Church,Virginia,United States,North America
+368,485,Clamps & Brackets Co.,Leesburg,Virginia,United States,North America
+369,17,Trusted Catalog Store,Newport News,Virginia,United States,North America
+370,449,Bike Products and Accessories,Virginia Beach,Virginia,United States,North America
+371,254,Safe Cycles Shop,Bellevue,Washington,United States,North America
+372,290,Friendly Bike Shop,Bellingham,Washington,United States,North America
+373,621,Running and Cycling Gear,Bellingham,Washington,United States,North America
+374,325,All Cycle Shop,Bothell,Washington,United States,North America
+375,19,Center Cycle Shop,Bothell,Washington,United States,North America
+376,469,Vast Bike Sales and Rental,Chehalis,Washington,United States,North America
+377,343,Mail-Order Outlet,Ellensburg,Washington,United States,North America
+378,344,Fifth Bike Store,Everett,Washington,United States,North America
+379,308,Rugged Bikes,Everett,Washington,United States,North America
+380,596,Coho Sports,Everett,Washington,United States,North America
+381,669,Racing Bike Outlet,Federal Way,Washington,United States,North America
+382,109,Travel Sports,Issaquah,Washington,United States,North America
+383,505,Honest Repair Service,Kelso,Washington,United States,North America
+384,668,Official Parts Shop,Kelso,Washington,United States,North America
+385,470,Wingtip Toys,Kennewick,Washington,United States,North America
+386,326,Year-Round Sports,Kent,Washington,United States,North America
+387,20,Central Discount Store,Kent,Washington,United States,North America
+388,542,Finer Parts Shop,Kirkland,Washington,United States,North America
+389,433,Thorough Parts and Repair Services,Lacey,Washington,United States,North America
+390,218,Sure & Reliable Sporting Goods,Longview,Washington,United States,North America
+391,235,Certified Bicycle Supply,Lynnwood,Washington,United States,North America
+392,73,Outdoor Sports Supply,North Bend,Washington,United States,North America
+393,200,Basic Bike Company,Port Orchard,Washington,United States,North America
+394,253,Roving Sports,Puyallup,Washington,United States,North America
+395,37,Two Bike Shops,Puyallup,Washington,United States,North America
+396,307,Riding Associates,Puyallup,Washington,United States,North America
+397,578,The Bike Shop,Puyallup,Washington,United States,North America
+398,127,Front Sporting Goods,Redmond,Washington,United States,North America
+399,145,Raw Materials Inc,Redmond,Washington,United States,North America
+400,2,Progressive Sports,Renton,Washington,United States,North America
+401,289,Moderately-Priced Bikes Store,Renton,Washington,United States,North America
+402,199,Authorized Bike Sales and Rental,Renton,Washington,United States,North America
+403,236,Closeout Boutique,Seattle,Washington,United States,North America
+404,1,A Bike Store,Seattle,Washington,United States,North America
+405,146,Latest Sports Equipment,Seattle,Washington,United States,North America
+406,397,Capable Sales and Service,Seattle,Washington,United States,North America
+407,361,Fitness Supplies,Sequim,Washington,United States,North America
+408,217,City Manufacturing,Shelton,Washington,United States,North America
+409,362,Grand Cycle Store,Spokane,Washington,United States,North America
+410,415,Imaginary Toys,Spokane,Washington,United States,North America
+411,605,Outstanding Cycles,Spokane,Washington,United States,North America
+412,577,Synthetic Materials Manufacturing,Tacoma,Washington,United States,North America
+413,272,Metro Cycle Shop,Tacoma,Washington,United States,North America
+414,416,Impromptu Trips,Union Gap,Washington,United States,North America
+415,271,Alternative Vehicles,Washougal,Washington,United States,North America
+416,128,Demand Distributors,Wenatchee,Washington,United States,North America
+417,92,Sports Commodities,Woodinville,Washington,United States,North America
+418,543,Friendly Neighborhood Bikes,Johnson Creek,Wisconsin,United States,North America
+419,453,Unique Bikes,Milwaukee,Wisconsin,United States,North America
+420,606,Little Bicycle Supply Shop,Mosinee,Wisconsin,United States,North America
+421,418,Good Bike Shop,Racine,Wisconsin,United States,North America
+422,506,Great Bikes,Casper,Wyoming,United States,North America
+423,559,Some Discount Store,Cheyenne,Wyoming,United States,North America
+424,380,First Department Stores,Cheyenne,Wyoming,United States,North America
+425,620,Tires and Tubes,Cheyenne,Wyoming,United States,North America
+426,560,Major Sport Suppliers,Rock Springs,Wyoming,United States,North America
+427,105,Volume Bike Sellers,Alexandria,New South Wales,Australia,Pacific
+428,658,Mass Market Bikes,Alexandria,New South Wales,Australia,Pacific
+429,555,Twin Cycles,Darlinghurst,New South Wales,Australia,Pacific
+430,87,Rich Department Store,Lane Cove,New South Wales,Australia,Pacific
+431,141,Rental Gallery,Lavender Bay,New South Wales,Australia,Pacific
+432,15,Budget Toy Store,Lavender Bay,New South Wales,Australia,Pacific
+433,33,Global Sports Outlet,Lavender Bay,New South Wales,Australia,Pacific
+434,69,Online Bike Catalog,Lavender Bay,New South Wales,Australia,Pacific
+435,231,Helmets and Cycles,Lavender Bay,New South Wales,Australia,Pacific
+436,501,Jumbo Bikes,Malabar,New South Wales,Australia,Pacific
+437,321,Second Bike Shop,Matraville,New South Wales,Australia,Pacific
+438,339,Major Bicycle Store,Matraville,New South Wales,Australia,Pacific
+439,616,Eastward Bike Accessories,Matraville,New South Wales,Australia,Pacific
+440,393,Gears and Parts Company,Milsons Point,New South Wales,Australia,Pacific
+441,682,Popular Bike Lines,Newcastle,New South Wales,Australia,Pacific
+442,285,Nearest Bike Store,North Ryde,New South Wales,Australia,Pacific
+443,159,Uncompromising Quality Co,North Ryde,New South Wales,Australia,Pacific
+444,123,First Supplies,North Ryde,New South Wales,Australia,Pacific
+445,195,Inexpensive Parts Shop,North Sydney,New South Wales,Australia,Pacific
+446,411,Kids and Adults Cycle Shop,North Sydney,New South Wales,Australia,Pacific
+447,303,Seaside Bike Works,North Sydney,New South Wales,Australia,Pacific
+448,483,Fitness Bike Accessories,Rhodes,New South Wales,Australia,Pacific
+449,573,Nationwide Supply,Rhodes,New South Wales,Australia,Pacific
+450,537,Preferable Bikes,Rhodes,New South Wales,Australia,Pacific
+451,634,Sensible Sports,Rhodes,New South Wales,Australia,Pacific
+452,429,Unusual Bicycle Company,Silverwater,New South Wales,Australia,Pacific
+453,447,Cross-town Parts Shop,Springwood,New South Wales,Australia,Pacific
+454,465,Expert Cycle Store,St. Leonards,New South Wales,Australia,Pacific
+455,688,Bike Part Wholesalers,Sydney,New South Wales,Australia,Pacific
+456,375,Region Bike Company,East Brisbane,Queensland,Australia,Pacific
+457,177,Plastic Products Manufacturers,Hawthorne,Queensland,Australia,Pacific
+458,51,Ideal Components,Cloverdale,South Australia,Australia,Pacific
+459,357,Quality Bike Sales,Findon,South Australia,Australia,Pacific
+460,640,Liquidation Sales,Perth,South Australia,Australia,Pacific
+461,591,Fitness Discount Store,Melbourne,Victoria,Australia,Pacific
+462,664,Eastside Cycle Shop,Melbourne,Victoria,Australia,Pacific
+463,519,List Price Catalog Company,Melbourne,Victoria,Australia,Pacific
+464,267,Cycle Parts and Accessories,Melbourne,Victoria,Australia,Pacific
+465,249,Helpful Sales and Repair Service,Seaford,Victoria,Australia,Pacific
+466,213,Fast Bike Works,South Melbourne,Victoria,Australia,Pacific
+467,190,Racing Partners,Calgary,Alberta,Canada,North America
+468,262,General Industries,Calgary,Alberta,Canada,North America
+469,46,Gear-Shift Bikes Limited,Calgary,Alberta,Canada,North America
+470,136,Wholesale Parts,Calgary,Alberta,Canada,North America
+471,137,Transportation Options,Calgary,Alberta,Canada,North America
+472,444,Finer Cycle Shop,Calgary,Alberta,Canada,North America
+473,354,Serious Cycles,Calgary,Alberta,Canada,North America
+474,370,Acceptable Sales & Service,Calgary,Alberta,Canada,North America
+475,661,General Department Stores,Calgary,Alberta,Canada,North America
+476,701,Future Bikes,Calgary,Alberta,Canada,North America
+477,629,Efficient Cycling,Calgary,Alberta,Canada,North America
+478,352,Twelfth Bike Store,Edmonton,Alberta,Canada,North America
+479,496,Top Sports Supply,Edmonton,Alberta,Canada,North America
+480,10,Rural Cycle Emporium,Burnaby,British Columbia,Canada,North America
+481,317,Finer Riding Supplies,Burnaby,British Columbia,Canada,North America
+482,263,Farthest Bike Store,Burnaby,British Columbia,Canada,North America
+483,588,General Cycle Storehouse,Burnaby,British Columbia,Canada,North America
+484,66,Neighborhood Store,Burnaby,British Columbia,Canada,North America
+485,172,Certified Sports Supply,Richmond,British Columbia,Canada,North America
+486,408,Odometers and Accessories Company,Richmond,British Columbia,Canada,North America
+487,497,Valley Toy Store,Richmond,British Columbia,Canada,North America
+488,478,Major Cycling,Richmond,British Columbia,Canada,North America
+489,462,General Riding Supplies,Richmond,British Columbia,Canada,North America
+490,514,Retail Mall,Richmond,British Columbia,Canada,North America
+491,371,Custom Sales and Service,Surrey,British Columbia,Canada,North America
+492,389,Sixth Bike Store,Surrey,British Columbia,Canada,North America
+493,174,Toy Manufacturing Inc,Surrey,British Columbia,Canada,North America
+494,173,Sundry Sporting Goods,Vancouver,British Columbia,Canada,North America
+495,154,Camping and Sports Store,Vancouver,British Columbia,Canada,North America
+496,138,South Bike Company,Vancouver,British Columbia,Canada,North America
+497,82,Refined Department Stores,Vancouver,British Columbia,Canada,North America
+498,388,Road Way Sales and Rental,Vancouver,British Columbia,Canada,North America
+499,318,First-Rate Outlet,Victoria,British Columbia,Canada,North America
+500,298,City Cycling,Winnipeg,Manitoba,Canada,North America
+501,353,Two-Wheeled Transit Company,Winnipeg,Manitoba,Canada,North America
+502,299,Citywide Service and Repair,Saint John,Brunswick,Canada,North America
+503,654,Online Bike Warehouse,Aurora,Ontario,Canada,North America
+504,280,Standard Bikes,Barrie,Ontario,Canada,North America
+505,426,Custom Accessories Company,Brampton,Ontario,Canada,North America
+506,29,Cross-Country Riding Supplies,Chalk Riber,Ontario,Canada,North America
+507,84,Rewarding Activities Company,Etobicoke,Ontario,Canada,North America
+508,425,Bikes for Kids and Adults,Etobicoke,Ontario,Canada,North America
+509,532,The Showroom,Kanata,Ontario,Canada,North America
+510,516,Seats and Saddles Company,Kingston,Ontario,Canada,North America
+511,372,Top Bike Market,Kingston,Ontario,Canada,North America
+512,100,Up-To-Date Sports,Markham,Ontario,Canada,North America
+513,335,Scratch-Resistant Finishes Company,Mississauga,Ontario,Canada,North America
+514,316,Low Price Cycles,Mississauga,Ontario,Canada,North America
+515,534,Recommended Bicycles,Mississauga,Ontario,Canada,North America
+516,461,Active Life Toys,Mississauga,Ontario,Canada,North America
+517,480,General Bike Corporation,Mississauga,Ontario,Canada,North America
+518,498,Quick Delivery Service,Mississauga,Ontario,Canada,North America
+519,569,Designated Distributors,Nepean,Ontario,Canada,North America
+520,515,Rural Bicycle Supply,North York,Ontario,Canada,North America
+521,228,Home Town Bike Store,Ottawa,Ontario,Canada,North America
+522,83,Requisite Part Supply,Ottawa,Ontario,Canada,North America
+523,526,Finer Sales and Service,Ottawa,Ontario,Canada,North America
+524,677,Tire Exchange,Ottawa,Ontario,Canada,North America
+525,587,Our Sporting Goods Store,Ottawa,Ontario,Canada,North America
+526,300,Nice Bikes,Ottawa,Ontario,Canada,North America
+527,424,Bikes for Two,Richmond Hill,Ontario,Canada,North America
+528,443,Courteous Bicycle Specialists,Richmond Hill,Ontario,Canada,North America
+529,209,Purple Bicycle Company,Scarborough,Ontario,Canada,North America
+530,653,Mercantile Outlet,Toronto,Ontario,Canada,North America
+531,630,Eastside Parts Shop,Toronto,Ontario,Canada,North America
+532,631,Tandem Sales and Service,Toronto,Ontario,Canada,North America
+533,637,Reliable Retail Center,Toronto,Ontario,Canada,North America
+534,678,Vigorous Exercise Company,Toronto,Ontario,Canada,North America
+535,210,Gasless Cycle Shop,Toronto,Ontario,Canada,North America
+536,227,"Health Spa, Limited",Toronto,Ontario,Canada,North America
+537,264,Fasteners & Bolts Outlet,Toronto,Ontario,Canada,North America
+538,442,Original Bicycle Supply Company,Toronto,Ontario,Canada,North America
+539,568,Economy Center,Toronto,Ontario,Canada,North America
+540,551,Vinyl and Plastic Goods Corporation,Toronto,Ontario,Canada,North America
+541,552,Consolidated Messenger,Toronto,Ontario,Canada,North America
+542,28,Commuter Bicycle Store,Toronto,Ontario,Canada,North America
+543,64,Metal Clearing House,Toronto,Ontario,Canada,North America
+544,47,Greater Bike Store,Toronto,Ontario,Canada,North America
+545,11,Sharp Bikes,Toronto,Ontario,Canada,North America
+546,12,Bikes and Motorbikes,Toronto,Ontario,Canada,North America
+547,101,Urban Sports Emporium,Toronto,Ontario,Canada,North America
+548,102,National Manufacturing,Toronto,Ontario,Canada,North America
+549,118,Rapid Bikes,Toronto,Ontario,Canada,North America
+550,208,Professional Cyclists,Toronto,Ontario,Canada,North America
+551,191,Non-Slip Pedal Company,Toronto,Ontario,Canada,North America
+552,192,Nuts and Bolts Mfg.,Toronto,Ontario,Canada,North America
+553,155,Corner Bicycle Supply,Toronto,Ontario,Canada,North America
+554,613,Famous Bike Shop,Vancouver,Ontario,Canada,North America
+555,390,Plastic Parts Company,Waterloo,Ontario,Canada,North America
+556,334,Retreat Inn,Waterloo,Ontario,Canada,North America
+557,65,Metro Manufacturing,Weston,Ontario,Canada,North America
+558,460,Price-Cutter Discount Bikes,Brossard,Quebec,Canada,North America
+559,245,Leather Seat Factory,Brossard,Quebec,Canada,North America
+560,655,Operational Manufacturing,Dorval,Quebec,Canada,North America
+561,226,Leisure Activities,Hull,Quebec,Canada,North America
+562,679,Superb Sales and Repair,Montreal,Quebec,Canada,North America
+563,120,Machines & Cycles Store,Montreal,Quebec,Canada,North America
+564,570,Family's Favorite Bike Shop,Montreal,Quebec,Canada,North America
+565,407,Workout Emporium,Montreal,Quebec,Canada,North America
+566,48,Grand Industries,Montreal,Quebec,Canada,North America
+567,246,Large Bike Shop,Montreal,Quebec,Canada,North America
+568,281,Petroleum Products Distributors,Montreal,Quebec,Canada,North America
+569,156,Metal Processing Company,Montreal,Quebec,Canada,North America
+570,586,One Bike Company,Montreal,Quebec,Canada,North America
+571,685,Family Cycle Store,Montreal,Quebec,Canada,North America
+572,244,Retail Discount Store,Montreal,Quebec,Canada,North America
+573,336,Primary Bike Distributors,Montreal,Quebec,Canada,North America
+574,406,The Commissary,Outremont,Quebec,Canada,North America
+575,119,Red Bicycle Company,Pnot-Rouge,Quebec,Canada,North America
+576,30,Cycle Merchants,Quebec,Quebec,Canada,North America
+577,550,Remote Bicycle Specialists,Quebec,Quebec,Canada,North America
+578,282,Quick Parts and Service,Sainte-Foy,Quebec,Canada,North America
+579,533,Tenth Bike Store,Sillery,Quebec,Canada,North America
+580,479,General Supplies,Ville De'anjou,Quebec,Canada,North America
+581,50,Hometown Riding Supplies,Berlin,Brandenburg,Germany,Europe
+582,482,"Fabrikam Inc., East",Eilenburg,Brandenburg,Germany,Europe
+583,633,Rustic Bike Store,Augsburg,Bayern,Germany,Europe
+584,639,Producer Goods Clearinghouse,Frankfurt,Bayern,Germany,Europe
+585,266,Excellent Bikes,Grevenbroich,Bayern,Germany,Europe
+586,230,Global Bike Retailers,Bad Soden,Hessen,Germany,Europe
+587,122,Off-Price Bike Center,Berlin,Hessen,Germany,Europe
+588,518,Regional Cycle Shop,Berlin,Hessen,Germany,Europe
+589,500,Irregulars Outlet,Dresden,Hessen,Germany,Europe
+590,104,Very Best Sports Supply,Duesseldorf,Hessen,Germany,Europe
+591,356,Speedometer Sales,Hamburg,Hessen,Germany,Europe
+592,212,Enterprise Center,München,Hessen,Germany,Europe
+593,374,Major Equipment Co,Salzgitter,Hessen,Germany,Europe
+594,657,Links Works,Ascheim,Hamburg,Germany,Europe
+595,663,Capital Riding Supplies,Augsburg,Hamburg,Germany,Europe
+596,446,Fitness Toys,Berlin,Hamburg,Germany,Europe
+597,140,Teen Discount Store,Bonn,Hamburg,Germany,Europe
+598,86,Bicycle Exporters,Essen,Hamburg,Germany,Europe
+599,320,Amalgamated Parts Shop,Frankfurt am Main,Hamburg,Germany,Europe
+600,392,Primary Cycle Shop,Hamburg,Hamburg,Germany,Europe
+601,68,North Bike Company,Muehlheim,Hamburg,Germany,Europe
+602,194,Mechanical Brake Manufacturers,München,Hamburg,Germany,Europe
+603,554,Top of the Line Bikes,Paderborn,Hamburg,Germany,Europe
+604,284,Nearby Bike Mall,Berlin,Nordrhein-Westfalen,Germany,Europe
+605,158,Rural Sporting Goods,Bonn,Nordrhein-Westfalen,Germany,Europe
+606,572,Versatile Sporting Goods Company,Braunschweig,Nordrhein-Westfalen,Germany,Europe
+607,428,West Wind Distributors,Hannover,Nordrhein-Westfalen,Germany,Europe
+608,615,Fast Services,Leipzig,Nordrhein-Westfalen,Germany,Europe
+609,687,Functional Store South,München,Nordrhein-Westfalen,Germany,Europe
+610,536,Next Door Cycles,Berlin,Saarland,Germany,Europe
+611,14,Bicycle Warehouse Inc.,Frankfurt am Main,Saarland,Germany,Europe
+612,410,Pedaling Components,Kiel,Saarland,Germany,Europe
+613,176,Rodeway Bike Store,Münster,Saarland,Germany,Europe
+614,302,Best Cycle Store,Offenbach,Saarland,Germany,Europe
+615,590,Lustrous Paints and Components,Poing,Saarland,Germany,Europe
+616,464,Educational Services,Saarbrücken,Saarland,Germany,Europe
+617,338,Rambling Tours,Stuttgart,Saarland,Germany,Europe
+618,32,Precision Gears Inc.,Stuttgart,Saarland,Germany,Europe
+619,248,Good Bicycle Store,Sulzbach Taunus,Saarland,Germany,Europe
+620,681,Showcase for Cycles,Sulzbach Taunus,Saarland,Germany,Europe
+621,193,Perfect Toys,Colomiers,Garonne (Haute),France,Europe
+622,409,Outdoor Toy Store,Aujan Mournede,Gers,France,Europe
+623,481,Getaway Inn,Saint Ouen,Loir et Cher,France,Europe
+624,121,Metro Sports Equipment,Saint Ouen,Loir et Cher,France,Europe
+625,175,Registered Cycle Store,Orleans,Loiret,France,Europe
+626,499,Racing Sales and Service,Orleans,Loiret,France,Europe
+627,662,Finer Sporting Goods,Croix,Nord,France,Europe
+628,49,Neighborhood Bicycle Storehouse,Roncq,Nord,France,Europe
+629,571,Community Department Stores,Boulogne-sur-Mer,Pas de Calais,France,Europe
+630,355,Spare Parts Co.,Paris,Seine (Paris),France,Europe
+631,391,Pretty Bikes and Toys,Paris,Seine (Paris),France,Europe
+632,656,Impervious Paint Company,Paris,Seine (Paris),France,Europe
+633,553,Accessories Network,Paris,Seine (Paris),France,Europe
+634,589,Hiatus Bike Tours,Paris,Seine (Paris),France,Europe
+635,427,Atypical Bike Company,Paris,Seine (Paris),France,Europe
+636,638,Metropolitan Equipment,Paris,Seine (Paris),France,Europe
+637,31,Wheels Inc.,Paris,Seine (Paris),France,Europe
+638,265,Full Sports Supply,Paris,Seine (Paris),France,Europe
+639,614,Favorite Toy Distributor,Paris,Seine (Paris),France,Europe
+640,157,Ace Bicycle Supply,Paris,Seine (Paris),France,Europe
+641,301,Rural Mountain Bike Mart,Paris,Seine (Paris),France,Europe
+642,211,Sports Products Store,Lieusaint,Seine et Marne,France,Europe
+643,283,Racing Supply Distributors,Roissy en Brie,Seine et Marne,France,Europe
+644,13,Country Parts Shop,Les Ulis,Essonne,France,Europe
+645,373,Township Inn,Les Ulis,Essonne,France,Europe
+646,517,Racing Store,Les Ulis,Essonne,France,Europe
+647,463,Brand New Bikes,Les Ulis,Essonne,France,Europe
+648,632,Ultimate Bicycle Company,Morangis,Essonne,France,Europe
+649,67,Self-Contained Cycle Parts Company,Verrieres Le Buisson,Essonne,France,Europe
+650,139,Steel Inc.,Colombes,Hauts de Seine,France,Europe
+651,229,Instant Cycle Store,Colombes,Hauts de Seine,France,Europe
+652,85,Roadway Bicycle Supply,Courbevoie,Hauts de Seine,France,Europe
+653,337,Recreation Toy Store,Paris La Defense,Hauts de Seine,France,Europe
+654,680,Racing Tours,Sèvres,Hauts de Seine,France,Europe
+655,686,Finished Parts Shop,Suresnes,Hauts de Seine,France,Europe
+656,319,Cycles Sales and Repair,Bobigny,Seine Saint Denis,France,Europe
+657,445,First Center,Pantin,Seine Saint Denis,France,Europe
+658,103,The Bike Outlet,Pantin,Seine Saint Denis,France,Europe
+659,247,Major Amusement Company,Orly,Val de Marne,France,Europe
+660,535,Spa and Exercise Outfitters,Cergy,Val d'Oise,France,Europe
+661,304,Essential Bike Works,Abingdon,England,United Kingdom,Europe
+662,232,Exceptional Cycle Services,Basingstoke Hants,England,United Kingdom,Europe
+663,484,Downhill Bicycle Specialists,Berks,England,United Kingdom,Europe
+664,376,Commerce Bicycle Specialists,Berkshire,England,United Kingdom,Europe
+665,412,Leisure Clearing House,Birmingham,England,United Kingdom,Europe
+666,430,Uttermost Bike Shop,Bracknell,England,United Kingdom,Europe
+667,635,Sports Store,Cambridge,England,United Kingdom,Europe
+668,52,Instruments and Parts Company,Gloucestershire,England,United Kingdom,Europe
+669,268,Channel Outlet,High Wycombe,England,United Kingdom,Europe
+670,214,Exclusive Bicycle Mart,Lancaster,England,United Kingdom,Europe
+671,70,Outdoor Aerobic Systems Company,London,England,United Kingdom,Europe
+672,538,Prosperous Tours,London,England,United Kingdom,Europe
+673,574,Area Sheet Metal Supply,London,England,United Kingdom,Europe
+674,16,Bulk Discount Store,London,England,United Kingdom,Europe
+675,659,Shipping Specialists,London,England,United Kingdom,Europe
+676,689,Consumer Equipment,London,England,United Kingdom,Europe
+677,250,Express Bike Services,London,England,United Kingdom,Europe
+678,592,Cycling Goods,London,England,United Kingdom,Europe
+679,641,Extended Tours,London,England,United Kingdom,Europe
+680,520,Metro Metals Co.,London,England,United Kingdom,Europe
+681,502,Metropolitan Bicycle Supply,London,England,United Kingdom,Europe
+682,665,Authentic Sales and Service,London,England,United Kingdom,Europe
+683,556,Variety Cycling,London,England,United Kingdom,Europe
+684,683,Oils and Fluids Warehouse,London,England,United Kingdom,Europe
+685,466,Central Bicycle Specialists,Maidenhead,England,United Kingdom,Europe
+686,322,Tachometers and Accessories,Milton Keynes,England,United Kingdom,Europe
+687,196,Exhibition Showroom,Milton Keynes,England,United Kingdom,Europe
+688,88,Closest Bicycle Store,Milton Keynes,England,United Kingdom,Europe
+689,617,Tubeless Tire Company,Oxford,England,United Kingdom,Europe
+690,160,Vigorous Sports Store,Oxon,England,United Kingdom,Europe
+691,286,Number One Bike Co.,Reading,England,United Kingdom,Europe
+692,142,Riding Cycles,Liverpool,England,United Kingdom,Europe
+693,124,Nearby Sporting Goods,W. York,England,United Kingdom,Europe
+694,178,Rampart Amusement Company,W. York,England,United Kingdom,Europe
+695,34,Cycles Wholesaler & Mfg.,Warrington,England,United Kingdom,Europe
+696,340,Nearby Cycle Shop,West Sussex,England,United Kingdom,Europe
+697,106,West Side Mart,Wokingham,England,United Kingdom,Europe
+698,448,Action Bicycle Specialists,Woolston,England,United Kingdom,Europe
+699,358,Mail Market,York,England,United Kingdom,Europe
+700,394,Little Sports Center,York,England,United Kingdom,Europe
