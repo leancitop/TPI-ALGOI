@@ -1,11 +1,13 @@
+import java.io.IOException;
 public class App {
-    public static void main(String[] args) throws Exception {
-        System.out.println("yoiki tenkai");
-
-        CSV productos = new CSV();
-        productos.read_csv("/home/tareas/Desktop/tpf/miProyectoJava/datasets/productos.csv");
-
-        System.out.println(productos.getHeaders());
-        System.out.println(productos.getRecords());
+    public static void main(String[] args) {
+        try {
+            CSVTable table = CSVReader.readCSV("datasets/productos.csv");
+            table.info();
+            CSVRow row = table.getRow(0);
+            System.out.println("First row second column: " + row.getColumn(1));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
