@@ -12,15 +12,6 @@ class CSVRow {
         this.columns = columns;
     }
 
-    public String getColumn(int index) {
-        return columns.get(index);
-    }
-
-    public String getColumn(String columnName) {
-        // Aquí puedes implementar la lógica para obtener la columna por nombre
-        return null;
-    }
-
     public int getColumnCount() {
         return columns.size();
     }
@@ -56,41 +47,6 @@ class CSVTable {
         int columnCount = rows.get(0).getColumnCount();
         System.out.println("Number of rows: " + rowCount);
         System.out.println("Number of columns: " + columnCount);
-
-        // Tipos de datos y valores nulos
-        // Supongamos que todas las columnas son de tipo String
-        System.out.println("Data types: All columns are assumed to be String");
-
-        // Estadísticas básicas
-        // Supongamos que solo hay columnas numéricas
-        for (int i = 0; i < columnCount; i++) {
-            String columnName = "Column " + i;
-            double sum = 0;
-            double min = Double.MAX_VALUE;
-            double max = Double.MIN_VALUE;
-            int nullCount = 0;
-            for (CSVRow row : rows) {
-                String value = row.getColumn(i);
-                if (value == null || value.isEmpty()) {
-                    nullCount++;
-                    continue;
-                }
-                double numericValue = Double.parseDouble(value);
-                sum += numericValue;
-                if (numericValue < min) {
-                    min = numericValue;
-                }
-                if (numericValue > max) {
-                    max = numericValue;
-                }
-            }
-            double average = sum / (rowCount - nullCount);
-            System.out.println("Column: " + columnName);
-            System.out.println("  Mean: " + average);
-            System.out.println("  Minimum: " + min);
-            System.out.println("  Maximum: " + max);
-            System.out.println("  Null values: " + nullCount);
-        }
 }
 }
 
