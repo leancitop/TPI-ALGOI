@@ -46,8 +46,7 @@ class CSVTable {
         int rowCount = rows.size();
         int columnCount = rows.get(0).getColumnCount();
         System.out.println("Number of rows: " + rowCount);
-        System.out.println("Number of columns: " + columgit config user.email
-nCount);
+        System.out.println("Number of columns: " + columnCount);
 }
 }
 
