@@ -5,6 +5,7 @@ public class App {
             CSVTable table = CSVReader.readCSV("datasets/productos.csv");
             table.info();
             System.out.println("hola");
+            System.out.println("hola3");
         } catch (IOException e) {
             e.printStackTrace();
         }
