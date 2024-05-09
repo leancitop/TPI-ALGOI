@@ -9,12 +9,15 @@ public class Dimension {
         nombre = nombreDimension;
         try {
             tabla = CSVReader.readCSV(rutaArchivoCSV);
+            FormatoTabular tablaTabular = new FormatoTabular(tabla);
+            tablaTabular.printTabularData();
+            System.out.println("");
             System.out.println("Se cargó la dimensión: " + nombre);
-            List<String> columnas = tabla.getColumns();
-            columnas.remove(columnaId);
-            columnas.remove("");
-            System.out.println("Elementos: "+columnas);
-            tabla.info();
+            List<String> elementos = tabla.getColumns();
+            elementos.remove(columnaId);
+            elementos.remove("");
+            System.out.println("Id: " + columnaId);
+            System.out.println("Elementos: " + elementos);
         } 
         catch (IOException e) {
             e.printStackTrace();

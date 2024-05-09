@@ -33,6 +33,10 @@ class CSVTable {
         return rows.get(index);
     }
 
+    public List<CSVRow> getRows() {
+        return rows;
+    }
+
     public int getRowCount() {
         return rows.size();
     }
