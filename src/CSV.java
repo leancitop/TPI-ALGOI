@@ -33,7 +33,7 @@ class CSVTable {
         return rows.get(index);
     }
 
-    public List<CSVRow> getRows() {
+    public List<CSVRow> getRows(){
         return rows;
     }
 
