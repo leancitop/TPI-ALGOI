@@ -15,6 +15,10 @@ class CSVRow {
     public int getColumnCount() {
         return columns.size();
     }
+
+    public List<String> getColumnContent(){
+        return columns;
+    }
 }
 
 // Clase CSVTable representa la tabla completa del archivo CSV
@@ -40,6 +44,13 @@ class CSVTable {
         int columnCount = firstRow.getColumnCount();
         return columnCount;
     }
+    
+    public List<String> getColumns(){
+        return rows.get(0).getColumnContent();
+        // for (int column = 0; column < rows.get(0).getColumnCount(); column++) {
+        //     System.out.println(column);
+        //   }
+    }
 
     public void info() {
         // Número de filas y columnas
@@ -47,6 +58,7 @@ class CSVTable {
         int columnCount = rows.get(0).getColumnCount();
         System.out.println("Number of rows: " + rowCount);
         System.out.println("Number of columns: " + columnCount);
+
 }
 }
 
