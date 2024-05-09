@@ -73,7 +73,7 @@ class CSVReader {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line;
         while ((line = reader.readLine()) != null) {
-            String[] columns = line.split(",");
+            String[] columns = line.split(",(?=(?:[^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)");
             List<String> columnList = new ArrayList<>();
             for (String column : columns) {
                 columnList.add(column);
