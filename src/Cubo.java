@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cubo {
@@ -12,10 +13,15 @@ public class Cubo {
 
     Cubo(String nombreCubo){
         nombre = nombreCubo;
+        listaDimensiones = new ArrayList<>();
     }
 
     String getNombre(){
         return nombre;
+    }
+
+    List<Dimension> getDimensiones(){
+        return listaDimensiones;
     }
 
     void agregarDimension(Dimension dimension){

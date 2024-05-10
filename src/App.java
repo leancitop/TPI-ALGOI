@@ -1,7 +1,16 @@
-import java.io.IOException;
 public class App {
     public static void main(String[] args) {
-        Dimension productos = new Dimension("productos", "datasets/productos.csv","id_producto");
+
+        Cubo cubo = new Cubo("cubo");
+        cubo.agregarDimension(new Dimension("productos", "datasets/productos.csv","id_producto"));
+        cubo.agregarDimension(new Dimension("fechas", "datasets/fechas.csv","id_fecha"));
+        cubo.agregarDimension(new Dimension("puntos_venta", "datasets/puntos_venta.csv","id_punto_venta"));
+
+        ;
+
+        for (Dimension dimension : cubo.getDimensiones()) {
+            System.out.println(dimension.getNombre());
+            }
 
         // try {
         //     CSVTable tablaProductos = CSVReader.readCSV("datasets/productos.csv");
