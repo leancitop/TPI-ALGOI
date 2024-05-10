@@ -74,6 +74,18 @@ class CSVReader {
         String line;
         while ((line = reader.readLine()) != null) {
             String[] columns = line.split(",(?=(?:[^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)");
+            
+            // Explicación paso a paso de la expresión regular:
+            // ",": Coincide con una coma en la cadena.
+            // "(?=": Inicio de una lookahead assertion (aserción hacia adelante). Indica que la coma solo coincidirá si está seguida por lo que está dentro del grupo de aserción.
+            // "(?: ... )": Grupo no capturador. Agrupa el patrón interno sin capturar su coincidencia.
+            // "[^\"]*": Coincide con cualquier cantidad de caracteres que no sean comillas dobles.
+            // "\"": Coincide con una comilla doble.
+            // "[^\"]*": Coincide con cualquier cantidad de caracteres que no sean comillas dobles.
+            // "\"": Coincide con otra comilla doble.
+            // "*": Este asterisco se aplica al grupo completo, lo que significa que puede repetirse cualquier número de veces.
+            // "[^\"]*$": Coincide con cualquier cantidad de caracteres que no sean comillas dobles al final de la cadena.
+
             List<String> columnList = new ArrayList<>();
             for (String column : columns) {
                 columnList.add(column);
