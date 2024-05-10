@@ -22,5 +22,7 @@ public class App {
         // } catch (IOException e) {
         //     e.printStackTrace();
         // }
+        // Dimension productos = new Dimension("fechas", "datasets/fechas.csv","id_fecha");
+        Hechos ventas = new Hechos("ventas", "/home/tareas/TPI-ALGOI/datasets/ventas.csv");
     }
 }
