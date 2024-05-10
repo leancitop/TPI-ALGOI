@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 // Clase CSVRow representa una fila del archivo CSV
 class CSVRow {
@@ -19,11 +20,22 @@ class CSVRow {
     public List<String> getColumnContent(){
         return columns;
     }
+    public String getColumnContent(int index){
+        return this.columns.get(index);
+    }
 }
 
 // Clase CSVTable representa la tabla completa del archivo CSV
 class CSVTable {
     private List<CSVRow> rows;
+
+    public static enum funciones{
+        IGUAL,
+        DISTINTO,
+        MENOR,
+        MAYOR,
+        ENLISTA
+    }
 
     public CSVTable(List<CSVRow> rows) {
         this.rows = rows;
@@ -54,6 +66,39 @@ class CSVTable {
         // for (int column = 0; column < rows.get(0).getColumnCount(); column++) {
         //     System.out.println(column);
         //   }
+    }
+
+    public <T> CSVTable filtrarTabla(int index, funciones fun, T valor){
+        List<CSVRow> rows = new ArrayList<CSVRow>();
+        int i = 0;
+        for(CSVRow row : this.rows){
+            try{
+                if(i == 0){ //todo: sacar esto y aplicar headers
+                    i++;
+                    continue;
+                }
+                if(fun == funciones.IGUAL){
+                    if(row.getColumnContent(index).equals(valor))
+                        rows.add(row);
+                }
+                if(fun == funciones.DISTINTO){
+                    if(!row.getColumnContent(index).equals(valor))
+                        rows.add(row);
+                }
+                if(fun == funciones.MAYOR){ //todo: cambiar tipos en getColumn
+                    if(row.getColumnContent(index).compareTo((String)valor) > 0)
+                        rows.add(row);
+                }
+                if(fun == funciones.MENOR){
+                    if(row.getColumnContent(index).compareTo((String)valor) < 0)
+                        rows.add(row);
+                }
+            }catch(Exception e){
+                throw e;
+            }
+        }
+        CSVTable tabla = new CSVTable(rows);
+        return tabla;
     }
 
     public void info() {
