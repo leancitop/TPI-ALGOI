@@ -9,8 +9,7 @@ public class Hechos {
         try{
             this.nombre = n;
             this.tabla = CSVReader.readCSV(path);
-            FormatoTabular formatoTabular = new FormatoTabular(tabla);
-            formatoTabular.printTabularData();
+            FormatoTabular.printTabularData(tabla);
             System.out.println("Se cargaron los hechos: " + nombre);
             List<String> columnas = tabla.getColumns();
             columnas.remove("");
