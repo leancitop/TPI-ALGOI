@@ -1,4 +1,8 @@
 ## Getting Started
+
+#### Atajos:
+- Buscar y reemplazar una palabra en todo el proyecto desde Visual Studio Code = Ctrl + Shift + H
+
 welcome
 sean bienvenidos.
 

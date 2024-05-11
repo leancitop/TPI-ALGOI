@@ -38,6 +38,7 @@ public class FormatoTabular {
         for (int e = 0; e < max && e < table.getConteoFilas(); e++) {
             FilaTabla row = table.getFila(e);
             for (int i = 0; i < row.getConteoColumnas(); i++) {
+                // (idea) Agregar una linea "---" que dependa del largo maximo de la tabla
                 System.out.print(row.getContenidoColumna().get(i));
                 // Agregar espacios para alinear correctamente las columnas
                 for (int j = 0; j < maxLengths[i] - row.getContenidoColumna().get(i).length() + 2; j++) {
