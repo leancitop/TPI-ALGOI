@@ -1,31 +1,34 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 public class Cubo {
     String nombre;
     int cantidadDimensiones;
-    List<Dimension> listaDimensiones;
+    Map<String, Dimension> listaDimensiones;
     // Por cada dimensión:
     //  - Niveles jerárquicos
     //  - Miembros (elementos) en formato tabular
-    String[] listaHechos;
+    Map<String, Hechos> listaHechos;
     // Medidas representadas en cada celda
 
     Cubo(String nombreCubo){
         nombre = nombreCubo;
-        listaDimensiones = new ArrayList<>();
+        listaDimensiones = new HashMap<String, Dimension>();
     }
 
     String getNombre(){
         return nombre;
     }
 
-    List<Dimension> getDimensiones(){
+    Map<String, Dimension> getDimensiones(){
         return listaDimensiones;
     }
 
     void agregarDimension(Dimension dimension){
-        listaDimensiones.add(dimension);
+        listaDimensiones.put(dimension.getNombre(), dimension);;
     }
 
 }

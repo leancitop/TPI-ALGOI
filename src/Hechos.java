@@ -1,25 +1,16 @@
-import java.io.IOException;
 import java.util.List;
 
 public class Hechos {
     private String nombre;
-    private CSVTable tabla;
+    private Tabla tabla;
     
     public Hechos(String n, String path){
-        try{
             this.nombre = n;
-            this.tabla = CSVReader.readCSV(path);
+            this.tabla = LectorArchivos.leerCSV(path);
             FormatoTabular.printTabularData(tabla);
             System.out.println("Se cargaron los hechos: " + nombre);
-            List<String> columnas = tabla.getColumns();
+            List<String> columnas = tabla.getColumnas();
             columnas.remove("");
             System.out.println("Columnas: "+columnas);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
-
-
-
 }
