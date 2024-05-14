@@ -11,19 +11,7 @@ class LectorArchivos {
         BufferedReader reader = new BufferedReader(new FileReader(rutaArchivo));
         String line;
         while ((line = reader.readLine()) != null) {
-            String[] columnas = line.split(",(?=(?:[^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)");
-            
-            // Explicación paso a paso de la expresión regular:
-            // ",": Coincide con una coma en la cadena.
-            // "(?=": Inicio de una lookahead assertion (aserción hacia adelante). Indica que la coma solo coincidirá si está seguida por lo que está dentro del grupo de aserción.
-            // "(?: ... )": Grupo no capturador. Agrupa el patrón interno sin capturar su coincidencia.
-            // "[^\"]*": Coincide con cualquier cantidad de caracteres que no sean comillas dobles.
-            // "\"": Coincide con una comilla doble.
-            // "[^\"]*": Coincide con cualquier cantidad de caracteres que no sean comillas dobles.
-            // "\"": Coincide con otra comilla doble.
-            // "*": Este asterisco se aplica al grupo completo, lo que significa que puede repetirse cualquier número de veces.
-            // "[^\"]*$": Coincide con cualquier cantidad de caracteres que no sean comillas dobles al final de la cadena.
-
+            String[] columnas = line.split(";");
             List<String> listaColumnas = new ArrayList<>();
             for (String column : columnas) {
                 listaColumnas.add(column);
@@ -37,5 +25,28 @@ class LectorArchivos {
             e.printStackTrace();
             return null;
         }
+    }
+    public static Dimension cargarDimensionDesdeCSV(String nombreDim, String rutaArchivoCSV, int columnaDimension) {
+        Dimension dimension = new Dimension(nombreDim);
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(rutaArchivoCSV))) {
+            String line;
+            // Saltamos la primera línea si es un encabezado
+            // Si el archivo tiene encabezado, de lo contrario omite este paso
+            reader.readLine();
+
+            while ((line = reader.readLine()) != null) {
+                String[] columnas = line.split(",");
+                if (columnas.length > columnaDimension) {
+                    String valorDimension = columnas[columnaDimension];
+                    String idFila = columnas[0]; // Suponiendo que el ID de la fila es la primera columna
+                    dimension.agregarValor(valorDimension, idFila);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return dimension;
     }
 }
