@@ -73,21 +73,25 @@ class Tabla {
                     i++;
                     continue;
                 }
-                if(fun == funciones.IGUAL){
-                    if(row.getContenidoColumna(index).equals(valor))
-                        filas.add(row);
-                }
-                if(fun == funciones.DISTINTO){
-                    if(!row.getContenidoColumna(index).equals(valor))
-                        filas.add(row);
-                }
-                if(fun == funciones.MAYOR){ //todo: cambiar tipos en getColumn
-                    if(row.getContenidoColumna(index).compareTo((String)valor) > 0)
-                        filas.add(row);
-                }
-                if(fun == funciones.MENOR){
-                    if(row.getContenidoColumna(index).compareTo((String)valor) < 0)
-                        filas.add(row);
+                switch (fun) {
+                    case MENOR:
+                        if(row.getContenidoColumna(index).compareTo((String)valor) < 0){
+                            filas.add(row);}
+                        break;
+                    case MAYOR:
+                        if(row.getContenidoColumna(index).compareTo((String)valor) > 0){
+                            filas.add(row);}
+                        break;
+                    case IGUAL:
+                        if(row.getContenidoColumna(index).equals(valor)){
+                            filas.add(row);}
+                        break;
+                    case DISTINTO:
+                        if(!row.getContenidoColumna(index).equals(valor)){
+                            filas.add(row);}
+                            break;
+                    case ENLISTA:
+                        break;
                 }
             }catch(Exception e){
                 throw e;
