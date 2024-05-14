@@ -64,7 +64,7 @@ class Tabla {
         //   }
     }
 
-    public <T> Tabla filtrarTabla(int index, funciones fun, T valor){
+    public Tabla filtrarTabla(int index, funciones fun, String valor){
         List<FilaTabla> filas = new ArrayList<FilaTabla>();
         int i = 0;
         for(FilaTabla row : this.filas){
@@ -73,21 +73,22 @@ class Tabla {
                     i++;
                     continue;
                 }
+                String[] columnas = row.getContenidoColumna(0).split(";");
                 switch (fun) {
                     case MENOR:
-                        if(row.getContenidoColumna(index).compareTo((String)valor) < 0){
+                        if(columnas[index].compareTo(valor) < 0){
                             filas.add(row);}
                         break;
                     case MAYOR:
-                        if(row.getContenidoColumna(index).compareTo((String)valor) > 0){
+                        if(columnas[index].compareTo(valor) > 0){
                             filas.add(row);}
                         break;
                     case IGUAL:
-                        if(row.getContenidoColumna(index).equals(valor)){
+                        if(columnas[index].equals(valor)){
                             filas.add(row);}
                         break;
                     case DISTINTO:
-                        if(!row.getContenidoColumna(index).equals(valor)){
+                        if(!columnas[index].equals(valor)){
                             filas.add(row);}
                             break;
                     case ENLISTA:
@@ -101,6 +102,24 @@ class Tabla {
         return tabla;
     }
 
+    public Tabla filtrarTabla(int index, funciones fun, List<String> valor){
+        List<FilaTabla> filas = new ArrayList<FilaTabla>();
+        int i = 0;
+        for(FilaTabla row : this.filas){
+            try{
+                if(i == 0){ //todo: sacar esto y aplicar headers
+                    i++;
+                    continue;}
+                String[] columnas = row.getContenidoColumna(0).split(";");
+                if (valor.contains(columnas[index])){
+                    filas.add(row);}
+                }
+            catch(Exception e){
+                throw e;}
+            }
+        Tabla tabla = new Tabla(filas);
+        return tabla;
+    }
     public void info() {
         // Número de filas y columnas
         int conteoFilas = filas.size();
@@ -108,7 +127,8 @@ class Tabla {
         System.out.println("Número de filas: " + conteoFilas);
         System.out.println("Número de columnas: " + conteoColumnas);
 
-}
+    }
+
 }
 
 
