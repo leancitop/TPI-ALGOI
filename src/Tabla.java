@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // Clase FilaTabla representa una fila del archivo CSV
 class FilaTabla {
@@ -120,6 +122,27 @@ class Tabla {
         Tabla tabla = new Tabla(filas);
         return tabla;
     }
+    
+        public Map<String, Integer>  Agrupar(int index){ //(Col, TipoFun)
+        //count
+        Map<String, Integer> mapa = new HashMap<String, Integer>();
+        List<Object> valoresVistos = new ArrayList<>();
+        for (FilaTabla fila : this.filas) {
+            String val = fila.getContenidoColumna(index);
+            if(valoresVistos.contains(val)){
+                int valorActual = mapa.get(val);
+                valorActual++;
+                mapa.replace(val, valorActual);
+            }
+            else{
+                mapa.put(val, 1);     
+                valoresVistos.add(val);
+            }
+        }
+        return mapa;
+    }
+
+
     public void info() {
         // Número de filas y columnas
         int conteoFilas = filas.size();
