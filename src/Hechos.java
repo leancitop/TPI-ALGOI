@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class Hechos {
     private Tabla tabla;
-    private Map<String, Integer> indexadoColumnas; // Asegúrate de que esta línea esté presente
+    private Map<String, Integer> indexadoColumnas;
 
 
     public Hechos(String path){

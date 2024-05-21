@@ -9,12 +9,11 @@ public class App {
 
         Tabla fechas_csv = LectorArchivos.leerCSV("/home/tareas/TPI-ALGOI/datasets/fechas.csv");
 
-        Dimension tiempo = new Dimension("tiempo", 0,5);
-        tiempo.setTabla(fechas_csv);
+        Dimension tiempo = new Dimension("tiempo", 0,5, fechas_csv);
 
         tiempo.cargarMapaDimension();
 
-        Map<String, List<String>> hashMap = tiempo.getValoresId();
+        Map<String, List<String>> hashMap = tiempo.getValoresIdD();
 
         for (Map.Entry<String, List<String>> entry : hashMap.entrySet()) {
             System.out.println(entry.getKey() + " : ");
