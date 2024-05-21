@@ -1,3 +1,7 @@
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class App {
     public static void main(String[] args) {
 
@@ -10,6 +14,15 @@ public class App {
 
         tiempo.cargarMapaDimension();
 
-        System.out.println(tiempo.getValoresId());
+        Map<String, List<String>> hashMap = tiempo.getValoresId();
+
+        for (Map.Entry<String, List<String>> entry : hashMap.entrySet()) {
+            System.out.println(entry.getKey() + " : ");
+            List<String> values = entry.getValue();
+            int count = Math.min(10, values.size());
+            for (int i = 0; i < count; i++) {
+                System.out.println("\t" + values.get(i));
+            }
+        }
     }
 }
