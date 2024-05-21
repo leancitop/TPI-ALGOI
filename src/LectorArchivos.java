@@ -26,27 +26,27 @@ class LectorArchivos {
             return null;
         }
     }
-    public static Dimension cargarDimensionDesdeCSV(String nombreDim, String rutaArchivoCSV, int columnaDimension) {
-        Dimension dimension = new Dimension(nombreDim);
+    // public static Dimension cargarDimensionDesdeCSV(String nombreDim, String rutaArchivoCSV, int columnaDimension) {
+    //     Dimension dimension = new Dimension(nombreDim);
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(rutaArchivoCSV))) {
-            String line;
-            // Saltamos la primera línea si es un encabezado
-            // Si el archivo tiene encabezado, de lo contrario omite este paso
-            reader.readLine();
+    //     try (BufferedReader reader = new BufferedReader(new FileReader(rutaArchivoCSV))) {
+    //         String line;
+    //         // Saltamos la primera línea si es un encabezado
+    //         // Si el archivo tiene encabezado, de lo contrario omite este paso
+    //         reader.readLine();
 
-            while ((line = reader.readLine()) != null) {
-                String[] columnas = line.split(",");
-                if (columnas.length > columnaDimension) {
-                    String valorDimension = columnas[columnaDimension];
-                    String idFila = columnas[0]; // Suponiendo que el ID de la fila es la primera columna
-                    dimension.agregarValor(valorDimension, idFila);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    //         while ((line = reader.readLine()) != null) {
+    //             String[] columnas = line.split(",");
+    //             if (columnas.length > columnaDimension) {
+    //                 String valorDimension = columnas[columnaDimension];
+    //                 String idFila = columnas[0]; // Suponiendo que el ID de la fila es la primera columna
+    //                 dimension.agregarValor(valorDimension, idFila);
+    //             }
+    //         }
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
 
-        return dimension;
-    }
+    //     return dimension;
+    // }
 }
