@@ -13,6 +13,7 @@ public class Cubo {
     //  - Miembros (elementos) en formato tabular
     Map<String, Hechos> listaHechos;
     // Medidas representadas en cada celda
+    private int[] columnasHechos;   // indices de columnas numericas (hechos) en la tabla de hechos
 
     Cubo(String nombreCubo){
         nombre = nombreCubo;

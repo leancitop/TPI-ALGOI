@@ -9,6 +9,10 @@ public class App {
 
         Tabla fechas_csv = LectorArchivos.leerCSV("/home/tareas/TPI-ALGOI/datasets/fechas.csv");
 
+        // TODO: Validar fechas_csv (Tipo String[][])
+        // validar(matriz) # cols a validar numericas es config del cubo
+        // Crear objeto Tabla a partir de String[][]
+
         Dimension tiempo = new Dimension("tiempo", 0,5, fechas_csv);
 
         tiempo.cargarMapaDimension();
