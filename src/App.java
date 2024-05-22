@@ -7,13 +7,13 @@ public class App {
 
         System.out.println("patience.");
 
-        Tabla fechas_csv = LectorArchivos.leerCSV("/home/tareas/TPI-ALGOI/datasets/fechas.csv");
+        Tabla fechas_csv = LectorArchivos.leerCSV("datasets/fechas.csv");
 
         // TODO: Validar fechas_csv (Tipo String[][])
         // validar(matriz) # cols a validar numericas es config del cubo
         // Crear objeto Tabla a partir de String[][]
 
-        Dimension tiempo = new Dimension("tiempo", 0,5, fechas_csv);
+        Dimension tiempo = new Dimension("tiempo", 0,5, fechas_csv, "id_fecha");
 
         tiempo.cargarMapaDimension();
 
@@ -27,5 +27,12 @@ public class App {
                 System.out.println("\t" + values.get(i));
             }
         }
+
+        Hechos hechos = new Hechos("datasets/ventas.csv");
+        // System.out.println(hechos.getIndexadoColumnas());
+        // System.out.println(hechos.getDimensionesMap("id_fecha", "cantidad"));
+        // System.out.println(tiempo.getFK());
+        
+        TablaFinal.imprimirTablaFinal(tiempo, hechos, "cantidad");
     }
 }

@@ -10,14 +10,16 @@ public class Dimension {
     private Map<String, List<String>> valores_idD; // el map valores : dim_id
     private Tabla tabla_dimension;
     private int nivel_index;
+    private String clave_foranea;
 
-    public Dimension(String n, int id, int ni, Tabla t){
-        this.nombre = n;
+    public Dimension(String nombre, int col_id, int nivel, Tabla tabla, String clave_foranea){
+        this.nombre = nombre;
         this.valores_idH = new HashMap<>();
         this.valores_idD = new HashMap<>();
-        this.col_id = id;
-        this.nivel_index = ni;
-        this.tabla_dimension = t;
+        this.col_id = col_id;
+        this.nivel_index = nivel;
+        this.tabla_dimension = tabla;
+        this.clave_foranea = clave_foranea;
     }
 
     public void cargarMapaDimension(){
@@ -52,5 +54,9 @@ public class Dimension {
 
     public Map<String, List<String>> getValoresIdD() {
         return valores_idD;
+    }
+
+    public String getClaveForanea(){
+        return this.clave_foranea;
     }
 }
