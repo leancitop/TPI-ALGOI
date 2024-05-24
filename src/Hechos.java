@@ -10,7 +10,7 @@ public class Hechos {
     public Hechos(String path){
 
         // TODO tiene que comprobar que existan las 3 dimensiones, o devolver una excepción
-
+        
         this.tabla = LectorArchivos.leerCSV(path);
         this.indexadoColumnas = new HashMap<>(); // Inicializar el mapa
         
@@ -30,7 +30,7 @@ public class Hechos {
         Map<String, String> dimensionesMap = new HashMap<>();
         System.out.println(indexadoColumnas.get(idDimension));
         System.out.println(indexadoColumnas.get(valor));
-        List<FilaTabla> filas = tabla.getFilas();
+        List<Columna> filas = tabla.getFilas();
         for (int i = 0; i < filas.size(); i++) {
             dimensionesMap.put(
                 filas.get(i).getContenidoColumna(indexadoColumnas.get(idDimension)), 

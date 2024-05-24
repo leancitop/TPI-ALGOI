@@ -7,13 +7,17 @@ public class App {
 
         System.out.println("patience.");
 
-        Tabla fechas_csv = LectorArchivos.leerCSV("datasets/fechas.csv");
+        String[][] fechas_csv = LectorArchivos.leerCSV("datasets/fechas.csv");
+
+        Tabla tabla_fechas = new Tabla(6);
+
+        tabla_fechas.cargarTabla(fechas_csv);
 
         // TODO: Validar fechas_csv (Tipo String[][])
         // validar(matriz) # cols a validar numericas es config del cubo
         // Crear objeto Tabla a partir de String[][]
 
-        Dimension tiempo = new Dimension("tiempo", 0,5, fechas_csv, "id_fecha");
+        Dimension tiempo = new Dimension("tiempo", 0,5, tabla_fechas, "id_fecha");
 
         tiempo.cargarMapaDimension();
 

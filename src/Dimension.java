@@ -22,20 +22,24 @@ public class Dimension {
         this.clave_foranea = clave_foranea;
     }
 
-    public void cargarMapaDimension(){
+    public void cargarMapaDimension() {
         Tabla tabla = this.getTabla();
-        List<FilaTabla> filas = tabla.getFilas();
-        int index = this.getValorIndex();
+        int valorIndex = this.getValorIndex();
         int id = this.getId();
 
-        for (FilaTabla fila : filas){
-            String valorFila = fila.getContenidoColumna(index);
-            String idFila = fila.getContenidoColumna(id);
+        Columna<?>[] columnas = tabla.getColumnas();
+        Columna<?> columnaValores = columnas[valorIndex];
+        Columna<?> columnaIds = columnas[id];
+
+        int numFilas = tabla.getNumeroFilas();
+
+        for (int i = 0; i < numFilas; i++) {
+            String valorFila = columnaValores.getContenidoColumna(i);
+            String idFila = columnaIds.getContenidoColumna(i);
 
             valores_idD.computeIfAbsent(valorFila, k -> new ArrayList<>()).add(idFila);
         }
     }
-
     public int getValorIndex(){
         return this.nivel_index;
     }
