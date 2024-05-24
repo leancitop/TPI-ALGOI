@@ -3,6 +3,7 @@ import java.util.List;
 
 class Tabla {
     private Columna[] columnas;
+    private String[] headers;
 
     public Tabla(int numeroColumnas) {
         this.columnas = new Columna[numeroColumnas];
@@ -19,6 +20,8 @@ class Tabla {
 
         String[] nombresColumnas = matriz[0];
 
+        this.headers = nombresColumnas;
+
         for (int i = 0; i < nombresColumnas.length; i++) {
             try {
                 Double.parseDouble(matriz[1][i]);
@@ -33,6 +36,10 @@ class Tabla {
                 columnas[j].agregarDato(matriz[i][j]);
             }
         }
+    }
+
+    public String[] getHeaders(){
+        return headers;
     }
 
     public Columna[] getColumnas() {
