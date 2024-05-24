@@ -13,7 +13,7 @@ public class TablaFinal {
 // TODO: Ver como pasarle el tipo de medida que queramos
 // Ver como generar una tabla primero y luego imprimirla. Esto solo imprime las operaciones.
 
-public static void imprimirTablaFinal(Dimension dimension, Hechos hechos, String valor){
+public static void imprimirTablaFinal(Dimension dimension, Hecho hechos, String valor){
     dimension.cargarMapaDimension();
     Map<String, List<String>> valoresId = dimension.getValoresIdD();
     Map<String, String> dimensionesMap = hechos.getDimensionesMap(dimension.getClaveForanea(), valor);
@@ -39,7 +39,7 @@ public static void imprimirTablaFinal(Dimension dimension, Hechos hechos, String
 
 
     // IGNORAR
-    // public static Map<String, List<List<String>>> crearTablaFinal(Dimension dimension, Hechos hechos, String valor){
+    // public static Map<String, List<List<String>>> crearTablaFinal(Dimension dimension, Hecho hechos, String valor){
     //     dimension.cargarMapaDimension();
     //     Map<String, List<String>> valoresId = dimension.getValoresId();
     //     Map<String, String> dimensionesMap = hechos.getDimensionesMap(dimension.getFK(), valor);

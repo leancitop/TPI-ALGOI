@@ -1,4 +1,6 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,5 +64,11 @@ public class Dimension {
 
     public String getClaveForanea(){
         return this.clave_foranea;
+    }
+
+    public List<String> getNiveles(){
+        List<String> niveles = new ArrayList<>(Arrays.asList(tabla_dimension.getHeaders()));
+        niveles.remove(this.getClaveForanea());
+        return niveles;
     }
 }

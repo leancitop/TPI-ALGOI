@@ -1,11 +1,14 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class Hechos {
+public class Hecho {
     private Tabla tabla;
     private Map<String, Integer> indexadoColumnas;
 
-    public Hechos(String path, int numeroColumnas) {
+    public Hecho(String path, int numeroColumnas) {
         // TODO: Comprobar que existan las 3 dimensiones, o devolver una excepción
 
         String[][] csv = LectorArchivos.leerCSV(path);
@@ -19,8 +22,6 @@ public class Hechos {
         for (int i = 0; i < columnas.length; i++) {
             indexadoColumnas.put(columnas[i].getNombre(), i);
         }
-
-        System.out.println("Se cargaron los hechos");
     }
 
     public Map<String, Integer> getIndexadoColumnas() {
@@ -42,5 +43,10 @@ public class Hechos {
             );
         }
         return dimensionesMap;
+    }
+
+    public List<String> getValores(){
+        List<String> valores = new ArrayList<>(Arrays.asList(tabla.getHeaders()));
+        return valores;
     }
 }

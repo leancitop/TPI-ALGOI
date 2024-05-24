@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class Config {
     private Map<String, List<Dimension>> dimensiones;
-    private Hechos hechos;
+    private Hecho hecho;
 
     public Config() {
         this.dimensiones = new HashMap<>();
@@ -20,7 +20,7 @@ public class Config {
         return dimensiones;
     }
 
-    public Hechos getHechos() {
-        return hechos;
+    public Hecho getHechos() {
+        return hecho;
     }
 }
