@@ -10,12 +10,12 @@ Este proyecto consiste en la creación de un Cubo OLAP para la materia Algoritmo
 
 ## Instalación
 
-1. Clona este repositorio.
+- Clona este repositorio.
 
 ## Uso
 
 1. Configura las tablas en la clase `Config` con la información necesaria (nombre, ruta, número de columna de los IDs, etc.).
-2. Ejecuta el programa y sigue las instrucciones en la consola para cargar dimensiones y hechos, y realizar operaciones OLAP.
+2. Ejecuta el programa y seguí las instrucciones en la consola para cargar dimensiones y hechos, y realizar operaciones OLAP.
 
 ## Contribución
 
