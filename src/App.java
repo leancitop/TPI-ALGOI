@@ -32,7 +32,7 @@ public class App {
             }
         }
 
-        Hechos hechos = new Hechos("datasets/ventas.csv");
+        Hechos hechos = new Hechos("datasets/ventas.csv", 7);
         // System.out.println(hechos.getIndexadoColumnas());
         // System.out.println(hechos.getDimensionesMap("id_fecha", "cantidad"));
         // System.out.println(tiempo.getFK());
