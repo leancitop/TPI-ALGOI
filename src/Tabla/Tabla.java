@@ -1,9 +1,10 @@
+package Tabla;
 import java.util.ArrayList;
 import java.util.List;
 
-class Tabla {
-    private Columna[] columnas;
-    private String[] headers;
+public class Tabla {
+    public Columna[] columnas;
+    public String[] headers;
 
     public Tabla(int numeroColumnas) {
         this.columnas = new Columna[numeroColumnas];

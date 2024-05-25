@@ -1,7 +1,8 @@
+package Tabla;
 import java.util.List;
 
 
-abstract class Columna<T> {
+public abstract class Columna<T> {
     private String nombre;
 
     public Columna(String nombre) {

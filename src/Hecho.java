@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import Lectores.LectorArchivos;
+import Tabla.Columna;
+import Tabla.Tabla;
+
 public class Hecho {
     private Tabla tabla;
     private Map<String, Integer> indexadoColumnas;

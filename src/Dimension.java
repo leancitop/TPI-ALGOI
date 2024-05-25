@@ -1,14 +1,15 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import Tabla.Columna;
+import Tabla.Tabla;
+
 public class Dimension {
     private String nombre;
     private int col_id;
-    private Map<String, List<String>> valores_idH;    // el map valores : hechos_id
     private Map<String, List<String>> valores_idD; // el map valores : dim_id
     private Tabla tabla_dimension;
     private int nivel_index;
@@ -16,7 +17,6 @@ public class Dimension {
 
     public Dimension(String nombre, int col_id, int nivel, Tabla tabla, String clave_foranea){
         this.nombre = nombre;
-        this.valores_idH = new HashMap<>();
         this.valores_idD = new HashMap<>();
         this.col_id = col_id;
         this.nivel_index = nivel;

@@ -1,10 +1,11 @@
+package Lectores;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-class LectorArchivos {
+public class LectorArchivos {
     public static String[][] leerCSV(String rutaArchivo) {
         List<String[]> filas = new ArrayList<>();
         
