@@ -71,4 +71,23 @@ public class Dimension {
         niveles.remove(this.getClaveForanea());
         return niveles;
     }
+
+    public Map<String, List<String>> getMapaNivelId(Integer nivel){
+        Map<String, List<String>> mapaNivelId = new HashMap<>();
+
+        Columna<?>[] columnas = this.tabla_dimension.getColumnas();
+        Columna<?> columnaIds = columnas[0];
+        Columna<?> columnaNivel = columnas[nivel];
+        
+        int numFilas = this.tabla_dimension.getNumeroFilas();
+
+        for (int i = 0; i < numFilas; i++) {
+            String valorFila = columnaNivel.getContenidoColumna(i);
+            String idFila = columnaIds.getContenidoColumna(i);
+
+            mapaNivelId.computeIfAbsent(valorFila, k -> new ArrayList<>()).add(idFila);
+
+        }
+        return mapaNivelId;
+    }
 }

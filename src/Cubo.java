@@ -1,13 +1,14 @@
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
 public class Cubo {
-    String nombre;
-    Map<String, Dimension> listaDimensiones;
-    Hecho tablaHecho;
-    // dimensionesProyeccion - se setea en setDimensionesProyeccion()
-    // hechosProyeccion - objeto que se setea setDimensionesProyeccion()
+    public String nombre;
+    public Map<String, Dimension> listaDimensiones;
+    public Hecho tablaHecho;
+    public List<List<Object>> dimensionesProyeccion;
+    public List<List<Object>> hechosProyeccion;
     // sliceProyeccion - objeto que se setea en slice()
     // diceProyeccion - objeto que se setea en dice()
 
@@ -24,12 +25,14 @@ public class Cubo {
         tablaHecho = hecho;
     }
 
-    void setDimensionesProyeccion(){
+    void setDimensionesProyeccion(List<List<Object>> listaDimensionesProyeccion){
         // seteamos las dimensiones y los niveles en las que queramos visualizar
+        dimensionesProyeccion = listaDimensionesProyeccion;
     }
     
-    void setHechosProyeccion(){
+    void setHechosProyeccion(List<List<Object>> listaHechosProyeccion){
         // elegimos los valores y las medidas con las que los queramos visualizar
+        hechosProyeccion = listaHechosProyeccion;
     }
 
     void slice(){
