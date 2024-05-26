@@ -40,21 +40,26 @@ public class Operador {
             Tabla tabla = new Tabla(numeroColumnas);
             System.out.println("Columnas: " + numeroColumnas);
             
-            for (List<Object> dimension : dimensionesProyeccion) {
-                int nivelDimension = (int) dimension.get(1);
-                for (int i = 1; i < nivelDimension+1; i++) {
-                    
-                }
-            }
+            // for (List<Object> dimension : dimensionesProyeccion) {
+            //     int nivelDimension = (int) dimension.get(1);
+            //     for (int i = 1; i < nivelDimension+1; i++) {
+
+            //     }
+            // }
 
             for (List<Object> dimension : listaIdDimensiones){
                 String nombreDimension = (String) dimension.get(0);
-                listaNiveles = 
-                String claveDimension = mapaDimensiones.get(nombreDimension).getClaveForanea();
+                System.out.println(dimension);
 
-                Map<String, String> mapaHechosId = hecho.getDimensionesMap(claveDimension, "costo");
+                // for (String key : (HashMap) dimension.get(1).keySet()) {
+                //     System.out.println("Clave: " + key);
+                // }
+                // listaNiveles = 
+                // String claveDimension = mapaDimensiones.get(nombreDimension).getClaveForanea();
 
-                System.out.println(dimension.get(1));
+                // Map<String, String> mapaHechosId = hecho.getDimensionesMap(claveDimension, "costo");
+
+                // System.out.println(dimension.get(1));
             }
 
             return null;
