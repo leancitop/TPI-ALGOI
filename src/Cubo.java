@@ -26,12 +26,13 @@ public class Cubo {
         List<String> nombreDimensiones = new ArrayList<>();
         List<List<String>> nivelesDimensiones = new ArrayList<>();
         List<String> valoresHecho = tablaHecho.getValores();
-        for (Dimension dimension : dimensionesCargadas) {
-            nombreDimensiones.add(dimension.getNombre());
-            nivelesDimensiones.add(dimension.getNiveles());
-            valoresHecho.remove(dimension.getClaveForanea());
-        }
-    // Imprimir tabla
+        for (Map.Entry<String, Dimension> dimension : listaDimensiones.entrySet()) {
+            Dimension dim = dimension.getValue();
+            nombreDimensiones.add(dim.getNombre());
+            nivelesDimensiones.add(dim.getNiveles());
+            valoresHecho.remove(dim.getClaveForanea());
+            }
+        // Imprimir tabla
         int maxLongitudNiveles = 0;
         for (List<String> niveles : nivelesDimensiones) {
             maxLongitudNiveles = Math.max(maxLongitudNiveles, niveles.size());
@@ -76,14 +77,16 @@ public class Cubo {
         }
     }
 
+
     public void setHecho(Hecho hecho) {
         try {
             this.tablaHecho = hecho;
             List<String> lista = hecho.getValores();
-            for (Dimension dimension : listaDimensiones) {
-                if (!lista.contains(dimension.getClaveForanea())) {
-                    throw new Exception("Las dimensiones no coinciden con la tabla de hechos.");
-                }
+            for (Map.Entry<String, Dimension> dimension : listaDimensiones.entrySet()) {
+                Dimension dim = dimension.getValue();
+                if (!lista.contains(dim.getClaveForanea())) {
+                throw new Exception("Las dimensiones no coinciden con la tabla de hechos.");
+        }
             }
             this.verResumen();
         } catch (Exception e) {
