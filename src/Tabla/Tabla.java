@@ -53,4 +53,8 @@ public class Tabla {
         }
         return 0;
     }
+
+    public void setColumna(Columna columna, Integer posicionColumna){
+        this.columnas[posicionColumna] = columna;
+    }
 }

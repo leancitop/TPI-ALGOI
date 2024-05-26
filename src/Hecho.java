@@ -34,8 +34,6 @@ public class Hecho {
 
     public Map<String, String> getDimensionesMap(String idDimension, String valor) {
         Map<String, String> dimensionesMap = new HashMap<>();
-        System.out.println(indexadoColumnas.get(idDimension));
-        System.out.println(indexadoColumnas.get(valor));
         Columna<?>[] columnas = tabla.getColumnas();
         int indexIdDimension = indexadoColumnas.get(idDimension);
         int indexValor = indexadoColumnas.get(valor);

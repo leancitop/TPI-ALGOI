@@ -39,13 +39,22 @@ public class Operador {
             numeroColumnas += hechosProyeccion.size();
             Tabla tabla = new Tabla(numeroColumnas);
             System.out.println("Columnas: " + numeroColumnas);
-
+            
+            for (List<Object> dimension : dimensionesProyeccion) {
+                int nivelDimension = (int) dimension.get(1);
+                for (int i = 1; i < nivelDimension+1; i++) {
+                    
+                }
+            }
 
             for (List<Object> dimension : listaIdDimensiones){
-                System.out.println(dimension.get(0));
                 String nombreDimension = (String) dimension.get(0);
-                System.out.println(mapaDimensiones.get(nombreDimension).getClaveForanea());
-                hecho.getDimensionesMap(mapaDimensiones.get(nombreDimension).getClaveForanea(), "costo");
+                listaNiveles = 
+                String claveDimension = mapaDimensiones.get(nombreDimension).getClaveForanea();
+
+                Map<String, String> mapaHechosId = hecho.getDimensionesMap(claveDimension, "costo");
+
+                System.out.println(dimension.get(1));
             }
 
             return null;
