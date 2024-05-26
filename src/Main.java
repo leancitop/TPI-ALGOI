@@ -23,13 +23,22 @@ public class Main {
 
         cubo.setDimensionesProyeccion(null);
 
-        List<List<Object>> lista = new ArrayList<>();
+        List<List<Object>> listaDimensionesProyeccion = new ArrayList<>();
         
-        lista.add(List.of("fechas", 1));
-        lista.add(List.of("productos", 2));
+        listaDimensionesProyeccion.add(List.of("fechas", 1));
+        listaDimensionesProyeccion.add(List.of("productos", 2));
 
-        cubo.setDimensionesProyeccion(lista);
+        cubo.setDimensionesProyeccion(listaDimensionesProyeccion);
 
-        Operador.parsear(cubo.listaDimensiones, cubo.dimensionesProyeccion);
+        List<List<Object>> listaHechosDimension = new ArrayList<>();
+        
+        listaHechosDimension.add(List.of("valor_total", "suma"));
+        listaHechosDimension.add(List.of("costo", "suma"));
+
+        cubo.setHechosProyeccion(listaHechosDimension);
+
+        cubo.setHecho(new Hecho("datasets/ventas.csv", 7));
+
+        Operador.parsear(cubo.listaDimensiones, cubo.dimensionesProyeccion, cubo.tablaHecho, cubo.hechosProyeccion);
     }
 }
