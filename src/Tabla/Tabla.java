@@ -1,5 +1,6 @@
 package Tabla;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Tabla {
@@ -56,5 +57,20 @@ public class Tabla {
 
     public void setColumna(Columna columna, Integer posicionColumna){
         this.columnas[posicionColumna] = columna;
+    }
+    
+    public void visualizar(Integer tabulacion){
+
+        String format="%-"+tabulacion.toString()+"s";
+        for (String head: headers){
+            System.out.printf(format, head);
+        }
+        System.out.println();
+        for (int i = 0; i <= this.getNumeroFilas()-1; i++){
+            for (Columna columna: columnas){
+                System.out.printf(format, columna.getDatos().get(i));
+            }
+            System.out.println();
+        }
     }
 }
