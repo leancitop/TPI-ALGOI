@@ -1,7 +1,9 @@
+package Cubo;
 import java.util.ArrayList;
 import java.util.List;
 
 import Lectores.LectorArchivos;
+import Tabla.Operador;
 import Tabla.Tabla;
 
 public class Main {

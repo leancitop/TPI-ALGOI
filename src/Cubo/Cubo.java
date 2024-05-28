@@ -1,3 +1,4 @@
+package Cubo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,12 +14,12 @@ public class Cubo {
     // sliceProyeccion - objeto que se setea en slice()
     // diceProyeccion - objeto que se setea en dice()
 
-    Cubo(String nombreCubo){
+    public Cubo(String nombreCubo){
         nombre = nombreCubo;
         listaDimensiones = new HashMap<String, Dimension>();
     }
 
-    void agregarDimension(Dimension dimension){
+    public void agregarDimension(Dimension dimension){
         listaDimensiones.put(dimension.getNombre(), dimension);
     }
 
@@ -94,12 +95,12 @@ public class Cubo {
         }
     }    
 
-    void setDimensionesProyeccion(List<List<Object>> listaDimensionesProyeccion){
+    public void setDimensionesProyeccion(List<List<Object>> listaDimensionesProyeccion){
         // seteamos las dimensiones y los niveles en las que queramos visualizar
         dimensionesProyeccion = listaDimensionesProyeccion;
     }
     
-    void setHechosProyeccion(List<List<Object>> listaHechosProyeccion){
+    public void setHechosProyeccion(List<List<Object>> listaHechosProyeccion){
         // elegimos los valores y las medidas con las que los queramos visualizar
         hechosProyeccion = listaHechosProyeccion;
     }

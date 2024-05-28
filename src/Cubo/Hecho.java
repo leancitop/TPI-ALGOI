@@ -1,3 +1,4 @@
+package Cubo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -32,7 +33,7 @@ public class Hecho {
         return indexadoColumnas;
     }
 
-    public Map<String, String> getDimensionesMap(String idDimension, String valor) {
+    public Map<String, String> getMapaDimensionIdValor(String idDimension, String valor) {
         Map<String, String> dimensionesMap = new HashMap<>();
         Columna<?>[] columnas = tabla.getColumnas();
         int indexIdDimension = indexadoColumnas.get(idDimension);
