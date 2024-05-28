@@ -19,19 +19,19 @@ public class TestOperadorParsear {
         String[][] productos_csv = LectorArchivos.leerCSV("datasets/productos.csv");
         Tabla tabla_productos = new Tabla(4);
         tabla_productos.cargarTabla(productos_csv);
-        Dimension productos = new Dimension("productos", 0,5, tabla_productos, "id_producto");
+        Dimension productos = new Dimension("productos",5, tabla_productos, "id_producto");
         cubo.agregarDimension(productos);
 
         String[][] fechas_csv = LectorArchivos.leerCSV("datasets/fechas.csv");
         Tabla tabla_fechas = new Tabla(6);
         tabla_fechas.cargarTabla(fechas_csv);
-        Dimension fechas = new Dimension("fechas", 0,5, tabla_fechas, "id_fecha");
+        Dimension fechas = new Dimension("fechas",5, tabla_fechas, "id_fecha");
         cubo.agregarDimension(fechas);
 
         String[][] puntos_venta_csv = LectorArchivos.leerCSV("datasets/puntos_venta.csv");
         Tabla tablaPuntosVenta = new Tabla(6);
         tablaPuntosVenta.cargarTabla(puntos_venta_csv);
-        Dimension puntosVenta = new Dimension("puntos de venta", 0,5, tablaPuntosVenta, "id_punto_venta");
+        Dimension puntosVenta = new Dimension("puntos de venta",5, tablaPuntosVenta, "id_punto_venta");
         cubo.agregarDimension(puntosVenta);
 
         cubo.setDimensionesProyeccion(null);

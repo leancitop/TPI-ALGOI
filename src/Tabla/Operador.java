@@ -52,12 +52,12 @@ public class Operador {
 
             for (List<Object> dimension : listaIdDimensiones){
                 System.out.println("----------------------------------------------------------------");
-                String nombreDimension = (String) dimension.get(0);
+                int fk = (int) dimension.getClaveForanea();
                 //System.out.println(dimension);
-                System.out.println(nombreDimension);
+                System.out.println(fk);
                 Map<String, Map<String, List<String>>> mapaDimensionIds = (Map<String, Map<String, List<String>>>) dimension.get(1);
                 Set<String> setNiveles = mapaDimensionIds.keySet();
-                Map<String, String> DimensionIdValor = hecho.getMapaDimensionIdValor(nombreDimension, "costo");
+                Map<Double, Double> DimensionIdValor = hecho.getMapaDimensionIdValor(fk, 7);
                 for (String nivel : setNiveles){
                     ColumnaString columnaNivel = new ColumnaString(nivel);
                     for (String miembro : mapaDimensionIds.get(nivel).keySet()){
@@ -70,7 +70,19 @@ public class Operador {
             return null;
     }
 
-    // static Tabla agrupar(){}
+    static Tabla agrupar(
+        Tabla tabla, 
+        int columnaMedida,
+        Map<String, Dimension> mapaDimensiones,
+        List<List<Object>> dimensionesProyeccion,
+        Hecho hecho,
+        List<List<Object>> hechosProyeccion)
+
+        {
+        Tabla tabla_agrupada = new Tabla(tabla.getColumnas().length);
+
+        return tabla_agrupada;
+    }
 
     // static Tabla filtrar(){}
 

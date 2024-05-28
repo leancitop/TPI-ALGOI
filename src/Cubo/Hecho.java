@@ -7,6 +7,7 @@ import java.util.Map;
 
 import Lectores.LectorArchivos;
 import Tabla.Columna;
+import Tabla.ColumnaNumerica;
 import Tabla.Tabla;
 
 public class Hecho {
@@ -33,19 +34,26 @@ public class Hecho {
         return indexadoColumnas;
     }
 
-    public Map<String, String> getMapaDimensionIdValor(String idDimension, String valor) {
-        Map<String, String> dimensionesMap = new HashMap<>();
-        Columna<?>[] columnas = tabla.getColumnas();
-        int indexIdDimension = indexadoColumnas.get(idDimension);
-        int indexValor = indexadoColumnas.get(valor);
-        
-        for (int i = 0; i < columnas[0].getDatos().size(); i++) {
-            dimensionesMap.put(
-                columnas[indexIdDimension].getContenidoColumna(i),
-                columnas[indexValor].getContenidoColumna(i)
-            );
+    public Map<Double, Double> getMapaDimensionIdValor(int idDimension, int idMedida) {
+        Map<Double, Double> dimensionesMap = new HashMap<>();
+        Columna<?>[] columnas = tabla.getColumnas();        
+        try {
+            ColumnaNumerica columnaValores = (ColumnaNumerica) columnas[idDimension];
+            ColumnaNumerica columnaIds = (ColumnaNumerica) columnas[idMedida];
+            for (int i = 0; i < columnas[0].getDatos().size(); i++) {
+
+                dimensionesMap.put(
+                    columnaValores.getContenidoFila(i),
+                    columnaIds.getContenidoFila(i)
+                );
+                
+            }
+            return dimensionesMap;
+        } catch (ClassCastException e) {
+            // Manejar la excepción de casting incorrecto
+            System.err.println("Error de casting: " + e.getMessage());
+            return null;
         }
-        return dimensionesMap;
     }
 
     public List<String> getValores(){

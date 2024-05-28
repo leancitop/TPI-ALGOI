@@ -7,88 +7,65 @@ import java.util.Map;
 
 import Tabla.Columna;
 import Tabla.Tabla;
+import Tabla.ColumnaNumerica;
 
 public class Dimension {
     private String nombre;
-    private int col_id;
-    private Map<String, List<String>> valores_idD; // el map valores : dim_id
-    private Tabla tabla_dimension;
+    private Map<Double, List<Double>> valores_idD; // el map valores : dim_id
+    private Map<Double, Double[]> valores_idH; // map valores : fact_id
+    private Tabla tabla;
     private int nivel_index;
-    private String clave_foranea;
+    private int clave_foranea;
 
-    public Dimension(String nombre, int col_id, int nivel, Tabla tabla, String clave_foranea){
+    public Dimension(String nombre, int nivel, Tabla tabla, int clave_foranea){
         this.nombre = nombre;
         this.valores_idD = new HashMap<>();
-        this.col_id = col_id;
+        this.valores_idH = new HashMap<>();
         this.nivel_index = nivel;
-        this.tabla_dimension = tabla;
+        this.tabla = tabla;
         this.clave_foranea = clave_foranea;
     }
 
     public void cargarMapaDimension() {
-        Tabla tabla = this.getTabla();
-        int valorIndex = this.getValorIndex();
-        int id = this.getId();
-
         Columna<?>[] columnas = tabla.getColumnas();
-        Columna<?> columnaValores = columnas[valorIndex];
-        Columna<?> columnaIds = columnas[id];
 
-        int numFilas = tabla.getNumeroFilas();
+        try {
+            ColumnaNumerica columnaValores = (ColumnaNumerica) columnas[nivel_index];
+            ColumnaNumerica columnaIds = (ColumnaNumerica) columnas[0];
 
-        for (int i = 0; i < numFilas; i++) {
-            String valorFila = columnaValores.getContenidoColumna(i);
-            String idFila = columnaIds.getContenidoColumna(i);
+            int numFilas = tabla.getNumeroFilas();
 
-            valores_idD.computeIfAbsent(valorFila, k -> new ArrayList<>()).add(idFila);
+            for (int i = 0; i < numFilas; i++) {
+                Double valorFila = columnaValores.getContenidoFila(i);
+                Double idFila = columnaIds.getContenidoFila(i);
+
+                valores_idD.computeIfAbsent(valorFila, k -> new ArrayList<>()).add(idFila);
+            }
+        } catch (ClassCastException e) {
+            // Manejar la excepción de casting incorrecto
+            System.err.println("Error de casting: " + e.getMessage());
         }
     }
-    public int getValorIndex(){
-        return this.nivel_index;
-    }
 
-    public Tabla getTabla() {
-        return tabla_dimension;
+    public int getNivelIndex(){
+        return this.nivel_index;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public int getId() {
-        return col_id;
-    }
-
-    public Map<String, List<String>> getValoresIdD() {
+    public Map<Double, List<Double>> getValoresIdD() {
         return valores_idD;
     }
 
-    public String getClaveForanea(){
+    public int getClaveForanea(){
         return this.clave_foranea;
     }
 
     public List<String> getNiveles(){
-        List<String> niveles = new ArrayList<>(Arrays.asList(tabla_dimension.getHeaders()));
-        niveles.remove(this.getClaveForanea());
+        List<String> niveles = new ArrayList<>(Arrays.asList(tabla.getHeaders()));
+        niveles.remove(0);
         return niveles;
-    }
-
-    public Map<String, List<String>> getMapaNivelId(Integer nivel){
-        Map<String, List<String>> mapaNivelId = new HashMap<>();
-
-        Columna<?>[] columnas = this.tabla_dimension.getColumnas();
-        Columna<?> columnaIds = columnas[0];
-        Columna<?> columnaNivel = columnas[nivel];
-        
-        int numFilas = this.tabla_dimension.getNumeroFilas();
-
-        for (int i = 0; i < numFilas; i++) {
-            String valorFila = columnaNivel.getContenidoColumna(i);
-            String idFila = columnaIds.getContenidoColumna(i);
-
-            mapaNivelId.computeIfAbsent(valorFila, k -> new ArrayList<>()).add(idFila);
-
-        }
-        return mapaNivelId;
     }
 }

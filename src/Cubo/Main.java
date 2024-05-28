@@ -13,12 +13,12 @@ public class Main {
         String[][] productos_csv = LectorArchivos.leerCSV("datasets/productos.csv");
         Tabla tabla_productos = new Tabla(4);
         tabla_productos.cargarTabla(productos_csv);
-        Dimension productos = new Dimension("productos", 0,5, tabla_productos, "id_producto");
+        Dimension productos = new Dimension("productos",5, tabla_productos, "id_producto");
 
         String[][] fechas_csv = LectorArchivos.leerCSV("datasets/fechas.csv");
         Tabla tabla_fechas = new Tabla(6);
         tabla_fechas.cargarTabla(fechas_csv);
-        Dimension fechas = new Dimension("fechas", 0,5, tabla_fechas, "id_fecha");
+        Dimension fechas = new Dimension("fechas",5, tabla_fechas, "id_fecha");
 
         cubo.agregarDimension(productos);
         cubo.agregarDimension(fechas);
