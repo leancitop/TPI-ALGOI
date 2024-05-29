@@ -3,6 +3,12 @@ import java.util.List;
 
 public class Medida {
 
+    private String nombre;
+
+    public Medida(String n){
+        this.nombre = n;
+    }
+
     public static Double sumar(List<String> valores){
         Double total=0.0; ///discusión sobre headers
         for (String valor: valores){
@@ -32,7 +38,4 @@ public class Medida {
         int cantidad = lista.size();
         return cantidad;
     }
-
-
-    
 }

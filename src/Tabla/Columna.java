@@ -2,7 +2,6 @@ package Tabla;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public abstract class Columna<T> {
     private String nombre;
     private List<T> datos;
@@ -19,14 +18,22 @@ public abstract class Columna<T> {
     public void agregarDato(T dato){
         datos.add(dato);
     }
-    
-    public T getContenidoFila(int index) {
-        if (index < 0 || index >= datos.size()) {
-            return null; // o lanzar una excepción
+
+    public T getContenidoFila(int nfila) {
+        if (nfila < 0 || nfila >= datos.size()) {
+            return null;
         }
-        T dato = datos.get(index);
-        return dato;
+        return datos.get(nfila);
     }
+
+    public T getContenidoFila(Double numeroDouble) {
+        int nfila = numeroDouble.intValue();
+        if (nfila < 0 || nfila >= datos.size()) {
+            return null;
+        }
+        return datos.get(nfila);
+    }
+
     public List<T> getDatos() {
         return datos;
     }
