@@ -34,8 +34,9 @@ public class Operador {
                 nuevaTabla.agregarColumna(columnaCruce); 
             }
         }
+        // cargar la columna de la medida elegida de los hechos
         nuevaTabla.agregarColumna(tablaHechos.getColumnas().get(index_medida));
-        nuevaTabla.cargarHeaders();
+        nuevaTabla.cargarHeaders(); //headers
         return nuevaTabla;
         }
 
