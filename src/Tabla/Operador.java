@@ -1,77 +1,158 @@
 package Tabla;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import Cubo.Dimension;
-import Cubo.Hecho;
+import Cubo.Hechos;
 
 public class Operador {
-    public static Tabla parsear(
-        Map<String, Dimension> mapaDimensiones,
-        List<List<Object>> dimensionesProyeccion,
-        Hecho hecho,
-        List<List<Object>> hechosProyeccion
-        )
-        {      
-
-            // Armo la lista con los idDimension, para cada dimension y cada nivel
-
-            List<List<Object>> listaIdDimensiones = new ArrayList<>();
-            Integer numeroColumnas = 0; 
-
-            for (List<Object> dimension : dimensionesProyeccion) {
-                Map<String, Map<String, List<String>>> mapaDimensionIds = new HashMap<>();
-
-                String nombreDimension = (String) dimension.get(0);
-                int nivelDimension = (int) dimension.get(1);
-                numeroColumnas += nivelDimension;
-
-                for (int i = 1; i < nivelDimension+1; i++) {
-                    String nivel = mapaDimensiones.get(nombreDimension).getTabla().getHeaders()[i];
-                    Map<String, List<String>> mapaNivelId = mapaDimensiones.get(nombreDimension).getMapaNivelId(i);
-                    mapaDimensionIds.put(nivel, mapaNivelId);
-                }
-                listaIdDimensiones.add(List.of(nombreDimension, mapaDimensionIds));
+    public static Tabla parsear(Map<Dimension, Integer> niveles_cubo, Hechos hechos) {
+        // Crear la tabla final
+        Tabla tablaResultado = new Tabla();
+    
+        // Añadir columnas a la tabla resultado basadas en los niveles de dimensión
+        for (Map.Entry<Dimension, Integer> entry : niveles_cubo.entrySet()) {
+            Dimension dimension = entry.getKey();
+            int nivel = entry.getValue();
+            String nombreColumna = dimension.getTabla().getHeaders()[nivel];
+            System.out.println("Nombre de columna para la dimensión " + dimension.getNombre() + ": " + nombreColumna);
+    
+            // Determinar tipo de columna (String o Numérica)
+            Columna<?> columnaOriginal = dimension.getTabla().getColumnas().get(nivel);
+            if (columnaOriginal instanceof ColumnaNumerica) {
+                System.out.println("Agregando columna numérica para la dimensión " + dimension.getNombre());
+                tablaResultado.setColumna(new ColumnaNumerica(nombreColumna));
+            } else if (columnaOriginal instanceof ColumnaString) {
+                System.out.println("Agregando columna de cadena para la dimensión " + dimension.getNombre());
+                tablaResultado.setColumna(new ColumnaString(nombreColumna));
             }
+        }
+    
+        // Añadir columnas de hechos a la tabla resultado
+        for (String header : hechos.getValores()) {
+            System.out.println("Agregando columna numérica para el hecho: " + header);
+            // Determinar tipo de columna (String o Numérica)
+            Columna<?> columnaOriginal = hechos.getTabla().getColumnas().stream()
+                .filter(columna -> columna.getNombre().equals(header))
+                .findFirst()
+                .orElse(null);
+    
+            if (columnaOriginal instanceof ColumnaNumerica) {
+                tablaResultado.setColumna(new ColumnaNumerica(header));
+            } else if (columnaOriginal instanceof ColumnaString) {
+                tablaResultado.setColumna(new ColumnaString(header));
+            }
+        }
+        tablaResultado.cargarHeaders();
+        return tablaResultado;
+    }
+    
+    
 
-            // Comienzo a armar la tabla para el return
-            
-            numeroColumnas += hechosProyeccion.size();
-            Tabla tabla = new Tabla(numeroColumnas);
-            System.out.println("Columnas: " + numeroColumnas);
-
-            // while (iterator.hasNext()) {
-            //     Map.Entry<String, String> entry = iterator.next();
-            //     String key = entry.getKey();
-            //     String value = entry.getValue();
-            //     System.out.println("Clave: " + key + ", Valor: " + value);
-
-            for (List<Object> dimension : listaIdDimensiones){
-                System.out.println("----------------------------------------------------------------");
-                String nombreDimension = (String) dimension.get(0);
-                //System.out.println(dimension);
-                System.out.println(nombreDimension);
-                Map<String, Map<String, List<String>>> mapaDimensionIds = (Map<String, Map<String, List<String>>>) dimension.get(1);
-                Set<String> setNiveles = mapaDimensionIds.keySet();
-                Map<String, String> DimensionIdValor = hecho.getMapaDimensionIdValor(nombreDimension, "costo");
-                for (String nivel : setNiveles){
-                    ColumnaString columnaNivel = new ColumnaString(nivel);
-                    for (String miembro : mapaDimensionIds.get(nivel).keySet()){
-                        
+    public static Tabla agrupar(Tabla tabla_operacion, List<String> columnas_agrupacion, List<String> columnas_a_agrupar) {
+        // Crear la tabla resultado
+        Tabla tablaResultado = new Tabla();
+    
+        // Agregar columnas de agrupación a la tabla resultado
+        for (String columna : columnas_agrupacion) {
+            // Determinar tipo de columna (String o Numérica)
+            Columna<?> columnaOriginal = tabla_operacion.getColumnas().stream()
+                    .filter(col -> col.getNombre().equals(columna))
+                    .findFirst()
+                    .orElse(null);
+    
+            if (columnaOriginal instanceof ColumnaNumerica) {
+                tablaResultado.setColumna(new ColumnaNumerica(columna));
+            } else if (columnaOriginal instanceof ColumnaString) {
+                tablaResultado.setColumna(new ColumnaString(columna));
+            }
+        }
+    
+        // Crear un mapa para almacenar los valores agrupados
+        Map<List<Object>, List<List<Object>>> grupos = new HashMap<>();
+    
+        // Recorrer las filas de la tabla original y agrupar según las columnas de agrupación
+        for (int i = 0; i < tabla_operacion.getNumeroFilas(); i++) {
+            // Crear una lista para almacenar la clave de agrupación
+            List<Object> claveAgrupacion = new ArrayList<>();
+            for (String columna : columnas_agrupacion) {
+                Columna<?> columnaActual = tabla_operacion.getColumnas().stream()
+                        .filter(col -> col.getNombre().equals(columna))
+                        .findFirst()
+                        .orElse(null);
+                claveAgrupacion.add(columnaActual.getContenidoFila(i));
+            }
+    
+            // Si el grupo no existe, se crea uno nuevo
+            grupos.putIfAbsent(claveAgrupacion, new ArrayList<>());
+    
+            // Obtener la lista de valores para las columnas a agrupar
+            List<Object> valoresAgrupar = new ArrayList<>();
+            for (String columna : columnas_a_agrupar) {
+                Columna<?> columnaActual = tabla_operacion.getColumnas().stream()
+                        .filter(col -> col.getNombre().equals(columna))
+                        .findFirst()
+                        .orElse(null);
+                valoresAgrupar.add(columnaActual.getContenidoFila(i));
+            }
+    
+            // Agregar los valores al grupo correspondiente
+            grupos.get(claveAgrupacion).add(valoresAgrupar);
+        }
+    
+        // Agregar las columnas a agrupar a la tabla resultado
+        for (String columna : columnas_a_agrupar) {
+            // Determinar tipo de columna (String o Numérica)
+            Columna<?> columnaOriginal = tabla_operacion.getColumnas().stream()
+                    .filter(col -> col.getNombre().equals(columna))
+                    .findFirst()
+                    .orElse(null);
+    
+            if (columnaOriginal instanceof ColumnaNumerica) {
+                tablaResultado.setColumna(new ColumnaNumerica(columna));
+            } else if (columnaOriginal instanceof ColumnaString) {
+                tablaResultado.setColumna(new ColumnaString(columna));
+            }
+        }
+    
+        // Llenar la tabla resultado con los grupos y valores agrupados
+        for (Map.Entry<List<Object>, List<List<Object>>> entry : grupos.entrySet()) {
+            List<Object> claveAgrupacion = entry.getKey();
+            List<List<Object>> valoresGrupo = entry.getValue();
+    
+            // Agregar la clave de agrupación a la fila
+            for (Object valor : claveAgrupacion) {
+                if (valor instanceof Double) {
+                    tablaResultado.getColumnas().stream()
+                            .filter(col -> col instanceof ColumnaNumerica)
+                            .forEach(col -> ((ColumnaNumerica) col).agregarDato((Double) valor));
+                } else if (valor instanceof String) {
+                    tablaResultado.getColumnas().stream()
+                            .filter(col -> col instanceof ColumnaString)
+                            .forEach(col -> ((ColumnaString) col).agregarDato((String) valor));
+                }
+            }
+    
+            // Agregar los valores agrupados a la fila
+            for (List<Object> fila : valoresGrupo) {
+                for (Object valor : fila) {
+                    if (valor instanceof Double) {
+                        tablaResultado.getColumnas().stream()
+                                .filter(col -> col instanceof ColumnaNumerica)
+                                .forEach(col -> ((ColumnaNumerica) col).agregarDato((Double) valor));
+                    } else if (valor instanceof String) {
+                        tablaResultado.getColumnas().stream()
+                                .filter(col -> col instanceof ColumnaString)
+                                .forEach(col -> ((ColumnaString) col).agregarDato((String) valor));
                     }
                 }
-
             }
-            System.out.println("----------------------------------------------------------------");
-            return null;
+        }
+        tablaResultado.cargarHeaders();
+        return tablaResultado;
     }
-
-    // static Tabla agrupar(){}
-
     // static Tabla filtrar(){}
 
     // static Tabla removerDimension(){}

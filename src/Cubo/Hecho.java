@@ -21,7 +21,8 @@ public class Hecho {
         tabla_csv.cargarTabla(csv);
 
         this.tabla = tabla_csv;
-        this.indexadoColumnas = new HashMap<>(); // Inicializar el mapa
+        System.out.println("Filas: "+tabla_csv.getNumeroFilas());
+        this.indexadoColumnas = new HashMap<>();
 
         Columna<?>[] columnas = tabla.getColumnas();
         for (int i = 0; i < columnas.length; i++) {
@@ -33,19 +34,12 @@ public class Hecho {
         return indexadoColumnas;
     }
 
-    public Map<String, String> getMapaDimensionIdValor(String idDimension, String valor) {
-        Map<String, String> dimensionesMap = new HashMap<>();
-        Columna<?>[] columnas = tabla.getColumnas();
-        int indexIdDimension = indexadoColumnas.get(idDimension);
-        int indexValor = indexadoColumnas.get(valor);
-        
-        for (int i = 0; i < columnas[0].getDatos().size(); i++) {
-            dimensionesMap.put(
-                columnas[indexIdDimension].getContenidoColumna(i),
-                columnas[indexValor].getContenidoColumna(i)
-            );
-        }
-        return dimensionesMap;
+    public Tabla getTablaDimensionIdValor(String idDimension, String valor) {
+        Tabla tablaRetorno = new Tabla(2);
+        tablaRetorno.setColumna(0, tabla.getColumna(idDimension));
+        tablaRetorno.setColumna(1, tabla.getColumna(valor));
+        System.out.println(tablaRetorno.getNumeroFilas());
+        return tablaRetorno;
     }
 
     public List<String> getValores(){
