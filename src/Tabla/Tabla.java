@@ -10,9 +10,31 @@ public class Tabla {
         this.columnas = new ArrayList<>();
         this.headers = new String[0];
     }
-
-    public void setColumna(Columna<?> columna) {
+    public void agregarColumna(Columna<?> columna) {
+        for (Columna<?> col : columnas) {
+            if (col.getNombre().equals(columna.getNombre())) {
+                System.out.println("La columna ya existe en la tabla.");
+            }
+        }
         columnas.add(columna);
+        cargarHeaders(); // Actualizar los headers después de agregar la columna
+    }
+
+    // Método para eliminar una columna por su nombre
+    public void eliminarColumna(String nombreColumna) {
+        boolean columnaEncontrada = false;
+        for (Columna<?> col : columnas) {
+            if (col.getNombre().equals(nombreColumna)) {
+                columnas.remove(col);
+                columnaEncontrada = true;
+                break;
+            }
+        }
+        if (!columnaEncontrada) {
+            System.out.println("La columna no existe en la tabla.");
+        } else {
+            cargarHeaders(); // Actualizar los headers después de eliminar la columna
+        }
     }
 
     public void cargarHeaders() {

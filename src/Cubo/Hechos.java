@@ -65,4 +65,4 @@ public class Hechos {
         }
         return new ArrayList<>(Arrays.asList(tabla.getHeaders()));
     }
-}    
+}
