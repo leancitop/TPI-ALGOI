@@ -38,8 +38,8 @@ public class TestOperadorParsear {
 
         List<List<Object>> listaDimensionesProyeccion = new ArrayList<>();
         
-        listaDimensionesProyeccion.add(List.of("fechas", 1));
-        listaDimensionesProyeccion.add(List.of("productos", 2));
+        listaDimensionesProyeccion.add(List.of("fechas", 3));
+        listaDimensionesProyeccion.add(List.of("productos", 3));
 
         cubo.setDimensionesProyeccion(listaDimensionesProyeccion);
 
@@ -52,6 +52,8 @@ public class TestOperadorParsear {
 
         cubo.setHecho(new Hecho("datasets/ventas.csv", 7));
 
-        Operador.parsear(cubo.listaDimensiones, cubo.dimensionesProyeccion, cubo.tablaHecho, cubo.hechosProyeccion);
+        System.out.println(cubo.tablaHecho.getTablaDimensionIdValor("id_fecha", "cantidad").getNumeroFilas());
+
+        //Operador.parsear(cubo.listaDimensiones, cubo.dimensionesProyeccion, cubo.tablaHecho, cubo.hechosProyeccion);
     }
 }
