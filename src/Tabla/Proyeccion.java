@@ -1,5 +1,7 @@
 package Tabla;
 
+import java.util.List;
+
 public class Proyeccion {
     private Tabla tabla;
 
@@ -7,25 +9,51 @@ public class Proyeccion {
         this.tabla = tabla;
     }
 
-    public void imprimirPrimerasDiezFilas() {
-        // Obtener las primeras diez filas de la tabla
-        int numeroFilas = Math.min(tabla.getNumeroFilas(), 10);
+public void imprimirPrimerasDiezFilas() {
+    // Obtener las primeras diez filas de la tabla
+    int numeroFilas = Math.min(tabla.getNumeroFilas(), 10);
 
-        // Imprimir encabezados
-        String[] headers = tabla.getHeaders();
-        for (String header : headers) {
-            System.out.print(header + "\t");
-        }
-        System.out.println();
+    // Obtener encabezados y columnas
+    String[] headers = tabla.getHeaders();
+    List<Columna<?>> columnas = tabla.getColumnas();
 
-        // Imprimir datos
-        for (int i = 0; i < numeroFilas; i++) {
-            for (int j = 0; j < tabla.getColumnas().size(); j++) {
-                System.out.print(tabla.getColumnas().get(j).getContenidoFila(i) + "\t");
+    // Determinar el ancho máximo de cada columna
+    int[] anchosMaximos = new int[headers.length];
+    for (int i = 0; i < headers.length; i++) {
+        anchosMaximos[i] = headers[i].length();
+    }
+    for (int i = 0; i < numeroFilas; i++) {
+        for (int j = 0; j < columnas.size(); j++) {
+            Object valor = columnas.get(j).getContenidoFila(i);
+            int longitud = valor.toString().length();
+            if (longitud > anchosMaximos[j]) {
+                anchosMaximos[j] = longitud;
             }
-            System.out.println();
         }
     }
+
+    // Imprimir encabezados
+    for (int i = 0; i < headers.length; i++) {
+        System.out.print(String.format("%-" + anchosMaximos[i] + "s", headers[i]) + " ");
+    }
+    System.out.println();
+
+    // Imprimir separadores
+    for (int ancho : anchosMaximos) {
+        System.out.print(String.format("%-" + ancho + "s", "").replace(' ', '-') + " ");
+    }
+    System.out.println();
+
+    // Imprimir datos
+    for (int i = 0; i < numeroFilas; i++) {
+        for (int j = 0; j < columnas.size(); j++) {
+            Object valor = columnas.get(j).getContenidoFila(i);
+            System.out.print(String.format("%-" + anchosMaximos[j] + "s", valor) + " ");
+        }
+        System.out.println();
+    }
+}
+
 
     public void info() {
         System.out.println("Nombre de los headers:");

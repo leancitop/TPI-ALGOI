@@ -39,17 +39,135 @@ public class Operador {
         nuevaTabla.cargarHeaders(); //headers
         return nuevaTabla;
         }
-
-
-    }
     
     
-    // static Tabla agrupar(){}
+        public static Tabla agrupar(Tabla tabla, List<String> columnasAAgrupar, String operacionARealizar) {
+            Map<List<Object>, List<Integer>> grupos = new HashMap<>();
+    
+            // Identificar las columnas a agrupar
+            List<Columna<?>> columnas = tabla.getColumnas();
+            List<Columna<?>> columnasAgrupacion = new ArrayList<>();
+            for (String nombre : columnasAAgrupar) {
+                for (Columna<?> col : columnas) {
+                    if (col.getNombre().equals(nombre)) {
+                        columnasAgrupacion.add(col);
+                        break;
+                    }
+                }
+            }
+    
+            // Crear los grupos
+            for (int i = 0; i < tabla.getNumeroFilas(); i++) {
+                List<Object> claveGrupo = new ArrayList<>();
+                for (Columna<?> col : columnasAgrupacion) {
+                    claveGrupo.add(col.getContenidoFila(i));
+                }
+    
+                grupos.computeIfAbsent(claveGrupo, k -> new ArrayList<>()).add(i);
+            }
+    
+            // Crear nueva tabla para los resultados agrupados
+            Tabla tablaAgrupada = new Tabla();
+    
+            // Crear columnas agrupadas en la nueva tabla
+            for (Columna<?> col : columnasAgrupacion) {
+                if (col instanceof ColumnaString) {
+                    tablaAgrupada.agregarColumna(new ColumnaString(col.getNombre()));
+                } else if (col instanceof ColumnaNumerica) {
+                    tablaAgrupada.agregarColumna(new ColumnaNumerica(col.getNombre()));
+                }
+            }
+    
+            // Crear columnas para las operaciones a realizar
+            List<Columna<?>> columnasOperacion = new ArrayList<>();
+            for (Columna<?> col : columnas) {
+                if (!columnasAgrupacion.contains(col)) {
+                    if (col instanceof ColumnaString) {
+                        columnasOperacion.add(new ColumnaString(col.getNombre() + "_" + operacionARealizar));
+                    } else if (col instanceof ColumnaNumerica) {
+                        columnasOperacion.add(new ColumnaNumerica(col.getNombre() + "_" + operacionARealizar));
+                    }
+                }
+            }
+    
+            // Agregar las columnas de operaciones a la nueva tabla
+            for (Columna<?> col : columnasOperacion) {
+                tablaAgrupada.agregarColumna(col);
+            }
+    
+            // Agregar datos a la nueva tabla
+            for (Map.Entry<List<Object>, List<Integer>> entry : grupos.entrySet()) {
+                List<Object> claveGrupo = entry.getKey();
+                List<Integer> indicesFilas = entry.getValue();
+    
+                // Agregar claves de grupo a la nueva tabla
+                for (int i = 0; i < claveGrupo.size(); i++) {
+                    Object valor = claveGrupo.get(i);
+                    Columna<?> col = tablaAgrupada.getColumnas().get(i);
+                    if (col instanceof ColumnaString) {
+                        ((ColumnaString) col).agregarDato((String) valor);
+                    } else if (col instanceof ColumnaNumerica) {
+                        ((ColumnaNumerica) col).agregarDato((Double) valor);
+                    }
+                }
+    
+                // Aplicar operación a cada columna no agrupada y agregar el resultado a la nueva tabla
+                for (Columna<?> col : columnasOperacion) {
+                    String nombreOriginal = col.getNombre().replace("_" + operacionARealizar, "");
+                    Columna<?> columnaOriginal = columnas.stream()
+                            .filter(c -> c.getNombre().equals(nombreOriginal))
+                            .findFirst()
+                            .orElse(null);
+    
+                    if (columnaOriginal != null) {
+                        Object resultado = aplicarOperacion(columnaOriginal, indicesFilas, operacionARealizar);
+                        if (col instanceof ColumnaString) {
+                            ((ColumnaString) col).agregarDato((String) resultado);
+                        } else if (col instanceof ColumnaNumerica) {
+                            ((ColumnaNumerica) col).agregarDato((Double) resultado);
+                        }
+                    }
+                }
+            }
+    
+            return tablaAgrupada;
+        }
+    
+        // Método para aplicar la operación a una columna sobre un conjunto de filas
+        private static Object aplicarOperacion(Columna<?> columna, List<Integer> indicesFilas, String operacion) {
+            switch (operacion.toLowerCase()) {
+                case "suma":
+                    if (columna instanceof ColumnaNumerica) {
+                        Double suma = 0.0;
+                        for (int i : indicesFilas) {
+                            suma += (Double) columna.getContenidoFila(i);
+                        }
+                        return suma;
+                    }
+                    break;
+                case "promedio":
+                    if (columna instanceof ColumnaNumerica) {
+                        double suma = 0;
+                        for (int i : indicesFilas) {
+                            suma += (Double) columna.getContenidoFila(i);
+                        }
+                        return suma / indicesFilas.size();
+                    }
+                    break;
+                case "contar":
+                    break; //hay q implementar la logica del conteo y las de abajo
+                case "min":
+                    break;
+                case "max":
+                    break;
+            }
+            return null;
+        }
 
     // static Tabla filtrar(){}
 
-    // static Tabla removerDimension(){}
+    // static Tabla removerDimension(){} ?
 
     // static Tabla sumarizar(){}
 
-    // static void visualizar(Tabla tabla){}
+}
