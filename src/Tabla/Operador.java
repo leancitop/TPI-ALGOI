@@ -167,7 +167,77 @@ public class Operador {
             return null;
         }
 
-    // static Tabla filtrar(){}
+        public enum TiposFiltros {
+            IGUAL,
+            MAYOR,
+            MENOR,
+            NO_IGUAL,
+            ENTRE
+        }
+    
+        public static List<Integer> filtrar( //devuelve lista de index
+            Columna<?> columna, List<String> comparadores, TiposFiltros tipoFiltro
+        ){
+            List<Integer> filasOk = new ArrayList<Integer>();
+            String comparador = comparadores.get(0);
+            Integer n = 0;
+            for(Object valRaw : columna.getDatos()){
+                String val = valRaw.toString();
+                switch (tipoFiltro) {
+                    case IGUAL:
+                        if(comparadores.contains(val)){
+                            filasOk.add(n);
+                        }
+                        break;
+                    case NO_IGUAL:
+                        if(!comparadores.contains(val)){
+                            filasOk.add(n);
+                        }
+                        break;
+                    case MAYOR:
+                        try{
+                            Double valN = Double.parseDouble(val);
+                            if(valN > Double.parseDouble(comparador)){
+                                filasOk.add(n);
+                            }
+                        }catch(Exception e){
+                            throw new RuntimeException("La columna debe ser de tipo numérico");
+                        }
+                        break;
+                    case MENOR:
+                        try{
+                            Double valN = Double.parseDouble(val);
+                            if(valN < Double.parseDouble(comparador)){
+                                filasOk.add(n);
+                            }
+                        }catch(Exception e){
+                            throw new RuntimeException("La columna debe ser de tipo numérico");
+                        }
+                        break;
+                    case ENTRE:
+                        if(comparadores.size() < 2){
+                            throw new RuntimeException("Para filtrar ENTRE se deben tener al menos 2 valores");
+                        }
+                        try{
+                            Double valN = Double.parseDouble(val);
+                            if(
+                                Double.parseDouble(comparadores.get(0)) < valN &&
+                                valN < Double.parseDouble(comparadores.get(1))
+                            ){
+                                filasOk.add(n);
+                            }
+                        }catch(Exception e){
+                            throw new RuntimeException("La columna debe ser de tipo numérico");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                n ++;
+            }
+            return filasOk;
+        }
+    
 
     // static Tabla removerDimension(){}
 
