@@ -5,27 +5,27 @@ import java.util.List;
 import java.util.Map;
 
 import Tabla.Tabla;
-import Tabla.Medida;
 import Tabla.Proyeccion;
 
 public class Cubo {
     public String nombre;
-    public Map<Dimension, Integer> dimensiones_niveles;
-    public Map<Hechos, Medida> hechos_medidas;
+    public Map<String, Integer[]> niveles_elegidos; // nombre_dimension : niveles_usados
+    public Map<Dimension, Integer> niveles; 
+    public Hechos hechos;
+    public int idMedida;
     // sliceProyeccion - objeto que se setea en slice()
     // diceProyeccion - objeto que se setea en dice()
 
     public Cubo(String nombreCubo){
         nombre = nombreCubo;
-        dimensiones_niveles = new HashMap<>();
-        hechos_medidas = new HashMap<>();
+        niveles = new HashMap<>();
     }
 
     public void agregarDimension(Dimension dimension, Integer index_nivel){
-        dimensiones_niveles.put(dimension, index_nivel);
+        niveles.put(dimension, index_nivel);
     }
 
-    public void setHecho(Hechos hechos) {
+    public void setHecho (Hechos hechos, int id) {
     }    
 
     public void setDimensionesProyeccion(List<List<Object>> listaDimensionesProyeccion){
@@ -34,20 +34,24 @@ public class Cubo {
     public void setHechosProyeccion(List<List<Object>> listaHechosProyeccion){
     }
 
-    void slice(){
-        // seteamos un objeto slice que se va a usar en el metodo proyectar
+    public Cubo slice(){
+        // filtra el cubo en una dimensión, con SOLO UN VALOR del nivel seleccionado. Debería devolver otro cubo
+        return null;
     }
 
-    void dice(){
-        // seteamos un objeto slice que se va a usar en el metodo proyectar
+    public Cubo dice(){
+        // es un slice pero con más de un valor. También debería devolver otro cubo
+        return null;
     }
 
-    void rollUp(){
-        // agarramos la dimension elegida y modificamos su nivel en dimensionesProyeccion
+    void rollUp(Dimension dimension){
+        // agarramos la dimension elegida y SUBIMOS su nivel de abstraccion en niveles
+        // debería editar las dimensiones del cubo actual
     }
 
     void drillDown(){
-        // agarramos la dimension elegida y modificamos su nivel en dimensionesProyeccion
+        // agarramos la dimension elegida y BAJAMOS su nivel de abstraccion en niveles
+        // debería editar las dimensiones del cubo actual
     }
 
     void proyectar(){

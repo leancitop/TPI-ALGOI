@@ -10,6 +10,9 @@ import Cubo.Hechos;
 public class Operador {
 
     public static Tabla parsear(Map<Dimension, Integer> niveles, Hechos hechos, Integer index_medida) {
+
+        // Debería traer la columna solicitada y todas las mayores en nivel de abstracción de la dimensión
+
         // Crear una nueva tabla para los resultados
         Tabla tablaHechos = hechos.getTabla();
         Tabla nuevaTabla = new Tabla();
@@ -166,7 +169,7 @@ public class Operador {
 
     // static Tabla filtrar(){}
 
-    // static Tabla removerDimension(){} ?
+    // static Tabla removerDimension(){}
 
     // static Tabla sumarizar(){}
 
