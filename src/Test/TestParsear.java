@@ -34,7 +34,7 @@ public class TestParsear {
         p.info();
         System.out.println("--------------------------------------------------------------");
         
-        Tabla tablaAgrupada = Operador.agrupar(tablaParseada,Arrays.asList("region", "anio", "mes"), "suma");
+        Tabla tablaAgrupada = Operador.agrupar(tablaParseada,Arrays.asList("anio","mes", "region"), "suma");
 
         System.out.println("Tabla Agrupada:");
         Proyeccion p2 = new Proyeccion(tablaAgrupada);

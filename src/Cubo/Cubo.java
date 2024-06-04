@@ -9,7 +9,6 @@ import Tabla.Proyeccion;
 
 public class Cubo {
     public String nombre;
-    public Map<String, Integer[]> niveles_elegidos; // nombre_dimension : niveles_usados
     public Map<Dimension, Integer> niveles; 
     public Hechos hechos;
     public int idMedida;
