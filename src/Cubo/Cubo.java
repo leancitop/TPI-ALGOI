@@ -1,10 +1,9 @@
 package Cubo;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import Tabla.Tabla;
+import Tabla.Operador;
 import Tabla.Proyeccion;
 
 public class Cubo {
@@ -15,22 +14,16 @@ public class Cubo {
     // sliceProyeccion - objeto que se setea en slice()
     // diceProyeccion - objeto que se setea en dice()
 
-    public Cubo(String nombreCubo){
-        nombre = nombreCubo;
-        niveles = new HashMap<>();
+    private Cubo(Config configCubo){
+        niveles = configCubo.getDimensiones();
+        nombre = configCubo.getNombre();
+        hechos = configCubo.getHechos();
+
     }
 
-    public void agregarDimension(Dimension dimension, Integer index_nivel){
-        niveles.put(dimension, index_nivel);
-    }
-
-    public void setHecho (Hechos hechos, int id) {
-    }    
-
-    public void setDimensionesProyeccion(List<List<Object>> listaDimensionesProyeccion){
-    }
-    
-    public void setHechosProyeccion(List<List<Object>> listaHechosProyeccion){
+    public static Cubo crearCubo(Config configCubo){
+        Cubo cubo = new Cubo(configCubo);
+        return cubo;
     }
 
     public Cubo slice(){
@@ -53,13 +46,17 @@ public class Cubo {
         // debería editar las dimensiones del cubo actual
     }
 
-    void proyectar(){
-        Tabla tablaProyeccionCubo = new Tabla();
-
-        // aca implementamos la lógica para que cada vez que se proyecta el cubo, se actualiza la tabla
-        // según el estado actual del mismo, en sus niveles y medidas
-
-        Proyeccion p = new Proyeccion(tablaProyeccionCubo);
+    void proyectar(int indexValor, String medida){ // TODO: poder pasar varios valores de la tabla de hechos y varias medidas. (¿Metodo para elegir valores y medidas?)
+        Tabla tablaParseada = Operador.parsear(niveles, hechos, indexValor);
+        List<String> columnas = new ArrayList<>();
+        for (Map.Entry<Dimension, Integer> entry : niveles.entrySet()) {
+            Dimension dimension = entry.getKey();
+            Integer nivel = entry.getValue();
+            String columna = dimension.getTabla().getHeaders()[nivel];
+            columnas.add(columna);
+        }
+        Tabla tablaAgrupada = Operador.agrupar(tablaParseada, columnas, medida);
+        Proyeccion p = new Proyeccion(tablaAgrupada);
         p.info();
         p.imprimirPrimerasDiezFilas();
     }
