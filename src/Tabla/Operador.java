@@ -1,5 +1,6 @@
 package Tabla;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -239,8 +240,14 @@ public class Operador {
         }
     
 
-    // static Tabla removerDimension(){}
+    static Tabla ordernarTabla(Tabla tabla, Hechos hechos){
+        List<String> headersOrdenar = new ArrayList<>(Arrays.asList(tabla.getHeaders()));
+        List<String> headersRemover = new ArrayList<>(Arrays.asList(hechos.getTabla().getHeaders()));
+        headersOrdenar.removeAll(headersRemover);
+        System.out.println(headersOrdenar);
+        return null;
+    }
 
-    // static Tabla sumarizar(){}
+    // static Tabla removerDimension(){}
 
 }

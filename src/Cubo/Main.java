@@ -22,14 +22,7 @@ public class Main {
         
         // CUBO
         Cubo cubo = Cubo.crearCubo(cuboConfig);
-        cubo.drillDown("fechas");
-        cubo.drillDown("fechas");
-        cubo.drillDown("fechas");
-        cubo.drillDown("fechas");
-        cubo.drillDown("fechas");
-        cubo.rollUp("fechas");
-        cubo.rollUp("fechas",2);
-        cubo.rollUp("fechas",2);
-        //cubo.proyectar(3, "suma");
+        
+        cubo.proyectar(3, "suma");
     }
 }
