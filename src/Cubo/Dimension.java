@@ -7,6 +7,7 @@ public class Dimension {
     private String nombre;
     private Tabla tabla;
     private int clave_foranea;
+    private int numeroNiveles;
 
     public Dimension(String nombre, String path, int clave_foranea){
         this.nombre = nombre;
@@ -17,6 +18,7 @@ public class Dimension {
 
         this.tabla = t;
         this.clave_foranea = clave_foranea;
+        this.numeroNiveles = tabla.getHeaders().length-1;
     }
 
 
@@ -32,4 +34,7 @@ public class Dimension {
         return tabla;
     }
 
+    public int getNumeroNiveles(){
+        return numeroNiveles;
+    }
 }

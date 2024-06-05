@@ -36,17 +36,70 @@ public class Cubo {
         return null;
     }
 
-    void rollUp(Dimension dimension){
-        // agarramos la dimension elegida y SUBIMOS su nivel de abstraccion en niveles
-        // debería editar las dimensiones del cubo actual
+    void rollUp(String nombreDimension){
+        niveles.forEach((dimension, indexNiveles) -> {
+            if (dimension.getNombre() == nombreDimension){
+                if (dimension.getNumeroNiveles() >= indexNiveles+1){
+                    niveles.replace(dimension, indexNiveles+1);
+                    System.out.println("La dimension " + dimension.getNombre() + " ahora esta fijada en el nivel "+ ((Integer) indexNiveles+1));
+                }
+                else {
+                    System.out.println("Ya se alcanzó el máximo nivel para la dimensión " + dimension.getNombre());
+                }
+            }
+        });
     }
 
-    void drillDown(){
-        // agarramos la dimension elegida y BAJAMOS su nivel de abstraccion en niveles
-        // debería editar las dimensiones del cubo actual
+    void rollUp(String nombreDimension, Integer numeroRollUps){
+        niveles.forEach((dimension, indexNiveles) -> {
+            if (dimension.getNombre() == nombreDimension){
+                if (dimension.getNumeroNiveles() >= indexNiveles+numeroRollUps){
+                    niveles.replace(dimension, indexNiveles+numeroRollUps);
+                    System.out.println("La dimension " + dimension.getNombre() + " ahora esta fijada en el nivel "+ ((Integer) indexNiveles+numeroRollUps));
+                }
+                else if (dimension.getNumeroNiveles() - indexNiveles - numeroRollUps <= 0) {
+                    Integer numeroRollUpRestantes = Math.abs(dimension.getNumeroNiveles() - indexNiveles - numeroRollUps);
+                    niveles.replace(dimension, indexNiveles+numeroRollUpRestantes);
+                    System.out.println("Se hicieron " + numeroRollUpRestantes + " de los " + numeroRollUps + " roll ups");
+                    System.out.println("La dimension " + dimension.getNombre() + " ahora esta fijada en el nivel "+ ((Integer) indexNiveles+numeroRollUpRestantes));
+                } 
+                else {
+                    System.out.println("Ya se alcanzó el máximo nivel para la dimensión " + dimension.getNombre());
+                }
+            }
+        });
     }
 
-    void proyectar(int indexValor, String medida){ // TODO: poder pasar varios valores de la tabla de hechos y varias medidas. (¿Metodo para elegir valores y medidas?)
+    void drillDown(String nombreDimension){
+        niveles.forEach((dimension, indexNiveles) -> {
+            if (dimension.getNombre() == nombreDimension){
+                if (1 <= indexNiveles-1){
+                    niveles.replace(dimension, indexNiveles-1);
+                    System.out.println("La dimension " + dimension.getNombre() + " ahora esta fijada en el nivel "+ ((Integer) indexNiveles-1));
+                }
+                else {
+                    System.out.println("Ya se alcanzó el mínimo nivel para la dimensión " + dimension.getNombre());
+                }
+            }
+        });
+    }
+
+    void drillDown(String nombreDimension, Integer numeroDrillDowns){
+        niveles.forEach((dimension, indexNiveles) -> {
+            if (dimension.getNombre() == nombreDimension){
+                if (1 <= indexNiveles-numeroDrillDowns){
+                    niveles.replace(dimension, indexNiveles-numeroDrillDowns);
+                    System.out.println("La dimension " + dimension.getNombre() + " ahora esta fijada en el nivel "+ ((Integer) indexNiveles-numeroDrillDowns));
+                }
+                else {
+                    System.out.println("Ya se alcanzó el mínimo nivel para la dimensión " + dimension.getNombre());
+                }
+            }
+        });
+    }
+
+    void proyectar(int indexValor, String medida){ 
+        // TODO: poder pasar varios valores de la tabla de hechos y varias medidas. (¿Metodo para elegir valores y medidas?)
         Tabla tablaParseada = Operador.parsear(niveles, hechos, indexValor);
         List<String> columnas = new ArrayList<>();
         for (Map.Entry<Dimension, Integer> entry : niveles.entrySet()) {
