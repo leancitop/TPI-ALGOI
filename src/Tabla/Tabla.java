@@ -89,4 +89,16 @@ public class Tabla {
         }
         return columnas.get(0).getDatos().size();
     }
+
+    public Integer getHeaderIndex(String nombre){
+        Integer index=0;
+        for (String headers : this.getHeaders()){
+            if (headers.equals(nombre)){
+                return index;
+            }
+            index++;
+        }
+        System.out.println("No se encontro el header");
+        return null;
+    }
 }
