@@ -25,6 +25,8 @@ public void imprimirPrimerasDiezFilas() {
     for (int i = 0; i < numeroFilas; i++) {
         for (int j = 0; j < columnas.size(); j++) {
             Object valor = columnas.get(j).getContenidoFila(i);
+            if (valor == null)
+                continue;
             int longitud = valor.toString().length();
             if (longitud > anchosMaximos[j]) {
                 anchosMaximos[j] = longitud;
@@ -97,7 +99,6 @@ public void imprimirNfilas(int nfilas) {
         System.out.println();
     }
 }
-
 
     public void info() {
         System.out.println("Nombre de los headers:");

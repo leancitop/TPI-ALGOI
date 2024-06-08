@@ -16,13 +16,15 @@ public class Main {
         cuboConfig.agregarDimension("puntos_venta", "datasets\\puntos_venta.csv", 1);
         cuboConfig.agregarHechos("datasets\\ventas.csv");
 
-        // coggi usa paths relativos no absolutos que no me corre sino down, saludos
         //--------------------------------------------------------------------------------------------//
         
         
         // CUBO
         Cubo cubo = Cubo.crearCubo(cuboConfig);
+        cubo.drillDown("fechas");
+        cubo.drillDown("fechas");
+        cubo.drillDown("productos", 2);
+        cubo.proyectar("valor_unitario", "suma");
         
-        cubo.proyectar(3, "suma");
     }
 }

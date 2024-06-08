@@ -12,32 +12,32 @@ public class Operador {
 
     public static Tabla parsear(Map<Dimension, Integer> niveles, Hechos hechos, Integer index_medida) {
 
-        // Debería traer la columna solicitada y todas las mayores en nivel de abstracción de la dimensión
-
         // Crear una nueva tabla para los resultados
         Tabla tablaHechos = hechos.getTabla();
         Tabla nuevaTabla = new Tabla();
         
         // Crear columnas de los niveles en la nueva tabla
         for (Dimension d : niveles.keySet()) {
-            Tabla tabla_dimension = d.getTabla();
-            Columna<?> columna_nivel = tabla_dimension.getColumnas().get(niveles.get(d));
-            ColumnaNumerica columna_fIds = (ColumnaNumerica) tablaHechos.getColumnas().get(d.getClaveForanea());
-
-            if (columna_nivel instanceof ColumnaNumerica){
-                ColumnaNumerica columnaCruce = new ColumnaNumerica(columna_nivel.getNombre());
-                for (Double dato : columna_fIds.getDatos()){
-                    columnaCruce.agregarDato((Double)columna_nivel.getContenidoFila(dato));
+            for (int i = d.getNumeroNiveles(); i >= niveles.get(d); i--){ // Esto para traer desde el nivel que le pasas hasta el mas alto
+                Tabla tabla_dimension = d.getTabla();
+                Columna<?> columna_nivel = tabla_dimension.getColumnas().get(i);
+                ColumnaNumerica columna_fIds = (ColumnaNumerica) tablaHechos.getColumnas().get(d.getClaveForanea());
+                if (columna_nivel instanceof ColumnaNumerica){
+                    ColumnaNumerica columnaCruce = new ColumnaNumerica(columna_nivel.getNombre());
+                    for (Double dato : columna_fIds.getDatos()){
+                        columnaCruce.agregarDato((Double)columna_nivel.getContenidoFila(dato));
+                    }
+                    nuevaTabla.agregarColumna(columnaCruce); 
+                } else {
+                    ColumnaString columnaCruce = new ColumnaString(columna_nivel.getNombre());
+                    for (Double dato : columna_fIds.getDatos()){
+                        columnaCruce.agregarDato((String)columna_nivel.getContenidoFila(dato));
+                    }
+                    nuevaTabla.agregarColumna(columnaCruce); 
                 }
-                nuevaTabla.agregarColumna(columnaCruce); 
-            } else {
-                ColumnaString columnaCruce = new ColumnaString(columna_nivel.getNombre());
-                for (Double dato : columna_fIds.getDatos()){
-                    columnaCruce.agregarDato((String)columna_nivel.getContenidoFila(dato));
-                }
-                nuevaTabla.agregarColumna(columnaCruce); 
             }
         }
+
         // cargar la columna de la medida elegida de los hechos
         nuevaTabla.agregarColumna(tablaHechos.getColumnas().get(index_medida));
         nuevaTabla.cargarHeaders(); //headers
