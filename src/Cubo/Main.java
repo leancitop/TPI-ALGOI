@@ -8,13 +8,16 @@ public class Main {
         // System.out.println("------------------------------");
         // TestParsear test2 = new TestParsear(); // devuelve una tabla vacía, solo están los headers
 
-        
+        //agreguen los q le sirven y vamos alternando
+        String path = "TPI-ALGOI/datasets/";
+        //String path = "datasets\\";
+
         // CONFIGURACION CUBO
         Config cuboConfig = Config.crearConfigCubo("cuboConfig");
-        cuboConfig.agregarDimension("fechas", "datasets\\fechas.csv", 2);
-        cuboConfig.agregarDimension("productos", "datasets\\productos.csv", 0);
-        cuboConfig.agregarDimension("puntos_venta", "datasets\\puntos_venta.csv", 1);
-        cuboConfig.agregarHechos("datasets\\ventas.csv");
+        cuboConfig.agregarDimension("fechas", path + "fechas.csv", 2);
+        cuboConfig.agregarDimension("productos", path + "productos.csv", 0);
+        cuboConfig.agregarDimension("puntos_venta", path + "puntos_venta.csv", 1);
+        cuboConfig.agregarHechos(path + "ventas.csv");
 
         //--------------------------------------------------------------------------------------------//
         
@@ -25,6 +28,9 @@ public class Main {
         cubo.drillDown("fechas");
         cubo.drillDown("productos", 2);
         cubo.proyectar("valor_unitario", "suma");
+
+        Cubo cubo2018 = cubo.slice("fechas", 4, "2018.0"); // TODO: ver tema con los integers
+        cubo2018.proyectar("valor_unitario", "suma");
         
     }
 }

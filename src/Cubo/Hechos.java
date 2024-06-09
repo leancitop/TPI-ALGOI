@@ -29,6 +29,16 @@ public class Hechos {
         }
     }
 
+    public Hechos (Tabla tabla){
+        this.tabla = tabla;
+        this.indexadoColumnas = new HashMap<>(); // Inicializar el mapa
+
+        Columna<?>[] columnas = tabla.getColumnas().toArray(new Columna<?>[0]);
+        for (int i = 0; i < columnas.length; i++) {
+            indexadoColumnas.put(columnas[i].getNombre(), i);
+        }
+    };
+
     public Map<String, Integer> getIndexadoColumnas() {
         return indexadoColumnas;
     }
