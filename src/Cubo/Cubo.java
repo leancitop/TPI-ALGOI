@@ -39,71 +39,22 @@ public class Cubo {
     }
 
     public Cubo slice(String nombreDimension, int nivelFiltro, String valor){
-        List<String> ids_dim = new ArrayList<String>();
-        int col_fk = 0;
         for (Dimension dim: niveles.keySet()) { // busco los ids de las fechas que cumplen con el filtro
             if(dim.getNombre() == nombreDimension){
-                Tabla dimTabla = dim.getTabla();
-                List<String> filtros = new ArrayList<String>(); // paso necesario por como es filtro
-                filtros.add(valor);
-                List<Integer> indexesDim = Operador.filtrar(
-                    dimTabla.getColumnas().get(nivelFiltro + 1),
-                    filtros, 
-                    Operador.TiposFiltros.IGUAL
+                Hechos hechosFiltrados = Operador.filtrarHechos(
+                    this.hechos, dim, valor, nivelFiltro, true
                 );
-                ColumnaNumerica columnaIds = (ColumnaNumerica) dimTabla.getColumnas().get(0);
-                for (Integer index : indexesDim) {
-                    ids_dim.add(columnaIds.getContenidoFila(index).toString());
+                HashMap<Dimension, Integer> nivelesNuevos = new HashMap<Dimension, Integer>();
+                for (Map.Entry<Dimension, Integer> nivel : this.niveles.entrySet()) {
+                    if(nivel.getKey().getNombre() != nombreDimension)
+                        nivelesNuevos.put(nivel.getKey(), nivel.getValue());
                 }
-                col_fk = dim.getClaveForanea();
+                Cubo cuboNuevo = new Cubo("Cubo_" + valor, nivelesNuevos, hechosFiltrados);
+                return cuboNuevo;
             }
         }
-
-        Tabla tabla_hechos = this.hechos.getTabla();
-        List<Integer> indexesHechos = Operador.filtrar(
-            tabla_hechos.getColumnas().get(col_fk), 
-            ids_dim, 
-            Operador.TiposFiltros.IGUAL
-        ); 
-
-        Tabla tablaHechosFiltrada = new Tabla();
-        int i = 0;
-        for(Columna<?> col : tabla_hechos.getColumnas()){
-            i++;
-            if(i == col_fk) continue;  //como se elimina la dimension utilizada salteo la columna con la FK de la dim
-
-            String nombreColOriginal = col.getNombre();
-            List<?> contenidoColOriginal = col.getDatos();
-            //el try-catch es por el parseo de las columnas, si hay un método mejor cambienlo 
-            try{
-                ColumnaNumerica colNueva = new ColumnaNumerica(nombreColOriginal);
-                for(Integer index : indexesHechos){
-                    var dato = Double.parseDouble(
-                        contenidoColOriginal.get(index).toString()
-                        );
-                    colNueva.agregarDato(dato);
-                }
-                tablaHechosFiltrada.agregarColumna(colNueva);
-            }catch(Exception e){
-                ColumnaString colNueva = new ColumnaString(nombreColOriginal);
-                for(Integer index : indexesHechos){
-                    var dato = contenidoColOriginal.get(index).toString();
-                    colNueva.agregarDato(dato);
-                }
-                tablaHechosFiltrada.agregarColumna(colNueva);
-            }
-        }
-        Hechos hechosFiltrados = new Hechos(tablaHechosFiltrada);
-
-        HashMap<Dimension, Integer> nivelesNuevos = new HashMap<Dimension, Integer>();
-        for (Map.Entry<Dimension, Integer> nivel : this.niveles.entrySet()) {
-            if(nivel.getKey().getNombre() != nombreDimension)
-                nivelesNuevos.put(nivel.getKey(), nivel.getValue());
-        }
-
-        Cubo cuboNuevo = new Cubo("Cubo_" + valor, nivelesNuevos, hechosFiltrados);
-
-        return cuboNuevo;
+        System.err.println("No se pudo crear el Cubo, verificar parámetros.");
+        return null;
     }
 
     public Cubo dice(){

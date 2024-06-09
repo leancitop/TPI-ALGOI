@@ -239,6 +239,63 @@ public class Operador {
             return filasOk;
         }
     
+        public static Hechos filtrarHechos(
+            Hechos hechos, Dimension dim, String valor, Integer nivelFiltro, boolean borrarCol
+        ){
+            List<String> ids_dim = new ArrayList<String>();
+            Tabla dimTabla = dim.getTabla();
+            List<String> filtros = new ArrayList<String>(); // paso necesario por como es filtro
+            filtros.add(valor);
+            List<Integer> indexesDim = Operador.filtrar(
+                dimTabla.getColumnas().get(nivelFiltro + 1),
+                filtros, 
+                Operador.TiposFiltros.IGUAL
+            );
+            ColumnaNumerica columnaIds = (ColumnaNumerica) dimTabla.getColumnas().get(0);
+            for (Integer index : indexesDim) {
+                ids_dim.add(columnaIds.getContenidoFila(index).toString());
+            }
+            int col_fk = dim.getClaveForanea();
+
+            Tabla tabla_hechos = hechos.getTabla();
+            List<Integer> indexesHechos = Operador.filtrar(
+                tabla_hechos.getColumnas().get(col_fk), 
+                ids_dim, 
+                Operador.TiposFiltros.IGUAL
+            ); 
+
+            Tabla tablaHechosFiltrada = new Tabla();
+            int i = 0;
+            for(Columna<?> col : tabla_hechos.getColumnas()){
+                i++;
+                //como se elimina la dimension utilizada salteo la columna con la FK de la dim (solo en el slice)
+                if(i == col_fk && borrarCol) continue;
+
+                String nombreColOriginal = col.getNombre();
+                List<?> contenidoColOriginal = col.getDatos();
+                //el try-catch es por el parseo de las columnas, si hay un método mejor cambienlo 
+                try{
+                    ColumnaNumerica colNueva = new ColumnaNumerica(nombreColOriginal);
+                    for(Integer index : indexesHechos){
+                        var dato = Double.parseDouble(
+                            contenidoColOriginal.get(index).toString()
+                            );
+                        colNueva.agregarDato(dato);
+                    }
+                    tablaHechosFiltrada.agregarColumna(colNueva);
+                }catch(Exception e){
+                    ColumnaString colNueva = new ColumnaString(nombreColOriginal);
+                    for(Integer index : indexesHechos){
+                        var dato = contenidoColOriginal.get(index).toString();
+                        colNueva.agregarDato(dato);
+                    }
+                    tablaHechosFiltrada.agregarColumna(colNueva);
+                }
+            }
+            Hechos hechosFiltrados = new Hechos(tablaHechosFiltrada);
+
+            return hechosFiltrados;
+        }
 
     static Tabla ordernarTabla(Tabla tabla, Hechos hechos){
         List<String> headersOrdenar = new ArrayList<>(Arrays.asList(tabla.getHeaders()));
