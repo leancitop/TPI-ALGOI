@@ -34,8 +34,8 @@ public class Main {
         //cubo2018.proyectar("valor_unitario", "suma");
         //DICE
         ConfigDice configDice = ConfigDice.crearConfigDice();
-        configDice.agregarFiltro("fechas", 4, "2018.0");
         configDice.agregarFiltro("puntos_venta", 4, "Europe");
+        configDice.agregarFiltro("fechas", 4, "2018.0");
         Cubo cuboDice = cubo.dice("cubito", configDice);
         cuboDice.proyectar("valor_unitario", "suma");
     }

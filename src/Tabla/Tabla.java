@@ -101,4 +101,10 @@ public class Tabla {
         System.out.println("No se encontro el header");
         return null;
     }
+
+    public Object getById(double id, int columna){
+        int index = this.columnas.get(0).getDatos().indexOf(id);
+        Object valor = this.columnas.get(columna).getDatos().get(index);
+        return valor;
+    }
 }

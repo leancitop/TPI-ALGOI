@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.HashSet;
 
 import Cubo.Dimension;
 import Cubo.Hechos;
@@ -25,13 +27,13 @@ public class Operador {
                 if (columna_nivel instanceof ColumnaNumerica){
                     ColumnaNumerica columnaCruce = new ColumnaNumerica(columna_nivel.getNombre());
                     for (Double dato : columna_fIds.getDatos()){
-                        columnaCruce.agregarDato((Double)columna_nivel.getContenidoFila(dato));
+                        columnaCruce.agregarDato((Double)tabla_dimension.getById(dato, i));
                     }
                     nuevaTabla.agregarColumna(columnaCruce); 
                 } else {
                     ColumnaString columnaCruce = new ColumnaString(columna_nivel.getNombre());
                     for (Double dato : columna_fIds.getDatos()){
-                        columnaCruce.agregarDato((String)columna_nivel.getContenidoFila(dato));
+                        columnaCruce.agregarDato((String)tabla_dimension.getById(dato, i));
                     }
                     nuevaTabla.agregarColumna(columnaCruce); 
                 }
@@ -252,10 +254,13 @@ public class Operador {
                 Operador.TiposFiltros.IGUAL
             );
             ColumnaNumerica columnaIds = (ColumnaNumerica) dimTabla.getColumnas().get(0);
+            Set<String> setValores = new HashSet<String>(); //testeo
             for (Integer index : indexesDim) {
                 ids_dim.add(columnaIds.getContenidoFila(index).toString());
+                setValores.add(dimTabla.getColumnas().get(nivelFiltro + 1).getDatos().get(index).toString());
             }
             int col_fk = dim.getClaveForanea();
+
 
             Tabla tabla_hechos = hechos.getTabla();
             List<Integer> indexesHechos = Operador.filtrar(
@@ -263,6 +268,8 @@ public class Operador {
                 ids_dim, 
                 Operador.TiposFiltros.IGUAL
             ); 
+
+            Set<String> setHechos = new HashSet<String>(); //testeo
 
             Tabla tablaHechosFiltrada = new Tabla();
             int i = 0;
@@ -272,7 +279,6 @@ public class Operador {
                     i++;
                     continue;
                 }
-                i++;
 
                 String nombreColOriginal = col.getNombre();
                 List<?> contenidoColOriginal = col.getDatos();
@@ -280,6 +286,12 @@ public class Operador {
                 try{
                     ColumnaNumerica colNueva = new ColumnaNumerica(nombreColOriginal);
                     for(Integer index : indexesHechos){
+                        var colFK = dimTabla.getColumnas().get(nivelFiltro +1); 
+                        if(i == col_fk){
+                            var indexfk = Double.parseDouble(contenidoColOriginal.get(index).toString());
+                            var val = colFK.getDatos().get((int)indexfk);
+                            setHechos.add(val.toString());
+                        }
                         var dato = Double.parseDouble(
                             contenidoColOriginal.get(index).toString()
                             );
@@ -294,6 +306,7 @@ public class Operador {
                     }
                     tablaHechosFiltrada.agregarColumna(colNueva);
                 }
+                i++;
             }
             Hechos hechosFiltrados = new Hechos(tablaHechosFiltrada);
 
