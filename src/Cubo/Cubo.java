@@ -57,9 +57,24 @@ public class Cubo {
         return null;
     }
 
-    public Cubo dice(){
-        // es un slice pero con más de un valor. También debería devolver otro cubo
-        return null;
+    public Cubo dice(String nombreCubo, ConfigDice dice){
+        Hechos hechosDice = this.hechos;
+        for(int i=0; i < dice.largo ; i++){
+            for(Dimension dim : niveles.keySet() ){
+                if(dim.getNombre() == dice.dimensiones.get(i)){
+                    hechosDice = Operador.filtrarHechos(
+                        hechosDice, 
+                        dim, 
+                        dice.valoresFiltro.get(i), 
+                        dice.niveles.get(i), 
+                        false
+                    );
+                }
+            };
+        }
+
+        Cubo cuboDice = new Cubo(nombreCubo, this.niveles, hechosDice);
+        return cuboDice;
     }
 
     void rollUp(String nombreDimension){

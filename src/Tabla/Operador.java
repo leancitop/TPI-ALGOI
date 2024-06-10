@@ -267,9 +267,12 @@ public class Operador {
             Tabla tablaHechosFiltrada = new Tabla();
             int i = 0;
             for(Columna<?> col : tabla_hechos.getColumnas()){
-                i++;
                 //como se elimina la dimension utilizada salteo la columna con la FK de la dim (solo en el slice)
-                if(i == col_fk && borrarCol) continue;
+                if(i == col_fk && borrarCol) {
+                    i++;
+                    continue;
+                }
+                i++;
 
                 String nombreColOriginal = col.getNombre();
                 List<?> contenidoColOriginal = col.getDatos();

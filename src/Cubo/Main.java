@@ -27,10 +27,16 @@ public class Main {
         cubo.drillDown("fechas");
         cubo.drillDown("fechas");
         cubo.drillDown("productos", 2);
-        cubo.proyectar("valor_unitario", "suma");
+        //cubo.proyectar("valor_unitario", "suma");
 
-        Cubo cubo2018 = cubo.slice("fechas", 4, "2018.0"); // TODO: ver tema con los integers
-        cubo2018.proyectar("valor_unitario", "suma");
-        
+        //SLICE
+        //Cubo cubo2018 = cubo.slice("fechas", 4, "2018.0"); // TODO: ver tema con los integers
+        //cubo2018.proyectar("valor_unitario", "suma");
+        //DICE
+        ConfigDice configDice = ConfigDice.crearConfigDice();
+        configDice.agregarFiltro("fechas", 4, "2018.0");
+        configDice.agregarFiltro("puntos_venta", 4, "Europe");
+        Cubo cuboDice = cubo.dice("cubito", configDice);
+        cuboDice.proyectar("valor_unitario", "suma");
     }
 }
