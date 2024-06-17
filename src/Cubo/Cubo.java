@@ -25,7 +25,6 @@ public class Cubo {
         niveles = configCubo.getDimensiones();
         nombre = configCubo.getNombre();
         hechos = configCubo.getHechos();
-
     }
 
     public static Cubo crearCubo(Config configCubo){
@@ -80,7 +79,7 @@ public class Cubo {
                     System.out.println("La dimension " + dimension.getNombre() + " ahora esta fijada en el nivel "+ ((Integer) indexNiveles+1));
                 }
                 else {
-                    System.out.println("Ya se alcanzó el máximo nivel para la dimensión " + dimension.getNombre());
+                    throw new IllegalStateException("Ya se alcanzó el máximo nivel para la dimensión " + dimension.getNombre()); 
                 }
             }
         });
@@ -100,7 +99,7 @@ public class Cubo {
                     System.out.println("La dimension " + dimension.getNombre() + " ahora esta fijada en el nivel "+ ((Integer) indexNiveles+numeroRollUpRestantes));
                 } 
                 else {
-                    System.out.println("Ya se alcanzó el máximo nivel para la dimensión " + dimension.getNombre());
+                    throw new IllegalStateException("Ya se alcanzó el máximo nivel para la dimensión " + dimension.getNombre());
                 }
             }
         });
@@ -114,7 +113,7 @@ public class Cubo {
                     System.out.println("La dimension " + dimension.getNombre() + " ahora esta fijada en el nivel "+ ((Integer) indexNiveles-1));
                 }
                 else {
-                    System.out.println("Ya se alcanzó el mínimo nivel para la dimensión " + dimension.getNombre());
+                    throw new IllegalStateException("Ya se alcanzó el mínimo nivel para la dimensión " + dimension.getNombre());
                 }
             }
         });
@@ -128,7 +127,7 @@ public class Cubo {
                     System.out.println("La dimension " + dimension.getNombre() + " ahora esta fijada en el nivel "+ ((Integer) indexNiveles-numeroDrillDowns));
                 }
                 else {
-                    System.out.println("Ya se alcanzó el mínimo nivel para la dimensión " + dimension.getNombre());
+                    throw new IllegalStateException("Ya se alcanzó el mínimo nivel para la dimensión " + dimension.getNombre());
                 }
             }
         });
