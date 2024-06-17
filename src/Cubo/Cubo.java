@@ -72,8 +72,7 @@ public class Cubo {
             }
             throw new RuntimeException("Dimensión invalida. Ingrese un nombre que coincida con el de algina dimensión existente");
         }
-        System.err.println("No se pudo crear el Cubo, verificar parámetros.");
-        return null;
+        throw new RuntimeException("Dimensión invalida. Ingrese un nombre que coincida con el de algina dimensión existente");
     }
 
     /**
@@ -97,6 +96,9 @@ public class Cubo {
                 }
             }
         }
+        if(hechosDice.getNumeroFilas() == 0)
+            throw new RuntimeException("No existen hechos que cumplan con los filtros solicitados");
+
         if(hechosDice.getNumeroFilas() == 0)
             throw new RuntimeException("No existen hechos que cumplan con los filtros solicitados");
 
