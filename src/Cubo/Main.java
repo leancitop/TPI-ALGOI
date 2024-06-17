@@ -24,7 +24,7 @@ public class Main {
         cubo.drillDown("fechas");
         cubo.drillDown("fechas");
         cubo.drillDown("productos", 2);
-        //cubo.proyectar("valor_unitario", "suma");
+        cubo.proyectar("valor_unitario", "suma");
 
         
         //SLICE
