@@ -3,7 +3,7 @@ package Cubo;
 public class Main {
     public static void main(String[] args) {
 
-
+        CronometroAccion cronometroMain = new CronometroAccion("Main");
         //String path = "TPI-ALGOI/datasets/";
         //String path = "datasets\\"; 
         String path = "datasets/";
@@ -35,9 +35,12 @@ public class Main {
 
         //DICE
         ConfigDice configDice = ConfigDice.crearConfigDice();
-        configDice.agregarFiltro("puntos_venta", 4, "Euorpe");
+        configDice.agregarFiltro("puntos_venta", 4, "Europe");
         configDice.agregarFiltro("fechas", 4, "2018.0");
         Cubo cuboDice = cubo.dice("cubito", configDice);
         cuboDice.proyectar("valor_unitario", "suma");
+
+        cronometroMain.finalizar();
+
     }
 }
