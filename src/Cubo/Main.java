@@ -10,10 +10,10 @@ public class Main {
 
         // CONFIGURACION CUBO
         Config cuboConfig = Config.crearConfigCubo("cuboConfig");
-        cuboConfig.agregarHechos(path + "ventas.csv");
         cuboConfig.agregarDimension("fechas", path + "fechas.csv", 2);
         cuboConfig.agregarDimension("productos", path + "productos.csv", 0);
         cuboConfig.agregarDimension("puntos_venta", path + "puntos_venta.csv", 1);
+        cuboConfig.agregarHechos(path + "ventas.csv");
         
 
         //--------------------------------------------------------------------------------------------//
