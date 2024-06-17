@@ -1,4 +1,5 @@
 package Cubo;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import Lectores.LectorArchivos;
@@ -51,21 +52,25 @@ public class Config {
         if (path == null || path.isEmpty()) {
             throw new IllegalArgumentException("El path no puede ser nulo o vacío.");
         }
-        String[][] csv = LectorArchivos.leerCSV(path);
-        Tabla hechos = new Tabla();
-        hechos.cargarTabla(csv);
-        String[] headers = hechos.getHeaders();
-        for (Map.Entry<Dimension, Integer> entry : dimensiones.entrySet()) {
-            Dimension dimension = entry.getKey();
-            String idDimension = dimension.getTabla().getHeaders()[0];
-            if (dimension.getClaveForanea() < 0 || dimension.getClaveForanea() >= headers.length) {
-                throw new IllegalArgumentException("La clave foranea está fuera del rango de los headers de los hechos. En la dimension: " + dimension.getNombre());
+        try{
+            String[][] csv = LectorArchivos.leerCSV(path);
+            Tabla hechos = new Tabla();
+            hechos.cargarTabla(csv);
+            String[] headers = hechos.getHeaders();
+            for (Map.Entry<Dimension, Integer> entry : dimensiones.entrySet()) {
+                Dimension dimension = entry.getKey();
+                String idDimension = dimension.getTabla().getHeaders()[0];
+                if (dimension.getClaveForanea() < 0 || dimension.getClaveForanea() >= headers.length) {
+                    throw new IllegalArgumentException("La clave foranea está fuera del rango de los headers de los hechos. En la dimension: " + dimension.getNombre());
+                }
+                if (!headers[dimension.getClaveForanea()].equals(idDimension)){
+                    throw new IllegalArgumentException("Las claves foraneas de las dimensiones no coinciden con los hechos.");
+                }
             }
-            if (!headers[dimension.getClaveForanea()].equals(idDimension)){
-                throw new IllegalArgumentException("Las claves foraneas de las dimensiones no coinciden con los hechos.");
-            }
+            this.hechos = hechos;
+        }catch (IOException e) {
+            System.err.println("Error al leer el archivo: " + e.getMessage());
         }
-        this.hechos = hechos;
     }
 
     public String getNombre(){
