@@ -48,8 +48,7 @@ public class Cubo {
                 return cuboNuevo;
             }
         }
-        System.err.println("No se pudo crear el Cubo, verificar parámetros.");
-        return null;
+        throw new RuntimeException("Dimensión invalida. Ingrese un nombre que coincida con el de algina dimensión existente");
     }
 
     public Cubo dice(String nombreCubo, ConfigDice dice){
@@ -67,6 +66,9 @@ public class Cubo {
                 }
             };
         }
+
+        if(hechosDice.getNumeroFilas() == 0)
+            throw new RuntimeException("No existen hechos que cumplan con los filtros solicitados");
 
         Cubo cuboDice = new Cubo(nombreCubo, this.niveles, hechosDice);
         return cuboDice;

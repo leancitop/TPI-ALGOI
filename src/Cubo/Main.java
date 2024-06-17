@@ -4,8 +4,9 @@ public class Main {
     public static void main(String[] args) {
 
 
-        // String path = "TPI-ALGOI/datasets/";
-        String path = "datasets\\";
+        //String path = "TPI-ALGOI/datasets/";
+        //String path = "datasets\\"; 
+        String path = "datasets/";
 
 
         // CONFIGURACION CUBO
@@ -34,7 +35,7 @@ public class Main {
 
         //DICE
         ConfigDice configDice = ConfigDice.crearConfigDice();
-        configDice.agregarFiltro("puntos_venta", 4, "Europe");
+        configDice.agregarFiltro("puntos_venta", 4, "Euorpe");
         configDice.agregarFiltro("fechas", 4, "2018.0");
         Cubo cuboDice = cubo.dice("cubito", configDice);
         cuboDice.proyectar("valor_unitario", "suma");
