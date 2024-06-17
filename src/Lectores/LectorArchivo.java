@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Clase que proporciona métodos para leer archivos.
  */
-public class LectorArchivos {
+public class LectorArchivo {
     
     /**
      * Lee un archivo CSV y lo convierte en una matriz de Strings.
@@ -40,3 +40,4 @@ public class LectorArchivos {
         return matriz;
     }
 }
+
