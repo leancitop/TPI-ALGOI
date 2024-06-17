@@ -60,7 +60,7 @@ id_punto_venta;punto_venta;ciudad;provincia;pais;region
 23;Bike World;San Ramon;California;United States;North America
 384;Sparkling Paint and Finishes;San Ysidro;California;United States;North America
 599;Westside Plaza;Sand City;California;United States;North America
-649;Sports Products Store;Santa Ana;California;United States;North America
+649;Sports Products Store 1;Santa Ana;California;United States;North America
 96;More Bikes!;Santa Ana;California;United States;North America
 239;Bicycle Merchandise Warehouse;Santa Monica;California;United States;North America
 420;Extreme Riding Supplies;Sherman Oaks;California;United States;North America
@@ -200,7 +200,7 @@ id_punto_venta;punto_venta;ciudad;provincia;pais;region
 468;Blue Bicycle Company;Monroe;Michigan;United States;North America
 197;Fabrikam Inc., West;Novi;Michigan;United States;North America
 180;Full-Service Bike Store;Pontiac;Michigan;United States;North America
-643;Friendly Bike Shop;Port Huron;Michigan;United States;North America
+643;Friendly Bike Shop 2;Port Huron;Michigan;United States;North America
 504;Historic Bicycle Sales;Redford;Michigan;United States;North America
 377;Grand Sport Boutique;Saginaw;Michigan;United States;North America
 360;Novelty Bikes;Saginaw;Michigan;United States;North America
@@ -371,7 +371,7 @@ id_punto_venta;punto_venta;ciudad;provincia;pais;region
 17;Trusted Catalog Store;Newport News;Virginia;United States;North America
 449;Bike Products and Accessories;Virginia Beach;Virginia;United States;North America
 254;Safe Cycles Shop;Bellevue;Washington;United States;North America
-290;Friendly Bike Shop;Bellingham;Washington;United States;North America
+290;Friendly Bike Shop 1;Bellingham;Washington;United States;North America
 621;Running and Cycling Gear;Bellingham;Washington;United States;North America
 325;All Cycle Shop;Bothell;Washington;United States;North America
 19;Center Cycle Shop;Bothell;Washington;United States;North America
@@ -641,7 +641,7 @@ id_punto_venta;punto_venta;ciudad;provincia;pais;region
 614;Favorite Toy Distributor;Paris;Seine (Paris);France;Europe
 157;Ace Bicycle Supply;Paris;Seine (Paris);France;Europe
 301;Rural Mountain Bike Mart;Paris;Seine (Paris);France;Europe
-211;Sports Products Store;Lieusaint;Seine et Marne;France;Europe
+211;Sports Products Store 2;Lieusaint;Seine et Marne;France;Europe
 283;Racing Supply Distributors;Roissy en Brie;Seine et Marne;France;Europe
 13;Country Parts Shop;Les Ulis;Essonne;France;Europe
 373;Township Inn;Les Ulis;Essonne;France;Europe
