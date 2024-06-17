@@ -11,9 +11,7 @@ import java.util.List;
 public class LectorArchivos {
     
     /**
-     * Lee un archivo CSV y lo convierte en una matriz de Strings.
-     * Cada fila del archivo se convierte en un arreglo de Strings y se almacena en una lista.
-     * Luego, la lista se convierte en una matriz bidimensional de Strings.
+     * Lee un archivo CSV y lo convierte en una matriz bidimensional de Strings.
      *
      * @param rutaArchivo La ruta del archivo CSV a leer.
      * @return Una matriz bidimensional de Strings que representa el contenido del archivo CSV.
