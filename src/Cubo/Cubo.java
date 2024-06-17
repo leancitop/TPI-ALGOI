@@ -6,21 +6,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import Tabla.Tabla;
-import Tabla.Columna;
-import Tabla.ColumnaNumerica;
-import Tabla.ColumnaString;
 import Tabla.Operador;
 import Tabla.Proyeccion;
 
 public class Cubo {
     public String nombre;
     public Map<Dimension, Integer> niveles; 
-    public Hechos hechos;
+    public Tabla hechos;
     public int idMedida;
-    // sliceProyeccion - objeto que se setea en slice()
-    // diceProyeccion - objeto que se setea en dice()
 
-    private Cubo(String nombre, Map<Dimension, Integer> niveles, Hechos hechos){
+    private Cubo(String nombre, Map<Dimension, Integer> niveles, Tabla hechos){
         this.niveles = niveles;
         this.nombre = nombre;
         this.hechos = hechos;
@@ -41,7 +36,7 @@ public class Cubo {
     public Cubo slice(String nombreDimension, int nivelFiltro, String valor){
         for (Dimension dim: niveles.keySet()) { // busco los ids de las fechas que cumplen con el filtro
             if(dim.getNombre() == nombreDimension){
-                Hechos hechosFiltrados = Operador.filtrarHechos(
+                Tabla hechosFiltrados = Operador.filtrarHechos(
                     this.hechos, dim, valor, nivelFiltro, true
                 );
                 HashMap<Dimension, Integer> nivelesNuevos = new HashMap<Dimension, Integer>();
@@ -58,7 +53,7 @@ public class Cubo {
     }
 
     public Cubo dice(String nombreCubo, ConfigDice dice){
-        Hechos hechosDice = this.hechos;
+        Tabla hechosDice = this.hechos;
         for(int i=0; i < dice.largo ; i++){
             for(Dimension dim : niveles.keySet() ){
                 if(dim.getNombre() == dice.dimensiones.get(i)){
@@ -77,7 +72,7 @@ public class Cubo {
         return cuboDice;
     }
 
-    void rollUp(String nombreDimension){
+    public void rollUp(String nombreDimension){
         niveles.forEach((dimension, indexNiveles) -> {
             if (dimension.getNombre() == nombreDimension){
                 if (dimension.getNumeroNiveles() >= indexNiveles+1){
@@ -91,7 +86,7 @@ public class Cubo {
         });
     }
 
-    void rollUp(String nombreDimension, Integer numeroRollUps){
+    public void rollUp(String nombreDimension, Integer numeroRollUps){
         niveles.forEach((dimension, indexNiveles) -> {
             if (dimension.getNombre() == nombreDimension){
                 if (dimension.getNumeroNiveles() >= indexNiveles+numeroRollUps){
@@ -111,7 +106,7 @@ public class Cubo {
         });
     }
 
-    void drillDown(String nombreDimension){
+    public void drillDown(String nombreDimension){
         niveles.forEach((dimension, indexNiveles) -> {
             if (dimension.getNombre() == nombreDimension){
                 if (1 <= indexNiveles-1){
@@ -125,7 +120,7 @@ public class Cubo {
         });
     }
 
-    void drillDown(String nombreDimension, Integer numeroDrillDowns){
+    public void drillDown(String nombreDimension, Integer numeroDrillDowns){
         niveles.forEach((dimension, indexNiveles) -> {
             if (dimension.getNombre() == nombreDimension){
                 if (1 <= indexNiveles-numeroDrillDowns){
@@ -139,14 +134,13 @@ public class Cubo {
         });
     }
 
-    void proyectar(String valorHechos, String medida){ 
-        // TODO: poder pasar varios valores de la tabla de hechos y varias medidas. (¿Metodo para elegir valores y medidas?)
-        Tabla tablaParseada = Operador.parsear(niveles, hechos, hechos.getTabla().getHeaderIndex(valorHechos));
+    public void proyectar(String valorHechos, String medida){
+        Tabla tablaParseada = Operador.parsear(niveles, hechos, hechos.getHeaderIndex(valorHechos));
         List<String> columnas =  new ArrayList<>(Arrays.asList(tablaParseada.getHeaders()));
         columnas.remove(valorHechos);
         Tabla tablaAgrupada = Operador.agrupar(tablaParseada, columnas , medida);
         Proyeccion p = new Proyeccion(tablaAgrupada);
-        p.info();
-        p.imprimirPrimerasDiezFilas();  
+        // p.info();
+        p.imprimirPrimerasDiezFilas();
     }
 }

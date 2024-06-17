@@ -1,5 +1,4 @@
 package Cubo;
-
 import Lectores.LectorArchivos;
 import Tabla.Tabla;
 
@@ -12,15 +11,12 @@ public class Dimension {
     public Dimension(String nombre, String path, int clave_foranea){
         this.nombre = nombre;
         String[][] csv = LectorArchivos.leerCSV(path);
-
         Tabla t = new Tabla();
         t.cargarTabla(csv);
-
         this.tabla = t;
         this.clave_foranea = clave_foranea;
         this.numeroNiveles = tabla.getHeaders().length-1;
     }
-
 
     public String getNombre() {
         return nombre;

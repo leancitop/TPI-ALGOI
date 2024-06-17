@@ -6,16 +6,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
-
 import Cubo.Dimension;
-import Cubo.Hechos;
 
 public class Operador {
 
-    public static Tabla parsear(Map<Dimension, Integer> niveles, Hechos hechos, Integer index_medida) {
+    public static Tabla parsear(Map<Dimension, Integer> niveles, Tabla hechos, Integer index_medida) {
 
         // Crear una nueva tabla para los resultados
-        Tabla tablaHechos = hechos.getTabla();
         Tabla nuevaTabla = new Tabla();
         
         // Crear columnas de los niveles en la nueva tabla
@@ -23,7 +20,7 @@ public class Operador {
             for (int i = d.getNumeroNiveles(); i >= niveles.get(d); i--){ // Esto para traer desde el nivel que le pasas hasta el mas alto
                 Tabla tabla_dimension = d.getTabla();
                 Columna<?> columna_nivel = tabla_dimension.getColumnas().get(i);
-                ColumnaNumerica columna_fIds = (ColumnaNumerica) tablaHechos.getColumnas().get(d.getClaveForanea());
+                ColumnaNumerica columna_fIds = (ColumnaNumerica) hechos.getColumnas().get(d.getClaveForanea());
                 if (columna_nivel instanceof ColumnaNumerica){
                     ColumnaNumerica columnaCruce = new ColumnaNumerica(columna_nivel.getNombre());
                     for (Double dato : columna_fIds.getDatos()){
@@ -41,7 +38,7 @@ public class Operador {
         }
 
         // cargar la columna de la medida elegida de los hechos
-        nuevaTabla.agregarColumna(tablaHechos.getColumnas().get(index_medida));
+        nuevaTabla.agregarColumna(hechos.getColumnas().get(index_medida));
         nuevaTabla.cargarHeaders(); //headers
         return nuevaTabla;
         }
@@ -241,8 +238,8 @@ public class Operador {
             return filasOk;
         }
     
-        public static Hechos filtrarHechos(
-            Hechos hechos, Dimension dim, String valor, Integer nivelFiltro, boolean borrarCol
+        public static Tabla filtrarHechos(
+            Tabla hechos, Dimension dim, String valor, Integer nivelFiltro, boolean borrarCol
         ){
             List<String> ids_dim = new ArrayList<String>();
             Tabla dimTabla = dim.getTabla();
@@ -262,9 +259,8 @@ public class Operador {
             int col_fk = dim.getClaveForanea();
 
 
-            Tabla tabla_hechos = hechos.getTabla();
             List<Integer> indexesHechos = Operador.filtrar(
-                tabla_hechos.getColumnas().get(col_fk), 
+                hechos.getColumnas().get(col_fk), 
                 ids_dim, 
                 Operador.TiposFiltros.IGUAL
             ); 
@@ -273,7 +269,7 @@ public class Operador {
 
             Tabla tablaHechosFiltrada = new Tabla();
             int i = 0;
-            for(Columna<?> col : tabla_hechos.getColumnas()){
+            for(Columna<?> col : hechos.getColumnas()){
                 //como se elimina la dimension utilizada salteo la columna con la FK de la dim (solo en el slice)
                 if(i == col_fk && borrarCol) {
                     i++;
@@ -308,14 +304,13 @@ public class Operador {
                 }
                 i++;
             }
-            Hechos hechosFiltrados = new Hechos(tablaHechosFiltrada);
 
-            return hechosFiltrados;
+            return tablaHechosFiltrada;
         }
 
-    static Tabla ordernarTabla(Tabla tabla, Hechos hechos){
+    static Tabla ordernarTabla(Tabla tabla, Tabla hechos){
         List<String> headersOrdenar = new ArrayList<>(Arrays.asList(tabla.getHeaders()));
-        List<String> headersRemover = new ArrayList<>(Arrays.asList(hechos.getTabla().getHeaders()));
+        List<String> headersRemover = new ArrayList<>(Arrays.asList(hechos.getHeaders()));
         headersOrdenar.removeAll(headersRemover);
         System.out.println(headersOrdenar);
         return null;
