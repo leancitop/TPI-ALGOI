@@ -141,6 +141,7 @@ public class Cubo {
         Tabla tablaAgrupada = Operador.agrupar(tablaParseada, columnas , medida);
         Proyeccion p = new Proyeccion(tablaAgrupada);
         // p.info();
-        p.imprimirPrimerasDiezFilas();
+        p.imprimirNfilas(15);
+        System.out.println("");
     }
 }
