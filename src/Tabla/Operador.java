@@ -215,9 +215,7 @@ public class Operador {
             String val = valRaw.toString();
             switch (tipoFiltro) {
                 case IGUAL:
-                   
-
- if (comparadores.contains(val)) {
+                    if (comparadores.contains(val)) {
                         filasOk.add(n);
                     }
                     break;
@@ -233,7 +231,7 @@ public class Operador {
                             filasOk.add(n);
                         }
                     } catch (Exception e) {
-                        throw new RuntimeException("La columna debe ser de tipo numérico");
+                        throw new IllegalArgumentException("La columna debe ser de tipo numérico");
                     }
                     break;
                 case MENOR:
@@ -243,12 +241,12 @@ public class Operador {
                             filasOk.add(n);
                         }
                     } catch (Exception e) {
-                        throw new RuntimeException("La columna debe ser de tipo numérico");
+                        throw new IllegalArgumentException("La columna debe ser de tipo numérico");
                     }
                     break;
                 case ENTRE:
                     if (comparadores.size() < 2) {
-                        throw new RuntimeException("Para filtrar ENTRE se deben tener al menos 2 valores");
+                        throw new IllegalArgumentException("Para filtrar ENTRE se deben tener al menos 2 valores");
                     }
                     try {
                         Double valN = Double.parseDouble(val);
@@ -257,7 +255,7 @@ public class Operador {
                             filasOk.add(n);
                         }
                     } catch (Exception e) {
-                        throw new RuntimeException("La columna debe ser de tipo numérico");
+                        throw new IllegalArgumentException("La columna debe ser de tipo numérico");
                     }
                     break;
                 default:
@@ -288,6 +286,9 @@ public class Operador {
                 filtros,
                 Operador.TiposFiltros.IGUAL
         );
+        if(indexesDim.size() == 0)
+            throw new RuntimeException("No se encontraron coincidencias con el valor '"+ valor +"' en la dimension " + dim.getNombre());
+
         ColumnaNumerica columnaIds = (ColumnaNumerica) dimTabla.getColumnas().get(0);
         Set<String> setValores = new HashSet<>(); // testeo
         for (Integer index : indexesDim) {
@@ -301,6 +302,9 @@ public class Operador {
                 ids_dim,
                 Operador.TiposFiltros.IGUAL
         );
+
+        if(indexesHechos.size() == 0)
+            throw new RuntimeException("Las ninguna de siguientes FK se encuentran en la columna " + hechos.getHeaders()[col_fk] + ": " + String.join(", ", ids_dim));
 
         Set<String> setHechos = new HashSet<>(); // testeo
 

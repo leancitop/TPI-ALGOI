@@ -41,30 +41,19 @@ public abstract class Columna<T> {
 
     /**
      * Obtiene el contenido de una fila específica.
-     * 
+     *
      * @param nfila el número de la fila.
-     * @return el contenido de la fila o null si el índice está fuera de rango.
+     * @return el contenido de la fila.
+     * @throws IndexOutOfBoundsException si el índice está fuera de rango.
      */
     public T getContenidoFila(int nfila) {
         if (nfila < 0 || nfila >= datos.size()) {
-            return null;
+            throw new IndexOutOfBoundsException("Índice de fila fuera de rango: " + nfila);
         }
         return datos.get(nfila);
     }
 
-    /**
-     * Obtiene el contenido de una fila específica basada en un número decimal.
-     * 
-     * @param numeroDouble el número decimal que representa el índice de la fila.
-     * @return el contenido de la fila o null si el índice está fuera de rango.
-     */
-    public T getContenidoFila(Double numeroDouble) {
-        int nfila = numeroDouble.intValue();
-        if (nfila < 0 || nfila >= datos.size()) {
-            return null;
-        }
-        return datos.get(nfila);
-    }
+
 
     /**
      * Obtiene los datos de la columna.
@@ -89,3 +78,4 @@ public abstract class Columna<T> {
         }
     }
 }
+
