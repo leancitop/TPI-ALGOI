@@ -1,5 +1,3 @@
----
-
 # TPI Algoritmos I
 
 ## Descripción
@@ -70,5 +68,3 @@ Para utilizar la biblioteca de Cubos OLAP, sigue estos pasos:
 ## Contribución
 
 Este proyecto está cerrado a contribuciones externas. Solo los participantes del Trabajo Práctico pueden realizar commits.
-
----
