@@ -42,7 +42,7 @@ Para utilizar la biblioteca seguí estos pasos:
 
 2. **Creación y Manipulación del Cubo**
 
-   Una vez configurado, podes crear el cubo y realizar operaciones OLAP como drill down, roll up, slice y dice. Aca tenes ejemplos de cómo utilizar estas operaciones:
+   Una vez configurado, podes crear el cubo y realizar operaciones OLAP como drill down, roll up, slice y dice. Acá tenés ejemplos de cómo utilizar estas operaciones:
 
    ```java
    // Crear el cubo a partir de la configuración
