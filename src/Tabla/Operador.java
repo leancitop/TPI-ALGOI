@@ -215,7 +215,7 @@ public static Tabla agrupar(Tabla tabla, List<String> columnasAAgrupar, String o
                 break;
             case "min":
                 if (columna instanceof ColumnaNumerica) {
-                    double minimo = (double) columna.getContenidoFila(0);
+                    double minimo = (double) columna.getContenidoFila(indicesFilas.get(0));
                     for (int i : indicesFilas) {
                         double valor = (double) columna.getContenidoFila(i);
                         if (valor<minimo){
@@ -227,7 +227,7 @@ public static Tabla agrupar(Tabla tabla, List<String> columnasAAgrupar, String o
                 break;
             case "max":
                 if (columna instanceof ColumnaNumerica) {
-                    double maximo = (double) columna.getContenidoFila(0);
+                    double maximo = (double) columna.getContenidoFila(indicesFilas.get(0));
                     for (int i : indicesFilas) {
                         double valor = (double) columna.getContenidoFila(i);
                         if (maximo<valor){
