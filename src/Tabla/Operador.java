@@ -77,9 +77,6 @@ public class Operador {
  * @throws IllegalStateException si no se encuentra una columna especificada en columnasAAgrupar.
  */
 public static Tabla agrupar(Tabla tabla, List<String> columnasAAgrupar, String operacionARealizar) {
-    if (tabla == null || columnasAAgrupar == null || operacionARealizar == null || operacionARealizar.isEmpty()) {
-        throw new IllegalArgumentException("Los parámetros tabla, columnasAAgrupar y operacionARealizar no deben ser nulos o vacíos.");
-    }
 
     Map<List<Object>, List<Integer>> grupos = new HashMap<>();
 

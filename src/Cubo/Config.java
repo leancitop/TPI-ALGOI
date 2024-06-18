@@ -2,7 +2,7 @@ package Cubo;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import Lectores.LectorArchivo;
+import Lectores.LectorCSV;
 import Tabla.Tabla;
 
 /**
@@ -68,7 +68,8 @@ public class Config {
             throw new IllegalArgumentException("El path no puede ser nulo o vacío.");
         }
         try{
-            String[][] csv = LectorArchivo.leerCSV(path);
+            LectorCSV lector = new LectorCSV();
+            String[][] csv = lector.leerArchivo(path);
             Tabla hechos = new Tabla();
             hechos.cargarTabla(csv);
             String[] headers = hechos.getHeaders();

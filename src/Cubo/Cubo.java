@@ -247,6 +247,7 @@ public class Cubo {
         proyectar(valorHechos, medida, 15);
     }
 
+
     /**
      * Devuelve una representación en cadena del objeto Cubo.
      * 

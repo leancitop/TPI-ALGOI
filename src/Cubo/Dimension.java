@@ -2,7 +2,7 @@ package Cubo;
 
 import java.io.IOException;
 
-import Lectores.LectorArchivo;
+import Lectores.LectorCSV;
 import Tabla.Tabla;
 
 /**
@@ -24,7 +24,8 @@ public class Dimension {
     public Dimension(String nombre, String path, int claveForanea){
         this.nombre = nombre;
         try{
-            String[][] csv = LectorArchivo.leerCSV(path);
+            LectorCSV lector = new LectorCSV();
+            String[][] csv = lector.leerArchivo(path);
             Tabla t = new Tabla();
             t.cargarTabla(csv);
             this.tabla = t;

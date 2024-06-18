@@ -4,14 +4,14 @@ public class Main {
     public static void main(String[] args) {
 
         CronometroAccion cronometroMain = new CronometroAccion("Main"); // comienzo el timer para evaluar cuanto tarda la ejecución
-        String path = "datasets\\";
+        String path = "datasets/"; // corroborá que ande en tu directorio
 
 
         // CONFIGURACION CUBO
         Config cuboConfig = Config.crearConfigCubo("CuboTest");
         
         cuboConfig.agregarDimension("fechas", path + "fechas.csv", 2);
-        cuboConfig.agregarDimension("productos", path + "productos.csv", 0);
+        // cuboConfig.agregarDimension("productos", path + "productos.csv", 0);
         cuboConfig.agregarDimension("puntos_venta", path + "puntos_venta.csv", 1);
         cuboConfig.agregarHechos(path + "ventas.csv");
         
