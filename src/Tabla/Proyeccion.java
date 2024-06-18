@@ -65,15 +65,18 @@ public class Proyeccion {
     /**
      * Imprime información sobre la tabla, incluyendo los nombres de los headers,
      * la cantidad de columnas y la cantidad de filas.
+     * 
+     * Principalmente, lo utilizamos para debugear. Por eso está comentado.
+     * 
      */
-    public void info() {
-        System.out.println("Nombre de los headers:");
-        String[] headers = tabla.getHeaders();
-        for (String header : headers) {
-            System.out.println(header);
-        }
+    // public void info() {
+    //     System.out.println("Nombre de los headers:");
+    //     String[] headers = tabla.getHeaders();
+    //     for (String header : headers) {
+    //         System.out.println(header);
+    //     }
 
-        System.out.println("Cantidad de columnas: " + tabla.getColumnas().size());
-        System.out.println("Cantidad de filas: " + tabla.getNumeroFilas());
-    }
+    //     System.out.println("Cantidad de columnas: " + tabla.getColumnas().size());
+    //     System.out.println("Cantidad de filas: " + tabla.getNumeroFilas());
+    // }
 }

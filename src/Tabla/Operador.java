@@ -10,6 +10,7 @@ import Cubo.Dimension;
 
 public class Operador {
 
+
     /**
      * Parsea una tabla de hechos en función de los niveles especificados en las dimensiones.
      *
@@ -17,138 +18,167 @@ public class Operador {
      * @param hechos      La tabla de hechos que se va a parsear.
      * @param index_medida El índice de la medida que se va a incluir en la nueva tabla.
      * @return Una nueva tabla que contiene las columnas de los niveles especificados y la medida.
+     * @throws IllegalArgumentException si niveles, hechos, o index_medida son nulos, o si index_medida es inválido.
+     * @throws IllegalStateException si ocurre un error al acceder a las columnas o datos.
      */
     public static Tabla parsear(Map<Dimension, Integer> niveles, Tabla hechos, Integer index_medida) {
+        if (niveles == null || hechos == null || index_medida == null) {
+            throw new IllegalArgumentException("Los parámetros niveles, hechos y index_medida no deben ser nulos.");
+        }
+        if (index_medida < 0 || index_medida >= hechos.getColumnas().size()) {
+            throw new IllegalArgumentException("El índice de la medida es inválido.");
+        }
+    
         // Crear una nueva tabla para los resultados
         Tabla nuevaTabla = new Tabla();
-
-        // Crear columnas de los niveles en la nueva tabla
-        for (Dimension d : niveles.keySet()) {
-            for (int i = d.getNumeroNiveles(); i >= niveles.get(d); i--) { // Esto para traer desde el nivel que le pasas hasta el más alto
-                Tabla tabla_dimension = d.getTabla();
-                Columna<?> columna_nivel = tabla_dimension.getColumnas().get(i);
-                ColumnaNumerica columna_fIds = (ColumnaNumerica) hechos.getColumnas().get(d.getClaveForanea());
-                if (columna_nivel instanceof ColumnaNumerica) {
-                    ColumnaNumerica columnaCruce = new ColumnaNumerica(columna_nivel.getNombre());
-                    for (Double dato : columna_fIds.getDatos()) {
-                        columnaCruce.agregarDato((Double) tabla_dimension.getById(dato, i));
+    
+        try {
+            // Crear columnas de los niveles en la nueva tabla
+            for (Dimension d : niveles.keySet()) {
+                for (int i = d.getNumeroNiveles(); i >= niveles.get(d); i--) { // Esto para traer desde el nivel que le pasas hasta el más alto
+                    Tabla tabla_dimension = d.getTabla();
+                    Columna<?> columna_nivel = tabla_dimension.getColumnas().get(i);
+                    ColumnaNumerica columna_fIds = (ColumnaNumerica) hechos.getColumnas().get(d.getClaveForanea());
+                    if (columna_nivel instanceof ColumnaNumerica) {
+                        ColumnaNumerica columnaCruce = new ColumnaNumerica(columna_nivel.getNombre());
+                        for (Double dato : columna_fIds.getDatos()) {
+                            columnaCruce.agregarDato((Double) tabla_dimension.getById(dato, i));
+                        }
+                        nuevaTabla.agregarColumna(columnaCruce);
+                    } else {
+                        ColumnaString columnaCruce = new ColumnaString(columna_nivel.getNombre());
+                        for (Double dato : columna_fIds.getDatos()) {
+                            columnaCruce.agregarDato((String) tabla_dimension.getById(dato, i));
+                        }
+                        nuevaTabla.agregarColumna(columnaCruce);
                     }
-                    nuevaTabla.agregarColumna(columnaCruce);
-                } else {
-                    ColumnaString columnaCruce = new ColumnaString(columna_nivel.getNombre());
-                    for (Double dato : columna_fIds.getDatos()) {
-                        columnaCruce.agregarDato((String) tabla_dimension.getById(dato, i));
-                    }
-                    nuevaTabla.agregarColumna(columnaCruce);
                 }
             }
+    
+            // Cargar la columna de la medida elegida de los hechos
+            nuevaTabla.agregarColumna(hechos.getColumnas().get(index_medida));
+            nuevaTabla.cargarHeaders(); //headers
+        } catch (Exception e) {
+            throw new IllegalStateException("Ocurrió un error al procesar la tabla: " + e.getMessage(), e);
         }
-
-        // Cargar la columna de la medida elegida de los hechos
-        nuevaTabla.agregarColumna(hechos.getColumnas().get(index_medida));
-        nuevaTabla.cargarHeaders(); //headers
+    
         return nuevaTabla;
     }
+    
 
-    /**
-     * Agrupa una tabla basada en las columnas especificadas y aplica una operación a las columnas no agrupadas.
-     *
-     * @param tabla              La tabla que se va a agrupar.
-     * @param columnasAAgrupar   Una lista de nombres de las columnas que se van a agrupar.
-     * @param operacionARealizar La operación que se va a realizar en las columnas no agrupadas (p.ej., "suma", "promedio").
-     * @return Una nueva tabla con los datos agrupados y las operaciones aplicadas.
-     */
-    public static Tabla agrupar(Tabla tabla, List<String> columnasAAgrupar, String operacionARealizar) {
-        Map<List<Object>, List<Integer>> grupos = new HashMap<>();
-
-        // Identificar las columnas a agrupar
-        List<Columna<?>> columnas = tabla.getColumnas();
-        List<Columna<?>> columnasAgrupacion = new ArrayList<>();
-        for (String nombre : columnasAAgrupar) {
-            for (Columna<?> col : columnas) {
-                if (col.getNombre().equals(nombre)) {
-                    columnasAgrupacion.add(col);
-                    break;
-                }
-            }
-        }
-
-        // Crear los grupos
-        for (int i = 0; i < tabla.getNumeroFilas(); i++) {
-            List<Object> claveGrupo = new ArrayList<>();
-            for (Columna<?> col : columnasAgrupacion) {
-                claveGrupo.add(col.getContenidoFila(i));
-            }
-
-            grupos.computeIfAbsent(claveGrupo, k -> new ArrayList<>()).add(i);
-        }
-
-        // Crear nueva tabla para los resultados agrupados
-        Tabla tablaAgrupada = new Tabla();
-
-        // Crear columnas agrupadas en la nueva tabla
-        for (Columna<?> col : columnasAgrupacion) {
-            if (col instanceof ColumnaString) {
-                tablaAgrupada.agregarColumna(new ColumnaString(col.getNombre()));
-            } else if (col instanceof ColumnaNumerica) {
-                tablaAgrupada.agregarColumna(new ColumnaNumerica(col.getNombre()));
-            }
-        }
-
-        // Crear columnas para las operaciones a realizar
-        List<Columna<?>> columnasOperacion = new ArrayList<>();
-        for (Columna<?> col : columnas) {
-            if (!columnasAgrupacion.contains(col)) {
-                if (col instanceof ColumnaString) {
-                    columnasOperacion.add(new ColumnaString(col.getNombre() + "_" + operacionARealizar));
-                } else if (col instanceof ColumnaNumerica) {
-                    columnasOperacion.add(new ColumnaNumerica(col.getNombre() + "_" + operacionARealizar));
-                }
-            }
-        }
-
-        // Agregar las columnas de operaciones a la nueva tabla
-        for (Columna<?> col : columnasOperacion) {
-            tablaAgrupada.agregarColumna(col);
-        }
-
-        // Agregar datos a la nueva tabla
-        for (Map.Entry<List<Object>, List<Integer>> entry : grupos.entrySet()) {
-            List<Object> claveGrupo = entry.getKey();
-            List<Integer> indicesFilas = entry.getValue();
-
-            // Agregar claves de grupo a la nueva tabla
-            for (int i = 0; i < claveGrupo.size(); i++) {
-                Object valor = claveGrupo.get(i);
-                Columna<?> col = tablaAgrupada.getColumnas().get(i);
-                if (col instanceof ColumnaString) {
-                    ((ColumnaString) col).agregarDato((String) valor);
-                } else if (col instanceof ColumnaNumerica) {
-                    ((ColumnaNumerica) col).agregarDato((Double) valor);
-                }
-            }
-
-            // Aplicar operación a cada columna no agrupada y agregar el resultado a la nueva tabla
-            for (Columna<?> col : columnasOperacion) {
-                String nombreOriginal = col.getNombre().replace("_" + operacionARealizar, "");
-                Columna<?> columnaOriginal = columnas.stream()
-                        .filter(c -> c.getNombre().equals(nombreOriginal))
-                        .findFirst()
-                        .orElse(null);
-
-                if (columnaOriginal != null) {
-                    Object resultado = aplicarOperacion(columnaOriginal, indicesFilas, operacionARealizar);
-                    if (col instanceof ColumnaString) {
-                        ((ColumnaString) col).agregarDato((String) resultado);
-                    } else if (col instanceof ColumnaNumerica) {
-                        ((ColumnaNumerica) col).agregarDato((Double) resultado);
-                    }
-                }
-            }
-        }
-
-        return tablaAgrupada;
+/**
+ * Agrupa una tabla basada en las columnas especificadas y aplica una operación a las columnas no agrupadas.
+ *
+ * @param tabla              La tabla que se va a agrupar.
+ * @param columnasAAgrupar   Una lista de nombres de las columnas que se van a agrupar.
+ * @param operacionARealizar La operación que se va a realizar en las columnas no agrupadas (p.ej., "suma", "promedio").
+ * @return Una nueva tabla con los datos agrupados y las operaciones aplicadas.
+ * @throws IllegalArgumentException si la tabla o columnasAAgrupar son nulas, o si operacionARealizar es nula o vacía.
+ * @throws IllegalStateException si no se encuentra una columna especificada en columnasAAgrupar.
+ */
+public static Tabla agrupar(Tabla tabla, List<String> columnasAAgrupar, String operacionARealizar) {
+    if (tabla == null || columnasAAgrupar == null || operacionARealizar == null || operacionARealizar.isEmpty()) {
+        throw new IllegalArgumentException("Los parámetros tabla, columnasAAgrupar y operacionARealizar no deben ser nulos o vacíos.");
     }
+
+    Map<List<Object>, List<Integer>> grupos = new HashMap<>();
+
+    // Identificar las columnas a agrupar
+    List<Columna<?>> columnas = tabla.getColumnas();
+    List<Columna<?>> columnasAgrupacion = new ArrayList<>();
+    for (String nombre : columnasAAgrupar) {
+        boolean encontrada = false;
+        for (Columna<?> col : columnas) {
+            if (col.getNombre().equals(nombre)) {
+                columnasAgrupacion.add(col);
+                encontrada = true;
+                break;
+            }
+        }
+        if (!encontrada) {
+            throw new IllegalStateException("No se encontró la columna especificada para agrupar: " + nombre);
+        }
+    }
+
+    // Crear los grupos
+    for (int i = 0; i < tabla.getNumeroFilas(); i++) {
+        List<Object> claveGrupo = new ArrayList<>();
+        for (Columna<?> col : columnasAgrupacion) {
+            claveGrupo.add(col.getContenidoFila(i));
+        }
+
+        grupos.computeIfAbsent(claveGrupo, k -> new ArrayList<>()).add(i);
+    }
+
+    // Crear nueva tabla para los resultados agrupados
+    Tabla tablaAgrupada = new Tabla();
+
+    // Crear columnas agrupadas en la nueva tabla
+    for (Columna<?> col : columnasAgrupacion) {
+        if (col instanceof ColumnaString) {
+            tablaAgrupada.agregarColumna(new ColumnaString(col.getNombre()));
+        } else if (col instanceof ColumnaNumerica) {
+            tablaAgrupada.agregarColumna(new ColumnaNumerica(col.getNombre()));
+        }
+    }
+
+    // Crear columnas para las operaciones a realizar
+    List<Columna<?>> columnasOperacion = new ArrayList<>();
+    for (Columna<?> col : columnas) {
+        if (!columnasAgrupacion.contains(col)) {
+            if (col instanceof ColumnaString) {
+                columnasOperacion.add(new ColumnaString(col.getNombre() + "_" + operacionARealizar));
+            } else if (col instanceof ColumnaNumerica) {
+                columnasOperacion.add(new ColumnaNumerica(col.getNombre() + "_" + operacionARealizar));
+            }
+        }
+    }
+
+    // Agregar las columnas de operaciones a la nueva tabla
+    for (Columna<?> col : columnasOperacion) {
+        tablaAgrupada.agregarColumna(col);
+    }
+
+    // Agregar datos a la nueva tabla
+    for (Map.Entry<List<Object>, List<Integer>> entry : grupos.entrySet()) {
+        List<Object> claveGrupo = entry.getKey();
+        List<Integer> indicesFilas = entry.getValue();
+
+        // Agregar claves de grupo a la nueva tabla
+        for (int i = 0; i < claveGrupo.size(); i++) {
+            Object valor = claveGrupo.get(i);
+            Columna<?> col = tablaAgrupada.getColumnas().get(i);
+            if (col instanceof ColumnaString) {
+                ((ColumnaString) col).agregarDato((String) valor);
+            } else if (col instanceof ColumnaNumerica) {
+                ((ColumnaNumerica) col).agregarDato((Double) valor);
+            }
+        }
+
+        // Aplicar operación a cada columna no agrupada y agregar el resultado a la nueva tabla
+        for (Columna<?> col : columnasOperacion) {
+            String nombreOriginal = col.getNombre().replace("_" + operacionARealizar, "");
+            Columna<?> columnaOriginal = columnas.stream()
+                    .filter(c -> c.getNombre().equals(nombreOriginal))
+                    .findFirst()
+                    .orElse(null);
+
+            if (columnaOriginal != null) {
+                Object resultado = aplicarOperacion(columnaOriginal, indicesFilas, operacionARealizar);
+                if (col instanceof ColumnaString) {
+                    ((ColumnaString) col).agregarDato((String) resultado);
+                } else if (col instanceof ColumnaNumerica) {
+                    ((ColumnaNumerica) col).agregarDato((Double) resultado);
+                }
+            } else {
+                throw new IllegalStateException("No se encontró la columna original para realizar la operación: " + nombreOriginal);
+            }
+        }
+    }
+
+    return tablaAgrupada;
+}
+
 
     /**
      * Aplica una operación a una columna sobre un conjunto de filas.

@@ -19,17 +19,25 @@ public class Tabla {
         this.headers = new String[0];
     }
 
+
+
     /**
      * Agrega una columna a la tabla.
      * 
      * @param columna La columna que se va a agregar.
+     * @throws IllegalArgumentException si la columna es nula o si ya existe una columna con el mismo nombre.
      */
     public void agregarColumna(Columna<?> columna) {
+        if (columna == null) {
+            throw new IllegalArgumentException("La columna no debe ser nula.");
+        }
+
         for (Columna<?> col : columnas) {
             if (col.getNombre().equals(columna.getNombre())) {
-                System.out.println("La columna ya existe en la tabla.");
+                throw new IllegalArgumentException("La columna ya existe en la tabla: " + columna.getNombre());
             }
         }
+
         columnas.add(columna);
         cargarHeaders(); // Actualizar los headers después de agregar la columna
     }
@@ -38,8 +46,13 @@ public class Tabla {
      * Elimina una columna de la tabla por su nombre.
      * 
      * @param nombreColumna El nombre de la columna que se va a eliminar.
+     * @throws IllegalArgumentException si el nombre de la columna es nulo o si la columna no existe en la tabla.
      */
     public void eliminarColumna(String nombreColumna) {
+        if (nombreColumna == null || nombreColumna.isEmpty()) {
+            throw new IllegalArgumentException("El nombre de la columna no debe ser nulo o vacío.");
+        }
+
         boolean columnaEncontrada = false;
         for (Columna<?> col : columnas) {
             if (col.getNombre().equals(nombreColumna)) {
@@ -49,11 +62,13 @@ public class Tabla {
             }
         }
         if (!columnaEncontrada) {
-            System.out.println("La columna no existe en la tabla.");
+            throw new IllegalArgumentException("La columna no existe en la tabla: " + nombreColumna);
         } else {
             cargarHeaders(); // Actualizar los headers después de eliminar la columna
         }
     }
+
+
 
     /**
      * Carga los headers (nombres de las columnas) en el array de headers.
@@ -67,28 +82,31 @@ public class Tabla {
         }
     }
 
-    /**
-     * Carga los datos de la tabla a partir de una matriz de cadenas.
-     * 
-     * @param matriz La matriz de datos para cargar en la tabla.
-     */
-    public void cargarTabla(String[][] matriz) {
-        if (matriz.length == 0) {
-            return;
+/**
+ * Carga los datos de la tabla a partir de una matriz de cadenas.
+ * 
+ * @param matriz La matriz de datos para cargar en la tabla.
+ * @throws IllegalArgumentException si la matriz es nula o está vacía.
+ * @throws IllegalStateException si ocurre un error al procesar los datos de la matriz.
+ */
+public void cargarTabla(String[][] matriz) {
+    if (matriz == null || matriz.length == 0) {
+        throw new IllegalArgumentException("La matriz no debe ser nula o estar vacía.");
+    }
+
+    String[] nombresColumnas = matriz[0];
+    this.headers = nombresColumnas;
+
+    for (int i = 0; i < nombresColumnas.length; i++) {
+        try {
+            Double.parseDouble(matriz[1][i]);
+            columnas.add(new ColumnaNumerica(nombresColumnas[i]));
+        } catch (NumberFormatException e) {
+            columnas.add(new ColumnaString(nombresColumnas[i]));
         }
+    }
 
-        String[] nombresColumnas = matriz[0];
-        this.headers = nombresColumnas;
-
-        for (int i = 0; i < nombresColumnas.length; i++) {
-            try {
-                Double.parseDouble(matriz[1][i]);
-                columnas.add(new ColumnaNumerica(nombresColumnas[i]));
-            } catch (NumberFormatException e) {
-                columnas.add(new ColumnaString(nombresColumnas[i]));
-            }
-        }
-
+    try {
         for (int i = 1; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
                 Columna<?> columna = columnas.get(j);
@@ -99,7 +117,10 @@ public class Tabla {
                 }
             }
         }
+    } catch (Exception e) {
+        throw new IllegalStateException("Ocurrió un error al procesar los datos de la matriz: " + e.getMessage(), e);
     }
+}
 
     /**
      * Obtiene los headers (nombres de las columnas) de la tabla.

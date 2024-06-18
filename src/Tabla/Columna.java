@@ -63,19 +63,5 @@ public abstract class Columna<T> {
     public List<T> getDatos() {
         return datos;
     }
-
-    /**
-     * Establece los datos de la columna, asegurándose de que sean del mismo tipo que los datos actuales.
-     * 
-     * @param datos una lista de datos para establecer en la columna.
-     * @throws IllegalArgumentException si los datos proporcionados no son del mismo tipo que los datos de la columna.
-     */
-    public void setDatos(List<T> datos) {
-        if (!datos.isEmpty() && datos.get(0).getClass().equals(this.datos.get(0).getClass())) {
-            this.datos = datos;
-        } else {
-            throw new IllegalArgumentException("Los datos proporcionados no son del mismo tipo que los datos de la columna.");
-        }
-    }
 }
 
