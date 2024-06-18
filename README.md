@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Este proyecto consiste en la creación de un Cubo OLAP para la materia Algoritmos I de la Licenciatura en Ciencias de Datos de la UNSAM. Permite cargar múltiples dimensiones y hechos, y aplicar operaciones OLAP como drill down, roll up, dice y slice. Los resultados de estas operaciones se visualizan en tablas multi-índices en la consola de Java.
+Este proyecto consiste en la creación de un Cubo OLAP para la materia Algoritmos I de la Licenciatura en Ciencias de Datos de la UNSAM. Permite cargar múltiples dimensiones y hechos, y aplicar operaciones OLAP como drill down, roll up, dice y slice. Los resultados de estas operaciones se visualizan en una tabla en la consola de Java.
 
 [Documentación de Análisis](https://docs.google.com/document/d/17gkBlP2OFvUuh3LAdyCTUxtuTJLbi6ITmLkvFtz1Jv8/edit?usp=sharing)
 
@@ -60,6 +60,8 @@ Para utilizar la biblioteca seguí estos pasos:
    configDice.agregarFiltro("fechas", 4, "2018.0");
    Cubo cuboDice = cubo.dice("cubito", configDice);
    cuboDice.proyectar("valor_unitario", "suma");
+
+   // proyectar() muestra el cubo en formato tabular, informacion() muestra información del cubo, como el nombre, sus dimensiones y respectivos niveles y los hechos.
    ```
 
 3. **Ejecución y Resultados**
