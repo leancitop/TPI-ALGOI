@@ -18,11 +18,11 @@ Diagrama de clases:
 
 ## Uso
 
-Para utilizar la biblioteca de Cubos OLAP, sigue estos pasos:
+Para utilizar la biblioteca seguí estos pasos:
 
 1. **Configuración del Cubo**
 
-   Antes de comenzar, asegúrate de tener los archivos CSV necesarios en la ruta especificada (`datasets\`). Estos archivos contienen las dimensiones y los datos de hechos que serán utilizados para construir el cubo.
+   Antes de comenzar, asegurate de tener los archivos CSV necesarios en la ruta especificada (`datasets\`). Estos archivos contienen las dimensiones y los datos de hechos que serán utilizados para construir el cubo.
 
    ```java
    // Configuración inicial del cubo
@@ -39,7 +39,7 @@ Para utilizar la biblioteca de Cubos OLAP, sigue estos pasos:
 
 2. **Creación y Manipulación del Cubo**
 
-   Una vez configurado, puedes crear el cubo y realizar operaciones OLAP como drill down, roll up, slice y dice. Aquí tienes ejemplos de cómo utilizar estas operaciones:
+   Una vez configurado, podes crear el cubo y realizar operaciones OLAP como drill down, roll up, slice y dice. Aca tenes ejemplos de cómo utilizar estas operaciones:
 
    ```java
    // Crear el cubo a partir de la configuración
