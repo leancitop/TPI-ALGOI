@@ -40,7 +40,7 @@ public class Main {
         configDice.agregarFiltro("puntos_venta", 4, "Europe");
         configDice.agregarFiltro("fechas", 4, "2018.0");
         Cubo cuboDice = cubo.dice("Cubito", configDice);
-        cuboDice.proyectar("valor_unitario", "suma");
+        cuboDice.proyectar("valor_unitario", "suma", 35);
 
         cronometroMain.finalizar(); // finalizo el timer para evaluar cuanto tarda la ejecución
     }
