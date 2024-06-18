@@ -35,7 +35,7 @@ public class Operador {
         try {
             // Crear columnas de los niveles en la nueva tabla
             for (Dimension d : niveles.keySet()) {
-                for (int i = d.getNumeroNiveles(); i >= niveles.get(d); i--) { // Esto para traer desde el nivel que le pasas hasta el más alto
+                for (int i = d.getCantidadNiveles(); i >= niveles.get(d); i--) { // Esto para traer desde el nivel que le pasas hasta el más alto
                     Tabla tabla_dimension = d.getTabla();
                     Columna<?> columna_nivel = tabla_dimension.getColumnas().get(i);
                     ColumnaNumerica columna_fIds = (ColumnaNumerica) hechos.getColumnas().get(d.getClaveForanea());

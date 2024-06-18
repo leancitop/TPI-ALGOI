@@ -8,7 +8,7 @@ public class Main {
 
 
         // CONFIGURACION CUBO
-        Config cuboConfig = Config.crearConfigCubo("cuboConfig");
+        Config cuboConfig = Config.crearConfigCubo("CuboTest");
         
         cuboConfig.agregarDimension("fechas", path + "fechas.csv", 2);
         cuboConfig.agregarDimension("productos", path + "productos.csv", 0);
@@ -22,6 +22,7 @@ public class Main {
         
         // CUBO
         Cubo cubo = Cubo.crearCubo(cuboConfig);
+        cubo.informacion();
         cubo.drillDown("puntos_venta");
         cubo.drillDown("puntos_venta");
         cubo.drillDown("puntos_venta");
@@ -38,7 +39,7 @@ public class Main {
         ConfigDice configDice = ConfigDice.crearConfigDice();
         configDice.agregarFiltro("puntos_venta", 4, "Europe");
         configDice.agregarFiltro("fechas", 4, "2018.0");
-        Cubo cuboDice = cubo.dice("cubito", configDice);
+        Cubo cuboDice = cubo.dice("Cubito", configDice);
         cuboDice.proyectar("valor_unitario", "suma");
 
         cronometroMain.finalizar(); // finalizo el timer para evaluar cuanto tarda la ejecución

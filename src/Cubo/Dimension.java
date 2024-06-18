@@ -63,7 +63,25 @@ public class Dimension {
      * Obtiene el número de niveles de la dimensión.
      * @return Número de niveles de la dimensión.
      */
-    public int getNumeroNiveles(){
+    public int getCantidadNiveles(){
         return cantidadNiveles;
+    }
+
+    /**
+     * Devuelve una representación en cadena del objeto Dimension.
+     * 
+     * @return Una cadena que representa el objeto Dimension, incluyendo su nombre y niveles.
+     */
+    @Override
+    public String toString() {
+        String salida = "- Dimension: " + nombre + "\n" + "   - Niveles: [";
+        for (int i = 1; i <= cantidadNiveles; i++) {
+            if (i == cantidadNiveles){
+                salida += tabla.getHeaders()[i] + "]";
+            }else{
+                salida += tabla.getHeaders()[i] + ", ";
+            }
+        }
+        return salida;
     }
 }

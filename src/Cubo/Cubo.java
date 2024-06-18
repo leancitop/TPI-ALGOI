@@ -78,7 +78,7 @@ public class Cubo {
         }
 
         // Validar el nivel de filtro
-        if (nivelFiltro < 0 || nivelFiltro >= dimensionSeleccionada.getNumeroNiveles()) {
+        if (nivelFiltro < 0 || nivelFiltro >= dimensionSeleccionada.getCantidadNiveles()) {
             throw new IndexOutOfBoundsException("Nivel de filtro inválido para la dimensión: " + nivelFiltro);
         }
 
@@ -142,7 +142,7 @@ public class Cubo {
     public void rollUp(String nombreDimension){
         dimensiones.forEach((dimension, indexNiveles) -> {
             if (dimension.getNombre() == nombreDimension){
-                if (dimension.getNumeroNiveles() >= indexNiveles+1){
+                if (dimension.getCantidadNiveles() >= indexNiveles+1){
                     dimensiones.replace(dimension, indexNiveles+1);
                     System.out.println("La dimension " + dimension.getNombre() + " ahora está fijada en el nivel "+ ((Integer) indexNiveles+1));
                 }
@@ -161,12 +161,12 @@ public class Cubo {
     public void rollUp(String nombreDimension, Integer numeroRollUps){
         dimensiones.forEach((dimension, indexNiveles) -> {
             if (dimension.getNombre() == nombreDimension){
-                if (dimension.getNumeroNiveles() >= indexNiveles+numeroRollUps){
+                if (dimension.getCantidadNiveles() >= indexNiveles+numeroRollUps){
                     dimensiones.replace(dimension, indexNiveles+numeroRollUps);
                     System.out.println("La dimension " + dimension.getNombre() + " ahora está fijada en el nivel "+ ((Integer) indexNiveles+numeroRollUps));
                 }
-                else if (dimension.getNumeroNiveles() - indexNiveles - numeroRollUps <= 0) {
-                    Integer numeroRollUpRestantes = Math.abs(dimension.getNumeroNiveles() - indexNiveles - numeroRollUps);
+                else if (dimension.getCantidadNiveles() - indexNiveles - numeroRollUps <= 0) {
+                    Integer numeroRollUpRestantes = Math.abs(dimension.getCantidadNiveles() - indexNiveles - numeroRollUps);
                     dimensiones.replace(dimension, indexNiveles+numeroRollUpRestantes);
                     System.out.println("Se hicieron " + numeroRollUpRestantes + " de los " + numeroRollUps + " roll ups");
                     System.out.println("La dimension " + dimension.getNombre() + " ahora está fijada en el nivel "+ ((Integer) indexNiveles+numeroRollUpRestantes));
@@ -216,18 +216,62 @@ public class Cubo {
     }
 
     /**
+     * Imprime la información del objeto actual en la consola.
+     * Utiliza el método `toString` para obtener una representación en cadena del objeto.
+     */
+    public void informacion(){
+        System.out.println(this);
+        System.out.println("");
+    }
+
+    /**
      * Realiza una proyección de los datos del cubo con los niveles seleccionados, valor y medida elegidos.
      * @param valorHechos Valor de los hechos a utilizar en la proyección.
      * @param medida Medida a aplicar en la proyección.
      */
-    public void proyectar(String valorHechos, String medida){
+    public void proyectar(String valorHechos, String medida, int numeroFilas){
         Tabla tablaParseada = Operador.parsear(dimensiones, hechos, hechos.getHeaderIndex(valorHechos));
         List<String> columnas =  new ArrayList<>(Arrays.asList(tablaParseada.getHeaders()));
         columnas.remove(valorHechos);
         Tabla tablaAgrupada = Operador.agrupar(tablaParseada, columnas , medida);
         Proyeccion p = new Proyeccion(tablaAgrupada);
         // p.info();
-        p.imprimirNfilas(15);
+        p.imprimirNfilas(numeroFilas);
+        System.out.println("");
+        System.out.println("Cantidad de columnas: " + tablaAgrupada.getColumnas().size());
+        System.out.println("Cantidad de filas: " + tablaAgrupada.getNumeroFilas());
         System.out.println("");
     }
+
+    public void proyectar(String valorHechos, String medida) {
+        proyectar(valorHechos, medida, 15);
+    }
+
+    /**
+     * Devuelve una representación en cadena del objeto Cubo.
+     * 
+     * @return Una cadena que representa el objeto Cubo, incluyendo su nombre, dimensiones y sus niveles,
+     *         así como los valores de los hechos.
+     */
+    @Override
+    public String toString() {
+        String salida = "Cubo: " + nombre;
+        for (Map.Entry<Dimension, Integer> entry : dimensiones.entrySet()) {
+            salida += "\n" + entry.getKey();
+            salida += "\n   - Nivel fijado en: " + "[" + entry.getKey().getTabla().getHeaders()[entry.getValue()] + "]";
+        }
+        salida += "\n- Hechos: \n   - Valores: [";
+        String[] headers = hechos.getHeaders(); 
+        for (int i = 1; i <= headers.length - 1; i++) {
+            if (i == headers.length - 1){
+                salida += headers[i] + "]";
+            }else{
+                salida += headers[i] + ", ";
+            }
+        }
+        return salida;
+    }
 }
+
+
+
