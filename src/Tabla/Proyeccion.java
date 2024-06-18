@@ -56,10 +56,14 @@ public class Proyeccion {
         for (int i = 0; i < numeroFilas; i++) {
             for (int j = 0; j < columnas.size(); j++) {
                 Object valor = columnas.get(j).getContenidoFila(i);
+                if (valor instanceof Double) {
+                    valor = String.format("%.2f", (Double) valor);
+                }
                 System.out.print(String.format("%-" + anchosMaximos[j] + "s", valor) + " ");
             }
             System.out.println();
         }
+        
     }
 
     /**
@@ -79,4 +83,6 @@ public class Proyeccion {
     //     System.out.println("Cantidad de columnas: " + tabla.getColumnas().size());
     //     System.out.println("Cantidad de filas: " + tabla.getNumeroFilas());
     // }
+
+    
 }

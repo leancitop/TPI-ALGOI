@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
+
 import Tabla.Tabla;
 import Tabla.Operador;
 import Tabla.Proyeccion;
@@ -51,41 +53,64 @@ public class Cubo {
 
     /**
      * Realiza un slice (filtrado) en el cubo según una dimensión y un valor específico.
+     * 
      * @param nombreDimension Nombre de la dimensión a filtrar.
      * @param nivelFiltro Nivel de filtro en la dimensión.
      * @param valor Valor a filtrar en el nivel.
      * @return Nuevo cubo con los datos filtrados.
+     * @throws NoSuchElementException si no se encuentra una dimensión con el nombre especificado.
+     * @throws IndexOutOfBoundsException si nivelFiltro está fuera de los límites válidos para la dimensión.
+     * @throws IllegalStateException si el estado del cubo no es válido para realizar el slice.
      */
-    public Cubo slice(String nombreDimension, int nivelFiltro, String valor){
-        for (Dimension dim: dimensiones.keySet()) {
-            if(dim.getNombre() == nombreDimension){
-                Tabla hechosFiltrados = Operador.filtrarHechos(
-                    this.hechos, dim, valor, nivelFiltro, true
-                );
-                HashMap<Dimension, Integer> nivelesNuevos = new HashMap<Dimension, Integer>();
-                for (Map.Entry<Dimension, Integer> nivel : this.dimensiones.entrySet()) {
-                    if(nivel.getKey().getNombre() != nombreDimension)
-                        nivelesNuevos.put(nivel.getKey(), nivel.getValue());
-                }
-                Cubo cuboNuevo = new Cubo("Cubo_" + valor, nivelesNuevos, hechosFiltrados);
-                return cuboNuevo;
+    public Cubo slice(String nombreDimension, int nivelFiltro, String valor) {
+        // Buscar la dimensión por nombre
+        Dimension dimensionSeleccionada = null;
+        for (Dimension dim : dimensiones.keySet()) {
+            if (dim.getNombre().equals(nombreDimension)) {
+                dimensionSeleccionada = dim;
+                break;
             }
-            throw new RuntimeException("Dimensión invalida. Ingrese un nombre que coincida con el de algina dimensión existente");
         }
-        throw new RuntimeException("Dimensión invalida. Ingrese un nombre que coincida con el de algina dimensión existente");
-    }
 
+        // Lanzar excepción si no se encontró la dimensión
+        if (dimensionSeleccionada == null) {
+            throw new NoSuchElementException("No se encontró una dimensión con el nombre especificado: " + nombreDimension);
+        }
+
+        // Validar el nivel de filtro
+        if (nivelFiltro < 0 || nivelFiltro >= dimensionSeleccionada.getNumeroNiveles()) {
+            throw new IndexOutOfBoundsException("Nivel de filtro inválido para la dimensión: " + nivelFiltro);
+        }
+
+        // Filtrar los hechos según la dimensión y el valor especificado
+        Tabla hechosFiltrados = Operador.filtrarHechos(this.hechos, dimensionSeleccionada, valor, nivelFiltro, true);
+
+        // Crear un nuevo mapa de niveles para el nuevo cubo
+        HashMap<Dimension, Integer> nivelesNuevos = new HashMap<>();
+        for (HashMap.Entry<Dimension, Integer> nivel : this.dimensiones.entrySet()) {
+            if (!nivel.getKey().getNombre().equals(nombreDimension)) {
+                nivelesNuevos.put(nivel.getKey(), nivel.getValue());
+            }
+        }
+
+        // Devolver un nuevo cubo con los datos filtrados
+        return new Cubo("Cubo_" + valor, nivelesNuevos, hechosFiltrados);
+    }
     /**
      * Realiza un dice (filtrado múltiple) en el cubo según las especificaciones dadas.
+     * 
      * @param nombreCubo Nombre del nuevo cubo resultante.
      * @param dice Configuración para el filtrado.
      * @return Nuevo cubo con los datos filtrados.
+     * @throws IllegalArgumentException si alguna de las dimensiones especificadas en el filtro no existe en el cubo.
+     * @throws RuntimeException si no existen hechos que cumplan con los filtros solicitados.
      */
-    public Cubo dice(String nombreCubo, ConfigDice dice){
+    public Cubo dice(String nombreCubo, ConfigDice dice) {
         Tabla hechosDice = this.hechos;
-        for(int i=0; i < dice.largo ; i++){
-            for(Dimension dim : dimensiones.keySet() ){
-                if(dim.getNombre() == dice.dimensiones.get(i)){
+        for (int i = 0; i < dice.largo; i++) {
+            boolean dimensionEncontrada = false;
+            for (Dimension dim : dimensiones.keySet()) {
+                if (dim.getNombre().equals(dice.dimensiones.get(i))) {
                     hechosDice = Operador.filtrarHechos(
                         hechosDice, 
                         dim, 
@@ -93,18 +118,22 @@ public class Cubo {
                         dice.niveles.get(i), 
                         false
                     );
+                    dimensionEncontrada = true;
+                    break;
                 }
             }
+            if (!dimensionEncontrada) {
+                throw new IllegalArgumentException("La dimensión especificada no existe en el cubo: " + dice.dimensiones.get(i));
+            }
         }
-        if(hechosDice.getNumeroFilas() == 0)
-            throw new RuntimeException("No existen hechos que cumplan con los filtros solicitados");
 
-        if(hechosDice.getNumeroFilas() == 0)
+        if (hechosDice.getNumeroFilas() == 0) {
             throw new RuntimeException("No existen hechos que cumplan con los filtros solicitados");
+        }
 
-        Cubo cuboDice = new Cubo(nombreCubo, this.dimensiones, hechosDice);
-        return cuboDice;
+        return new Cubo(nombreCubo, this.dimensiones, hechosDice);
     }
+
 
     /**
      * Realiza un roll up en una dimensión específica. Aumenta el nivel seleccionado una vez en esa dimension

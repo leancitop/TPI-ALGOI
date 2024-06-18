@@ -3,15 +3,14 @@ package Cubo;
 public class Main {
     public static void main(String[] args) {
 
-        CronometroAccion cronometroMain = new CronometroAccion("Main");
-        // String path = "TPI-ALGOI/datasets/";
+        CronometroAccion cronometroMain = new CronometroAccion("Main"); // comienzo el timer para evaluar cuanto tarda la ejecución
         String path = "datasets\\";
 
 
         // CONFIGURACION CUBO
         Config cuboConfig = Config.crearConfigCubo("cuboConfig");
         
-        // cuboConfig.agregarDimension("fechas", path + "fechas.csv", 2);
+        cuboConfig.agregarDimension("fechas", path + "fechas.csv", 2);
         cuboConfig.agregarDimension("productos", path + "productos.csv", 0);
         cuboConfig.agregarDimension("puntos_venta", path + "puntos_venta.csv", 1);
         cuboConfig.agregarHechos(path + "ventas.csv");
@@ -26,12 +25,13 @@ public class Main {
         cubo.drillDown("puntos_venta");
         cubo.drillDown("puntos_venta");
         cubo.drillDown("puntos_venta");
-        cubo.proyectar("costo", "suma");
+        cubo.rollUp("puntos_venta");
+        cubo.proyectar("costo", "suma"); // además de suma puede ser min, max, contar, promedio. Los valores de hechos además de costo pueden ser cantidad, valor_unitario, valor_total
 
         
         //SLICE
-        //Cubo cubo2018 = cubo.slice("fechas", 4, "2018.0"); // TODO: ver tema con los integers
-        //cubo2018.proyectar("valor_unitario", "suma");
+        Cubo cubo2018 = cubo.slice("fechas", 4, "2018.0");
+        cubo2018.proyectar("valor_unitario", "suma");
 
 
         //DICE
@@ -39,8 +39,8 @@ public class Main {
         configDice.agregarFiltro("puntos_venta", 4, "Europe");
         configDice.agregarFiltro("fechas", 4, "2018.0");
         Cubo cuboDice = cubo.dice("cubito", configDice);
-        // cuboDice.proyectar("valor_unitario", "suma");
+        cuboDice.proyectar("valor_unitario", "suma");
 
-        cronometroMain.finalizar();
+        cronometroMain.finalizar(); // finalizo el timer para evaluar cuanto tarda la ejecución
     }
 }
