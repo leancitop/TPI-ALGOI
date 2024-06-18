@@ -188,20 +188,20 @@ public static Tabla agrupar(Tabla tabla, List<String> columnasAAgrupar, String o
      * @param operacion  La operación que se va a aplicar (p.ej., "suma", "promedio").
      * @return El resultado de la operación aplicada a la columna.
      */
-    private static Object aplicarOperacion(Columna<?> columna, List<Integer> indicesFilas, String operacion) {
+    private static double aplicarOperacion(Columna<?> columna, List<Integer> indicesFilas, String operacion) {
         switch (operacion.toLowerCase()) {
             case "suma":
                 if (columna instanceof ColumnaNumerica) {
-                    Double suma = 0.0;
+                    double suma = 0.0;
                     for (int i : indicesFilas) {
-                        suma += (Double) columna.getContenidoFila(i);
+                        suma += (double) columna.getContenidoFila(i);
                     }
                     return suma;
                 }
                 break;
             case "promedio":
                 if (columna instanceof ColumnaNumerica) {
-                    double suma = 0;
+                    double suma = 0.0;
                     for (int i : indicesFilas) {
                         suma += (Double) columna.getContenidoFila(i);
                     }
@@ -209,13 +209,38 @@ public static Tabla agrupar(Tabla tabla, List<String> columnasAAgrupar, String o
                 }
                 break;
             case "contar":
-                break; //hay que implementar la lógica del conteo y las de abajo
+                if (columna instanceof ColumnaNumerica) {
+                    return (double) indicesFilas.size();
+                }
+                break;
             case "min":
+                if (columna instanceof ColumnaNumerica) {
+                    double minimo = (double) columna.getContenidoFila(indicesFilas.get(0));
+                    for (int i : indicesFilas) {
+                        double valor = (double) columna.getContenidoFila(i);
+                        if (valor<minimo){
+                            minimo=valor;
+                        }
+                    }
+                    return minimo;
+                }
                 break;
             case "max":
-                break;
+                if (columna instanceof ColumnaNumerica) {
+                    double maximo = (double) columna.getContenidoFila(indicesFilas.get(0));
+                    for (int i : indicesFilas) {
+                        double valor = (double) columna.getContenidoFila(i);
+                        if (maximo<valor){
+                            maximo=valor;
+                        }
+                    }
+                    return maximo;
+                }
+            default:
+                throw new IllegalArgumentException("Operación no soportada: " + operacion);
         }
-        return null;
+    throw new IllegalArgumentException("No se pudo calcular el resultado.");
+
     }
 
     /**
