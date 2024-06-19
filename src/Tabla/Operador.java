@@ -8,6 +8,7 @@ import java.util.Set;
 
 import java.util.HashSet;
 import Cubo.Dimension;
+import Tabla.Medidas.Medida;
 
 public class Operador {
 

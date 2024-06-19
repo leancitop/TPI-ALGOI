@@ -1,6 +1,6 @@
-package Tabla;
-
+package Tabla.Medidas;
 import java.util.List;
+import Tabla.Columna;
 
 public abstract class Medida {
     

@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import Tabla.Medida;
+
 import Tabla.Tabla;
+import Tabla.Medidas.Medida;
 import Lectores.LectorCSV;
 
 /**

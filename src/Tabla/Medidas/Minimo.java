@@ -1,22 +1,24 @@
-package Tabla;
+package Tabla.Medidas;
 import java.util.List;
+import Tabla.Columna;
+import Tabla.ColumnaNumerica;
 
-public class Maximo extends Medida{
+public class Minimo extends Medida{
     
-    public Maximo() {
+    public Minimo() {
     }
 
     public double operar(Columna<?> columna, List<Integer> indicesFilas){
         if (columna instanceof ColumnaNumerica) {
-            double maximo = (double) columna.getContenidoFila(indicesFilas.get(0));
+            double minimo = (double) columna.getContenidoFila(indicesFilas.get(0));
             for (int i : indicesFilas) {
                 double valor = (double) columna.getContenidoFila(i);
-                if (maximo<valor){
-                    maximo=valor;
+                if (valor<minimo){
+                    minimo=valor;
                 }
             }
-            return maximo;
-        }else {
+            return minimo;
+        }else{
             throw new IllegalArgumentException("Debe ser tipo de dato numerico.");
         }
     }

@@ -1,6 +1,7 @@
-package Tabla;
-
+package Tabla.Medidas;
 import java.util.List;
+import Tabla.Columna;
+import Tabla.ColumnaNumerica;
 
 public class Contar extends Medida{
 

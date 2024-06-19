@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 import Tabla.Tabla;
-import Tabla.Medida;
+import Tabla.Medidas.Medida;
 import Tabla.Operador;
 import Tabla.Proyeccion;
 

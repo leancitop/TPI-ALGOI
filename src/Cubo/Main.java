@@ -1,10 +1,10 @@
 package Cubo;
 
-import Tabla.Contar;
-import Tabla.Maximo;
-import Tabla.Minimo;
-import Tabla.Promedio;
-import Tabla.Suma;
+import Tabla.Medidas.Contar;
+import Tabla.Medidas.Maximo;
+import Tabla.Medidas.Minimo;
+import Tabla.Medidas.Promedio;
+import Tabla.Medidas.Suma;
 
 public class Main {
     public static void main(String[] args) {
