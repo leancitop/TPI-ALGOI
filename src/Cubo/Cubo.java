@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 import Tabla.Tabla;
+import Tabla.Medida;
 import Tabla.Operador;
 import Tabla.Proyeccion;
 
@@ -18,17 +19,20 @@ public class Cubo {
     private String nombre;
     private Map<Dimension, Integer> dimensiones;
     private Tabla hechos;
+    private List<Medida> medidas;
 
     /**
      * Constructor privado de Cubo.
      * @param nombre Nombre del cubo.
      * @param dimensiones Dimensiones del cubo.
      * @param hechos Tabla de hechos del cubo.
+     * @param medidas Medidas disponibles del cubo.
      */
-    private Cubo(String nombre, Map<Dimension, Integer> dimensiones, Tabla hechos){
+    private Cubo(String nombre, Map<Dimension, Integer> dimensiones, Tabla hechos, List<Medida> medidas){
         this.dimensiones = dimensiones;
         this.nombre = nombre;
         this.hechos = hechos;
+        this.medidas = medidas;
     }
 
     /**
@@ -39,6 +43,7 @@ public class Cubo {
         dimensiones = configCubo.getDimensiones();
         nombre = configCubo.getNombre();
         hechos = configCubo.getHechos();
+        medidas = configCubo.getMedidas();
     }
 
     /**
@@ -94,7 +99,7 @@ public class Cubo {
         }
 
         // Devolver un nuevo cubo con los datos filtrados
-        return new Cubo("Cubo_" + valor, nivelesNuevos, hechosFiltrados);
+        return new Cubo("Cubo_" + valor, nivelesNuevos, hechosFiltrados, medidas);
     }
     /**
      * Realiza un dice (filtrado múltiple) en el cubo según las especificaciones dadas.
@@ -107,6 +112,8 @@ public class Cubo {
      */
     public Cubo dice(String nombreCubo, ConfigDice dice) {
         Tabla hechosDice = this.hechos;
+        List<Medida> medidasDice = this.medidas;
+
         for (int i = 0; i < dice.largo; i++) {
             boolean dimensionEncontrada = false;
             for (Dimension dim : dimensiones.keySet()) {
@@ -131,7 +138,7 @@ public class Cubo {
             throw new RuntimeException("No existen hechos que cumplan con los filtros solicitados");
         }
 
-        return new Cubo(nombreCubo, this.dimensiones, hechosDice);
+        return new Cubo(nombreCubo, this.dimensiones, hechosDice, medidasDice);
     }
 
 
@@ -230,10 +237,23 @@ public class Cubo {
      * @param medida Medida a aplicar en la proyección.
      */
     public void proyectar(String valorHechos, String medida, int numeroFilas){
+        List<Medida> medidasCopia = new ArrayList<>(medidas);
+        boolean correcto = false;
+        for (int i = 0; i < medidas.size(); i++) {
+            if ((medidas.get(i).toString().toLowerCase()).equals(medida.toLowerCase()) ){
+                medidasCopia.remove(i);
+                medidasCopia.add(0, medidas.get(i));
+                correcto = true;
+            }
+        }
+        if (!correcto) {
+            throw new IllegalArgumentException("La medida [" + medida + "] no esta cargada en el cubo. Medidas disponibles: " + medidas);
+        }
+        
         Tabla tablaParseada = Operador.parsear(dimensiones, hechos, hechos.getHeaderIndex(valorHechos));
         List<String> columnas =  new ArrayList<>(Arrays.asList(tablaParseada.getHeaders()));
         columnas.remove(valorHechos);
-        Tabla tablaAgrupada = Operador.agrupar(tablaParseada, columnas , medida);
+        Tabla tablaAgrupada = Operador.agrupar(tablaParseada, columnas , medidasCopia.get(0));
         Proyeccion p = new Proyeccion(tablaAgrupada);
         // p.info();
         p.imprimirNfilas(numeroFilas);
@@ -267,6 +287,14 @@ public class Cubo {
                 salida += headers[i] + "]";
             }else{
                 salida += headers[i] + ", ";
+            }
+        }
+        salida += "\n- Medidas: \n     [";
+        for (int i = 0; i <= medidas.size() - 1; i++) {
+            if (i == medidas.size() - 1){
+                salida += medidas.get(i) + "]";
+            }else{
+                salida += medidas.get(i) + ", ";
             }
         }
         return salida;

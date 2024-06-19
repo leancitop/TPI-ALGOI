@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import java.util.HashSet;
 import Cubo.Dimension;
 
@@ -76,11 +77,7 @@ public class Operador {
  * @throws IllegalArgumentException si la tabla o columnasAAgrupar son nulas, o si operacionARealizar es nula o vacía.
  * @throws IllegalStateException si no se encuentra una columna especificada en columnasAAgrupar.
  */
-public static Tabla agrupar(Tabla tabla, List<String> columnasAAgrupar, String operacionARealizar) {
-    if (tabla == null || columnasAAgrupar == null || operacionARealizar == null || operacionARealizar.isEmpty()) {
-        throw new IllegalArgumentException("Los parámetros tabla, columnasAAgrupar y operacionARealizar no deben ser nulos o vacíos.");
-    }
-
+public static Tabla agrupar(Tabla tabla, List<String> columnasAAgrupar, Medida operacionARealizar) {
     Map<List<Object>, List<Integer>> grupos = new HashMap<>();
 
     // Identificar las columnas a agrupar
@@ -185,62 +182,12 @@ public static Tabla agrupar(Tabla tabla, List<String> columnasAAgrupar, String o
      *
      * @param columna    La columna a la que se va a aplicar la operación.
      * @param indicesFilas Los índices de las filas sobre las que se va a aplicar la operación.
-     * @param operacion  La operación que se va a aplicar (p.ej., "suma", "promedio").
+     * @param operacion  La operación que se va a aplicar, de tipo Medida.
      * @return El resultado de la operación aplicada a la columna.
      */
-    private static double aplicarOperacion(Columna<?> columna, List<Integer> indicesFilas, String operacion) {
-        switch (operacion.toLowerCase()) {
-            case "suma":
-                if (columna instanceof ColumnaNumerica) {
-                    double suma = 0.0;
-                    for (int i : indicesFilas) {
-                        suma += (double) columna.getContenidoFila(i);
-                    }
-                    return suma;
-                }
-                break;
-            case "promedio":
-                if (columna instanceof ColumnaNumerica) {
-                    double suma = 0.0;
-                    for (int i : indicesFilas) {
-                        suma += (Double) columna.getContenidoFila(i);
-                    }
-                    return suma / indicesFilas.size();
-                }
-                break;
-            case "contar":
-                if (columna instanceof ColumnaNumerica) {
-                    return (double) indicesFilas.size();
-                }
-                break;
-            case "min":
-                if (columna instanceof ColumnaNumerica) {
-                    double minimo = (double) columna.getContenidoFila(indicesFilas.get(0));
-                    for (int i : indicesFilas) {
-                        double valor = (double) columna.getContenidoFila(i);
-                        if (valor<minimo){
-                            minimo=valor;
-                        }
-                    }
-                    return minimo;
-                }
-                break;
-            case "max":
-                if (columna instanceof ColumnaNumerica) {
-                    double maximo = (double) columna.getContenidoFila(indicesFilas.get(0));
-                    for (int i : indicesFilas) {
-                        double valor = (double) columna.getContenidoFila(i);
-                        if (maximo<valor){
-                            maximo=valor;
-                        }
-                    }
-                    return maximo;
-                }
-            default:
-                throw new IllegalArgumentException("Operación no soportada: " + operacion);
-        }
-    throw new IllegalArgumentException("No se pudo calcular el resultado.");
-
+    private static double aplicarOperacion(Columna<?> columna, List<Integer> indicesFilas, Medida operacion) {
+        double medida = operacion.operar(columna, indicesFilas);
+        return medida;
     }
 
     /**

@@ -1,9 +1,12 @@
 package Cubo;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import Lectores.LectorArchivo;
+import Tabla.Medida;
 import Tabla.Tabla;
+import Lectores.LectorCSV;
 
 /**
  * Clase que representa la configuración inicial para un objeto Cubo.
@@ -12,6 +15,7 @@ public class Config {
     private String nombre;
     private Map<Dimension, Integer> dimensiones;
     private Tabla hechos;
+    private List<Medida> medidas;
 
     /**
      * Constructor privado de la clase Config.
@@ -20,6 +24,7 @@ public class Config {
     private Config(String nombre){
         this.nombre = nombre;
         dimensiones = new HashMap<>();
+        medidas = new ArrayList<>();
     }
 
     /**
@@ -67,8 +72,9 @@ public class Config {
         if (path == null || path.isEmpty()) {
             throw new IllegalArgumentException("El path no puede ser nulo o vacío.");
         }
-        try{
-            String[][] csv = LectorArchivo.leerCSV(path);
+        try{            
+            LectorCSV lector = new LectorCSV();
+            String[][] csv = lector.leerArchivo(path);
             Tabla hechos = new Tabla();
             hechos.cargarTabla(csv);
             String[] headers = hechos.getHeaders();
@@ -86,6 +92,18 @@ public class Config {
         }catch (IOException e) {
             System.err.println("Error al leer el archivo: " + e.getMessage());
         }
+    }
+
+    /**
+     * Agrega medida que se usara en el cubo.
+     * @param medida Medida a agregar. Puede agregarse cualquier objeto que extienda a la clase Medida.
+     * @throws IllegalArgumentException Si la medida ya esta en la lista de medidas
+     */
+    public void agregarMedida(Medida medida) {
+        if (medidas.contains(medida)) {
+            throw new IllegalArgumentException("La medida [" + medida + "] ya esta cargada.");
+        }
+        medidas.add(medida);
     }
 
     /**
@@ -110,5 +128,13 @@ public class Config {
      */
     public Tabla getHechos(){
         return hechos;
+    }
+
+        /**
+     * Obtiene los datos de hechos configurados para el cubo.
+     * @return Lista de medidas.
+     */
+    public List<Medida> getMedidas() {
+        return medidas;
     }
 }
