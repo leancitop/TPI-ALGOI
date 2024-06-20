@@ -1,5 +1,8 @@
 package Cubo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Tabla.Medidas.Contar;
 import Tabla.Medidas.Maximo;
 import Tabla.Medidas.Minimo;
@@ -44,7 +47,8 @@ public class Main {
 
         
         //SLICE
-        Cubo cubo2018 = cubo.slice("fechas", 4, "2018.0");
+        Cubo cubo2018 = cubo.slice("fechas", "2018.0, 3.0");
+        cubo2018.drillDown("fechas");
         cubo2018.proyectar("valor_unitario", "Suma");
 
 
