@@ -1,4 +1,4 @@
-package Tabla;
+package Tabla.Columnas;
 
 /**
  * Representa una columna de datos numéricos (tipo Double) en una tabla.

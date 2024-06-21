@@ -8,6 +8,11 @@ import java.util.Set;
 
 import java.util.HashSet;
 import Cubo.Dimension;
+import Tabla.Columnas.Columna;
+import Tabla.Columnas.ColumnaNumerica;
+import Tabla.Columnas.ColumnaString;
+import Tabla.Filtro.FiltroEnLista;
+import Tabla.Filtro.FiltroIgual;
 import Tabla.Medidas.Medida;
 
 public class Operador {
@@ -192,84 +197,6 @@ public static Tabla agrupar(Tabla tabla, List<String> columnasAAgrupar, Medida o
     }
 
     /**
-     * Tipos de filtros que se pueden aplicar a las columnas.
-     */
-    public enum TiposFiltros {
-        IGUAL,
-        MAYOR,
-        MENOR,
-        NO_IGUAL,
-        ENTRE
-    }
-
-    /**
-     * Filtra una columna basándose en los comparadores y el tipo de filtro especificado.
-     *
-     * @param columna     La columna que se va a filtrar.
-     * @param comparadores Una lista de valores con los que se va a comparar el contenido de la columna.
-     * @param tipoFiltro  El tipo de filtro que se va a aplicar (p.ej., IGUAL, MAYOR, MENOR).
-     * @return Una lista de índices que cumplen con el filtro.
-     */
-    public static List<Integer> filtrar(Columna<?> columna, List<String> comparadores, TiposFiltros tipoFiltro) {
-        List<Integer> filasOk = new ArrayList<>();
-        String comparador = comparadores.get(0);
-        Integer n = 0;
-        for (Object valRaw : columna.getDatos()) {
-            String val = valRaw.toString();
-            switch (tipoFiltro) {
-                case IGUAL:
-                    if (comparadores.contains(val)) {
-                        filasOk.add(n);
-                    }
-                    break;
-                case NO_IGUAL:
-                    if (!comparadores.contains(val)) {
-                        filasOk.add(n);
-                    }
-                    break;
-                case MAYOR:
-                    try {
-                        Double valN = Double.parseDouble(val);
-                        if (valN > Double.parseDouble(comparador)) {
-                            filasOk.add(n);
-                        }
-                    } catch (Exception e) {
-                        throw new IllegalArgumentException("La columna debe ser de tipo numérico");
-                    }
-                    break;
-                case MENOR:
-                    try {
-                        Double valN = Double.parseDouble(val);
-                        if (valN < Double.parseDouble(comparador)) {
-                            filasOk.add(n);
-                        }
-                    } catch (Exception e) {
-                        throw new IllegalArgumentException("La columna debe ser de tipo numérico");
-                    }
-                    break;
-                case ENTRE:
-                    if (comparadores.size() < 2) {
-                        throw new IllegalArgumentException("Para filtrar ENTRE se deben tener al menos 2 valores");
-                    }
-                    try {
-                        Double valN = Double.parseDouble(val);
-                        if (Double.parseDouble(comparadores.get(0)) < valN &&
-                                valN < Double.parseDouble(comparadores.get(1))) {
-                            filasOk.add(n);
-                        }
-                    } catch (Exception e) {
-                        throw new IllegalArgumentException("La columna debe ser de tipo numérico");
-                    }
-                    break;
-                default:
-                    break;
-            }
-            n++;
-        }
-        return filasOk;
-    }
-
-    /**
      * Filtra una tabla de hechos basada en una dimensión, un valor y un nivel de filtro.
      *
      * @param hechos      La tabla de hechos que se va a filtrar.
@@ -282,13 +209,9 @@ public static Tabla agrupar(Tabla tabla, List<String> columnasAAgrupar, Medida o
     public static Tabla filtrarHechos(Tabla hechos, Dimension dim, String valor, Integer nivelFiltro, boolean borrarCol) {
         List<String> ids_dim = new ArrayList<>();
         Tabla dimTabla = dim.getTabla();
-        List<String> filtros = new ArrayList<>(); // paso necesario por cómo es filtro
-        filtros.add(valor);
-        List<Integer> indexesDim = Operador.filtrar(
-                dimTabla.getColumnas().get(nivelFiltro + 1),
-                filtros,
-                Operador.TiposFiltros.IGUAL
-        );
+        FiltroIgual filtroIgual = new FiltroIgual();
+        FiltroEnLista filtroLista = new FiltroEnLista();
+        List<Integer> indexesDim = filtroIgual.filtrar(dimTabla.getColumnas().get(nivelFiltro + 1), valor);
         if(indexesDim.size() == 0)
             throw new RuntimeException("No se encontraron coincidencias con el valor '"+ valor +"' en la dimension " + dim.getNombre());
 
@@ -300,11 +223,8 @@ public static Tabla agrupar(Tabla tabla, List<String> columnasAAgrupar, Medida o
         }
         int col_fk = dim.getClaveForanea();
 
-        List<Integer> indexesHechos = Operador.filtrar(
-                hechos.getColumnas().get(col_fk),
-                ids_dim,
-                Operador.TiposFiltros.IGUAL
-        );
+        List<Integer> indexesHechos = filtroLista.filtrar(hechos.getColumnas().get(col_fk), ids_dim);
+
 
         if(indexesHechos.size() == 0)
             throw new RuntimeException("Las ninguna de siguientes FK se encuentran en la columna " + hechos.getHeaders()[col_fk] + ": " + String.join(", ", ids_dim));

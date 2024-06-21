@@ -2,6 +2,8 @@ package Tabla;
 
 import java.util.List;
 
+import Tabla.Columnas.Columna;
+
 /**
  * Clase que representa una proyección de una tabla.
  */

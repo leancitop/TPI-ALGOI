@@ -1,4 +1,4 @@
-package Tabla;
+package Tabla.Columnas;
 
 /**
  * Representa una columna de datos de texto (tipo String) en una tabla.

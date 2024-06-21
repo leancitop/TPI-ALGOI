@@ -60,14 +60,16 @@ public class Cubo {
      * Realiza un slice (filtrado) en el cubo según una dimensión y un valor específico.
      * 
      * @param nombreDimension Nombre de la dimensión a filtrar.
-     * @param nivelFiltro Nivel de filtro en la dimensión.
-     * @param valor Valor a filtrar en el nivel.
+     * @param filtros Valores a filtrar. Cantidad acorde al nivle hasta el que se quiera llegar. Orden: desde el nivel más alto hasta el más bajo.
      * @return Nuevo cubo con los datos filtrados.
      * @throws NoSuchElementException si no se encuentra una dimensión con el nombre especificado.
      * @throws IndexOutOfBoundsException si nivelFiltro está fuera de los límites válidos para la dimensión.
      * @throws IllegalStateException si el estado del cubo no es válido para realizar el slice.
      */
-    public Cubo slice(String nombreDimension, int nivelFiltro, String valor) {
+    public Cubo slice(String nombreDimension, String filtros) {
+        //convierto el string en una lista y saco los espacios que pueda llegar a tener
+        List<String> valores = Arrays.stream(filtros.split(",")).map(String::trim).toList();
+
         // Buscar la dimensión por nombre
         Dimension dimensionSeleccionada = null;
         for (Dimension dim : dimensiones.keySet()) {
@@ -82,24 +84,31 @@ public class Cubo {
             throw new NoSuchElementException("No se encontró una dimensión con el nombre especificado: " + nombreDimension);
         }
 
-        // Validar el nivel de filtro
-        if (nivelFiltro < 0 || nivelFiltro >= dimensionSeleccionada.getCantidadNiveles()) {
-            throw new IndexOutOfBoundsException("Nivel de filtro inválido para la dimensión: " + nivelFiltro);
-        }
-
-        // Filtrar los hechos según la dimensión y el valor especificado
-        Tabla hechosFiltrados = Operador.filtrarHechos(this.hechos, dimensionSeleccionada, valor, nivelFiltro, true);
-
+        //tabla de hechos para el cubo nuevo
+        Tabla hechosFiltrados = this.hechos;
         // Crear un nuevo mapa de niveles para el nuevo cubo
         HashMap<Dimension, Integer> nivelesNuevos = new HashMap<>();
-        for (HashMap.Entry<Dimension, Integer> nivel : this.dimensiones.entrySet()) {
-            if (!nivel.getKey().getNombre().equals(nombreDimension)) {
-                nivelesNuevos.put(nivel.getKey(), nivel.getValue());
+        int nivelFiltro = dimensionSeleccionada.getCantidadNiveles() - 1;
+        for(String valor : valores) {
+            // Validar el nivel de filtro
+            if (
+                nivelFiltro < 0
+                //nivelFiltro >= dimensionSeleccionada.getCantidadNiveles()
+            ) {
+                throw new IndexOutOfBoundsException("Nivel de filtro inválido para la dimensión; demasiados valores. Utilizar solo " + dimensionSeleccionada.getCantidadNiveles());
             }
+            // Filtrar los hechos según la dimensión y el valor especificado
+            hechosFiltrados = Operador.filtrarHechos(hechosFiltrados, dimensionSeleccionada, valor, nivelFiltro, false);
+    
+            // for (HashMap.Entry<Dimension, Integer> nivel : this.dimensiones.entrySet()) {
+            //    if (!nivel.getKey().getNombre().equals(nombreDimension)) {
+            //         nivelesNuevos.put(nivel.getKey(), nivel.getValue());
+            //     }
+            // }-
+            nivelFiltro = nivelFiltro - 1;
         }
-
         // Devolver un nuevo cubo con los datos filtrados
-        return new Cubo("Cubo_" + valor, nivelesNuevos, hechosFiltrados, medidas);
+        return new Cubo("Cubo_" + String.join("_", valores), this.dimensiones, hechosFiltrados, medidas);
     }
     /**
      * Realiza un dice (filtrado múltiple) en el cubo según las especificaciones dadas.
@@ -232,11 +241,35 @@ public class Cubo {
     }
 
     /**
-     * Realiza una proyección de los datos del cubo con los niveles seleccionados, valor y medida elegidos.
-     * @param valorHechos Valor de los hechos a utilizar en la proyección.
+     * Realiza una proyección sobre el cubo utilizando una o dos dimensiones,
+     * un valor de hechos, una medida y un número específico de filas a imprimir.
+     * Tambien se pueden proyectar 0 dimensiones.
+     *
+     * @param dimension1 Primera dimensión a utilizar en la proyección.
+     * @param dimension2 Segunda dimensión opcional a utilizar en la proyección.
+     * @param valorHechos Valor específico de los hechos sobre los cuales se realiza la proyección.
      * @param medida Medida a aplicar en la proyección.
+     * @param numeroFilas Número de filas a imprimir en los resultados de la proyección. (Opcional)
+     * @throws IllegalArgumentException Si las dimensiones especificadas no existen en el cubo de datos.
+     * @throws IllegalArgumentException Si la medida especificada no está cargada en el cubo de datos.
      */
-    public void proyectar(String valorHechos, String medida, int numeroFilas){
+    public void proyectar(String dimension1, String dimension2, String valorHechos, String medida, int numeroFilas){
+        Map<Dimension, Integer> diemensionesElegidas = new HashMap<>();
+        for (Map.Entry<Dimension, Integer> entry : dimensiones.entrySet()) {
+            if (entry.getKey().getNombre().equals(dimension1)){
+                diemensionesElegidas.put(entry.getKey(), entry.getValue());
+            }
+            if (entry.getKey().getNombre().equals(dimension2)){
+                diemensionesElegidas.put(entry.getKey(), entry.getValue());
+            }
+        }
+        if (diemensionesElegidas.size() == 1 && (!dimension2.equals("vacio"))) {
+            throw new IllegalArgumentException("Verificar dimensiones elegidas. No se encuentran en el Cubo.");
+        }
+        if (diemensionesElegidas.size() == 0 && (!dimension1.equals("vacio"))) {
+            throw new IllegalArgumentException("Verificar dimensiones elegidas. No se encuentran en el Cubo.");
+        }
+
         List<Medida> medidasCopia = new ArrayList<>(medidas);
         boolean correcto = false;
         for (int i = 0; i < medidas.size(); i++) {
@@ -250,12 +283,21 @@ public class Cubo {
             throw new IllegalArgumentException("La medida [" + medida + "] no esta cargada en el cubo. Medidas disponibles: " + medidas);
         }
         
-        Tabla tablaParseada = Operador.parsear(dimensiones, hechos, hechos.getHeaderIndex(valorHechos));
+        Tabla tablaParseada = Operador.parsear(diemensionesElegidas, hechos, hechos.getHeaderIndex(valorHechos));
         List<String> columnas =  new ArrayList<>(Arrays.asList(tablaParseada.getHeaders()));
         columnas.remove(valorHechos);
         Tabla tablaAgrupada = Operador.agrupar(tablaParseada, columnas , medidasCopia.get(0));
+
         Proyeccion p = new Proyeccion(tablaAgrupada);
-        // p.info();
+        System.out.println("");
+        if (dimension2.equals("vacio") && dimension1.equals("vacio")){
+            System.out.println("Proyectando 0 dimensiones: [" + nombre + "]");
+        } else if(dimension2.equals("vacio")) {
+            System.out.println("Proyectando 1 dimensión: [" + dimension1 + "]");
+        } else{
+            System.out.println("Proyectando 2 dimensiones: [" + dimension1 + ", " + dimension2 + "]"); 
+        }
+        System.out.println("");
         p.imprimirNfilas(numeroFilas);
         System.out.println("");
         System.out.println("Cantidad de columnas: " + tablaAgrupada.getColumnas().size());
@@ -263,10 +305,21 @@ public class Cubo {
         System.out.println("");
     }
 
-    public void proyectar(String valorHechos, String medida) {
-        proyectar(valorHechos, medida, 15);
+    public void proyectar(String dimension1, String valorHechos, String medida) {
+        proyectar(dimension1, "vacio", valorHechos, medida, 15);
     }
 
+    public void proyectar(String dimension1, String valorHechos, String medida, int numeroFilas) {
+        proyectar(dimension1, "vacio", valorHechos, medida, numeroFilas);
+    }
+
+    public void proyectar(String valorHechos, String medida) {
+        proyectar("vacio", "vacio", valorHechos, medida, 15);
+    }
+
+    public void proyectar(String dimension1, String dimension2, String valorHechos, String medida) {
+        proyectar(dimension1, dimension2, valorHechos, medida, 15);
+    }
 
     /**
      * Devuelve una representación en cadena del objeto Cubo.

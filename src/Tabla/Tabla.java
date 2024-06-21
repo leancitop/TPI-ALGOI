@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import Tabla.Columnas.Columna;
+import Tabla.Columnas.ColumnaNumerica;
+import Tabla.Columnas.ColumnaString;
+
 /**
  * Clase que representa una tabla con múltiples columnas.
  */
