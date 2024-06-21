@@ -38,3 +38,8 @@ public class FiltroIgual extends Filtro {
         return filasOk;
     }
 }
+<<<<<<< HEAD
+=======
+    
+
+>>>>>>> a22a4b732286322f963cf00d344a79a0359387e3

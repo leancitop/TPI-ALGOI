@@ -37,8 +37,12 @@ public class FiltroMayor extends Filtro {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("El valor proporcionado debe ser un número");
         }
+<<<<<<< HEAD
         
         for (Object valorRaw : columna.getDatos()) {
+=======
+        for (Object valorRaw : columna.getDatos()){
+>>>>>>> a22a4b732286322f963cf00d344a79a0359387e3
             String val = valorRaw.toString();
             try {
                 Double valDouble = Double.parseDouble(val);
