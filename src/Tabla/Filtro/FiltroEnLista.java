@@ -37,11 +37,7 @@ public class FiltroEnLista extends Filtro {
      */
     public List<Integer> filtrar(Columna<?> columna, List<String> valores) {
         List<Integer> filasOk = new ArrayList<>();
-<<<<<<< HEAD
         int indices = 0;
-=======
-        int indices = 0; 
->>>>>>> a22a4b732286322f963cf00d344a79a0359387e3
 
         for (Object valorRaw : columna.getDatos()) {
             String valCol = valorRaw.toString();

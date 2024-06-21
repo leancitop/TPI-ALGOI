@@ -38,6 +38,10 @@ Para utilizar la biblioteca seguí estos pasos:
 
    // Agregar datos de hechos desde archivo CSV
    cuboConfig.agregarHechos(path + "ventas.csv");
+
+   // Agregar medidas que queramos usar
+   cuboConfig.agregarMedida(new Suma());
+   cuboConfig.agregarMedida(new Contar());
    ```
 
 2. **Creación y Manipulación del Cubo**
@@ -52,18 +56,19 @@ Para utilizar la biblioteca seguí estos pasos:
    cubo.drillDown("puntos_venta");
    cubo.rollUp("puntos_venta");
 
-   // Filtrado por fecha y proyección de valor unitario
+   // Filtrado por fecha y proyección de valor unitario. Elegimos dimensiones puntos_venta y fechas.
    Cubo cubo2018 = cubo.slice("fechas", 4, "2018.0");
-   cubo2018.proyectar("valor_unitario", "suma");
+   cubo2018.proyectar("puntos_venta", "fechas", "valor_unitario", "suma");
 
    // Filtrado múltiple por punto de venta y fecha
    ConfigDice configDice = ConfigDice.crearConfigDice();
    configDice.agregarFiltro("puntos_venta", 4, "Europe");
    configDice.agregarFiltro("fechas", 4, "2018.0");
    Cubo cuboDice = cubo.dice("cubito", configDice);
-   cuboDice.proyectar("valor_unitario", "suma");
+   cuboDice.proyectar("puntos_venta", "fechas", "valor_unitario", "suma");
 
-   // proyectar() muestra el cubo en formato tabular, informacion() muestra información del cubo, como el nombre, sus dimensiones y respectivos niveles y los hechos.
+   // proyectar() muestra el cubo en formato tabular. Se le pasan una, dos o ninguna dimension, un valor de la tabla de hechos y una medida de la lista de medidas.
+   // informacion() muestra información del cubo, como el nombre, sus dimensiones y respectivos niveles y valores de la tabla de hechos.
    ```
 
 3. **Ejecución y Resultados**
